@@ -1,0 +1,245 @@
+#################################################
+
+### Zuzenketa #1: Leihoaren tamaina aldatu da ###
+
+#################################################
+
+Azalpena
+
+--------
+
+Grafikoak bistaratzeko leihoaren neurriak handitu egin dira
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaiak:
+    KG_WINDOW_WIDTH: leihoaren zabalera definitzen du. Balore berria: 860
+    KG_WINDOW_HEIGHT: leihoaren altuera definitzen du. Balore berria: 600
+
+************************************************************************************
+
+#################################################
+
+### Zuzenketa #2: Leihoaren tituloa aldatu da ###
+
+#################################################
+
+Azalpena
+
+--------
+
+Grafikoak bistaratzeko leihoaren tituloa aldatu da.
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaia: KG_WINDOW_TITLE: Leihoaren izenburuaren testua definitzen du. Balore berria: KbG Praktika
+
+************************************************************************************
+
+##############################################
+
+### Zuzenketa #3: Ardatzen koloreak aldatu ###
+
+##############################################
+
+Azalpena
+
+--------
+
+(0,0,0) puntuan ipinita dauden ardatz adierazgarrien koloreak aldatu
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaiak: 
+    KG_COL_X_AXIS_R: X ardatzaren kolorearen osagai gorriaren balioa. Balio berria: 0.0f
+    KG_COL_X_AXIS_G: X ardatzaren kolorearen osagai berdearen balioa. Balio berria: 1.0f
+    KG_COL_X_AXIS_B: X ardatzaren kolorearen osagai urdinaren balioa. Balio berria: 0.0f
+    KG_COL_Y_AXIS_R: Y ardatzaren kolorearen osagai gorriaren balioa. Balio berria: 1.0f
+    KG_COL_Y_AXIS_G: Y ardatzaren kolorearen osagai berdearen balioa. Balio berria: 0.0f
+    KG_COL_Y_AXIS_B: Y ardatzaren kolorearen osagai urdinaren balioa. Balio berria: 0.0f
+    KG_COL_Z_AXIS_R: Z ardatzaren kolorearen osagai gorriaren balioa. Balio berria: 0.0f
+    KG_COL_Z_AXIS_G: Z ardatzaren kolorearen osagai berdearen balioa. Balio berria: 0.0f
+    KG_COL_Z_AXIS_B: Z ardatzaren kolorearen osagai urdinaren balioa. Balio berria: 1.0f
+    
+************************************************************************************
+
+###########################################
+
+### Zuzenketa #4: Ardatzak pantailaratu ###
+
+###########################################
+
+Azalpena
+
+--------
+
+(0,0,0) puntuan ipinita dauden ardatz adierazgarrak pantailan marraztu
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaia: KG_MAX_DOUBLE:Double motako aldagaiaren balio maximoa adierazten duen aldagaia. Balio berria: 100025
+
+
+************************************************************************************
+
+##############################################################
+
+### Zuzenketa #5: Aukeratutako objektuaren kolorea aldatu  ###
+
+##############################################################
+
+Azalpena
+
+--------
+
+Aukeratutako objektuaren kolorea zuriz margotu
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaiak: 
+    KG_COL_SELECTED_R: Aukeratutako objektuaren kolorearen osagai gorriaren balioa. Balio berria: 1.0f
+    KG_COL_SELECTED_G: Aukeratutako objektuaren kolorearen osagai berdearen balioa. Balio berria: 1.0f
+    KG_COL_SELECTED_B: Aukeratutako objektuaren kolorearen osagai urdinaren balioa. Balio berria: 1.0f
+    
+    
+************************************************************************************
+
+#################################################################
+
+### Zuzenketa #6: Aukeratu gabeko objektuaren kolorea aldatu  ###
+
+#################################################################
+
+Azalpena
+
+--------
+
+Aukeratu gabeko objektuaren kolorea laranjaz margotu
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaiak: 
+    KG_COL_NONSELECTED_R: Aukeratutako objektuaren kolorearen osagai gorriaren balioa. Balio berria: 1.0f
+    KG_COL_NONSELECTED_G: Aukeratutako objektuaren kolorearen osagai berdearen balioa. Balio berria: 0.75f
+    KG_COL_NONSELECTED_B: Aukeratutako objektuaren kolorearen osagai urdinaren balioa. Balio berria: 0.0f
+    
+************************************************************************************
+
+###################################################
+
+### Zuzenketa #7: Atzekaldearen kolorea aldatu  ###
+
+###################################################
+
+Azalpena
+
+--------
+
+3D espazioaren atzekaldeko kolorea aldatu
+
+---------
+
+Aldatutako fitxategia: definitions.h
+Aldatutako aldagaiak: 
+    KG_COL_BACK_R: Atzekaldearen kolorearen osagai gorriaren balioa. Balio berria: 0.70f
+    KG_COL_BACK_G: Atzekaldearen kolorearen osagai berdearen balioa. Balio berria: 0.70f
+    KG_COL_BACK_B: Atzekaldearen kolorearen osagai urdinaren balioa. Balio berria: 1.0f
+    KG_COL_BACK_A: Atzekaldearen kolorearen distira.
+
+*******************************************************************************************************
+*******************************************************************************************************
+
+############################################
+
+### Akatsa #1: SUPR tekla objektu barik  ###
+
+############################################
+
+Azalpena
+
+--------
+
+Espazioan objekturik ez badago, SUPR tekla sakatzean, programa izten da.
+
+---------
+
+Aldatutako fitxategia: io.c
+Aldatutako funtzioa: void keyboard()
+    CASE(127)-aren barruan dagoen eduki guztia (break-a izan ezik) baldintza baten barruan sartu,
+    objekturik ez badago, bertako kodea ez exekutatzeko:
+         if(_selected_object != NULL){ /*KODEA*/ } break;
+         
+***************************************************************************
+
+############################################
+
+### Akatsa #2: TAB tekla objektu barik  ###
+
+############################################
+
+Azalpena
+
+--------
+
+Espazioan objekturik ez badago, TAB tekla sakatzean, programa izten da.
+
+---------
+
+Aldatutako fitxategia: io.c
+Aldatutako funtzioa: void keyboard()
+    CASE(9)-aren barruan dagoen eduki guztia (break-a izan ezik) baldintza baten barruan sartu,
+    objekturik ez badago, bertako kodea ez exekutatzeko:
+         if(_selected_object != NULL){ /*KODEA*/ } break;
+         
+***************************************************************************
+
+#######################################
+
+### Akatsa #3: ZOOM-a handitu ezik  ###
+
+#######################################
+
+Azalpena
+
+--------
+
+'CTRL'+'+' konbinazioa sakatuz, ez zen zoom-a handitzen
+
+---------
+
+Aldatutako fitxategia: io.c
+Aldatutako funtzioa: void keyboard()
+    CASE('+')-a hutsik zegoen. CASE('-')-aren kodea kopiatu eta itsatsi da CASE('+')-ean, eta wd eta he aldagaien balioak aldatu dira:
+        wd=(_ortho_x_max-_ortho_x_min)*KG_STEP_ZOOM;
+        he=(_ortho_y_max-_ortho_y_min)*KG_STEP_ZOOM;
+       
+       
+       ##########################
+       #                        #
+       #    ATAZA OSAGARRIAK    #
+       #                        #
+       ##########################
+       
+################################################
+
+### OSAGARRIA #1: Sareta berri bat marraztu  ###
+
+################################################
+
+Azalpena
+
+--------
+
+Programak marraztu dezan objektu berri bat sortu. Gure kasuan, piramide bat marraztu dugu
+
+--------
+
+Sortutako fitxategia: pyramid.obj
+
+
