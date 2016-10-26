@@ -5,9 +5,10 @@
 
 /** DEFINITIONS **/
 
-#define KG_WINDOW_TITLE                     "KbG Praktika - Borja Calvo (borja.calvo@ehu.es)"
-#define KG_WINDOW_WIDTH                     600
-#define KG_WINDOW_HEIGHT                    400
+
+#define KG_WINDOW_TITLE                     "KbG Praktika"
+#define KG_WINDOW_WIDTH                     860
+#define KG_WINDOW_HEIGHT                    600
 #define KG_WINDOW_X                         50
 #define KG_WINDOW_Y                         50
 
@@ -29,18 +30,18 @@
 #define KG_ORTHO_Z_MIN_INIT                -100
 #define KG_ORTHO_Z_MAX_INIT                 10000
 
-#define KG_COL_BACK_R                       0.30f
-#define KG_COL_BACK_G                       0.30f
-#define KG_COL_BACK_B                       0.30f
+#define KG_COL_BACK_R                       0.70f
+#define KG_COL_BACK_G                       0.70f
+#define KG_COL_BACK_B                       1.00f
 #define KG_COL_BACK_A                       1.00f
 
 #define KG_COL_SELECTED_R                   1.00f
-#define KG_COL_SELECTED_G                   0.75f
-#define KG_COL_SELECTED_B                   0.00f
+#define KG_COL_SELECTED_G                   1.00f
+#define KG_COL_SELECTED_B                   1.00f
 
 #define KG_COL_NONSELECTED_R                1.00f
-#define KG_COL_NONSELECTED_G                1.00f
-#define KG_COL_NONSELECTED_B                1.00f
+#define KG_COL_NONSELECTED_G                0.75f
+#define KG_COL_NONSELECTED_B                0.00f
 
 #define KG_COL_X_AXIS_R                     1.0f
 #define KG_COL_X_AXIS_G                     0.0f
@@ -54,7 +55,11 @@
 #define KG_COL_Z_AXIS_G                     0.0f
 #define KG_COL_Z_AXIS_B                     1.0f
 
-#define KG_MAX_DOUBLE                       10E25
+#define KG_COL_P_AXIS_R                     0.0f
+#define KG_COL_P_AXIS_G                     0.0f
+#define KG_COL_P_AXIS_B                     0.0f
+
+#define KG_MAX_DOUBLE                       100025
 
 /** STRUCTURES **/
 

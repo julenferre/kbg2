@@ -10,7 +10,7 @@
 
 GLdouble _window_ratio;                     /*Control of window's proportions */
 GLdouble _ortho_x_min,_ortho_x_max;         /*Variables for the control of the orthographic projection*/
-GLdouble _ortho_y_min ,_ortho_y_max;        /*Variables for the control of the orthographic projection*/
+GLdouble _ortho_y_min,_ortho_y_max;        /*Variables for the control of the orthographic projection*/
 GLdouble _ortho_z_min,_ortho_z_max;         /*Variables for the control of the orthographic projection*/
 
 object3d * _first_object= 0;                /*List of objects*/

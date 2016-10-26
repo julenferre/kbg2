@@ -45,7 +45,9 @@ void draw_axes()
  * @param height New height of the window
  */
 void reshape(int width, int height) {
+    /*VIEWPORT nagusia*/
     glViewport(0, 0, width, height);
+    
     /*  Take care, the width and height are integer numbers, but the ratio is a GLdouble so, in order to avoid
      *  rounding the ratio to integer values we need to cast width and height before computing the ratio */
     _window_ratio = (GLdouble) width / (GLdouble) height;

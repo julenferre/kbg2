@@ -1,0 +1,75 @@
+#################################################
+
+### Aldaketa #1: Menuko aukerak zabaldu  ###
+
+#################################################
+
+Azalpena
+
+--------
+
+Menuko aukerak zabaldu dira. Teklatutik irakurritako teklen ekintzak ere bai.
+
+---------
+
+Aldatutako fitxategia: io.c
+Aldatutako metodoa: keyboard
+	-> case 'm'/case 'M' berria
+	-> case 'b'/case 'B' berria
+	-> case 't'/case 'T' berria
+	-> case 'g'/case 'G' berria
+	-> case 'l'/case 'L' berria
+	-> case 'z'/case 'Z' berria
+	-> case '+' zabaldu da (CTRL gabeko aukera gehituta)
+	-> case '-' zabaldu da (CTRL gabeko aukera gehituta)
+
+********************************************************************************
+
+########################################################################
+
+### Aldaketa #2: Objektuen transformaketa-mota aukeratzeko aldagaia  ###
+
+########################################################################
+
+Azalpena
+
+--------
+
+Transformazioaren mota (biraketa, tamaina-aldaketa...) biltegiratzen duen 
+aldagaiaren sorrera eta implementazioa. Adib.: biraketa aukeratuta badago, 
+aldagai honen balioa 'b' izango da.
+
+---------
+
+Aldatutako fitxategia: io.c
+Sortutako aldagaiak: char objectTransformType ; keyboard metodoan implementatua:
+	-> case 'm'/case 'M'-an implementatua
+	-> case 'b'/case 'B'-an implementatua
+	-> case 't'/case 'T'-an implementatua
+
+
+********************************************************************************
+
+##############################################################################
+
+### Aldaketa #3: Objektuen transformaketaren sistema aukeratzeko aldagaia  ###
+
+##############################################################################
+
+Azalpena
+
+--------
+
+Transformazioaren mota (biraketa, tamaina-aldaketa...) biltegiratzen duen 
+aldagaiaren sorrera eta implementazioa. Adib.: biraketa aukeratuta badago, 
+aldagai honen balioa 'b' izango da.
+
+---------
+
+Aldatutako fitxategia: io.c
+Sortutako aldagaiak: char systemTransformType ; keyboard metodoan implementatua:
+	-> case 'g'/case 'G'-an implementatua
+	-> case 'l'/case 'L'-an implementatua
+
+********************************************************************************
+
