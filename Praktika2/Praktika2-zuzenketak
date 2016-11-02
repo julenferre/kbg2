@@ -83,16 +83,21 @@ Azalpena
 
 --------
 
-Transformazioaren mota (biraketa, tamaina-aldaketa...) biltegiratzen duen 
-aldagaiaren sorrera eta implementazioa. Adib.: biraketa aukeratuta badago, 
-aldagai honen balioa 'b' izango da.
+Transformazioak ardatz batean edo bestean egiteko, teklatuko geziak erabiliko dira.
+Baina gezi hauen pultsaketak irakurtzeko metodo berezi bat implementatu
+behar izan dugu: keyboardSpecial. Metodo honek GlutSpecialFunc erabiltzen du 
+tekla berezi hauek tratatzeko.
 
 ---------
 
 Aldatutako fitxategia: io.c
-Sortutako aldagaiak: char systemTransformType ; keyboard metodoan implementatua:
-	-> case 'g'/case 'G'-an implementatua
-	-> case 'l'/case 'L'-an implementatua
+Metodo berria: voi keyboardSpecial(int key, int x, int y)
+    -> case GLUT_KEY_LEFT: Mugitu -X; Handitu X; Biratu -Y
+    -> case GLUT_KEY_UP: Mugitu +Y; Txikitu Y; Biratu +X
+    -> case GLUT_KEY_RIGHT: Mugitu +X; Txikitu X; Biratu +Y
+    -> case GLUT_KEY_DOWN: Mugitu -Y; Handitu Y; Biratu -X
+    -> case GLUT_KEY_PAGE_DOWN: Mugitu +Z; Txikitu Z; Biratu +Z
+    -> case GLUT_KEY_PAGE_UP: Mugitu -Z; Handitu Z; Biratu -Z
 
 ********************************************************************************
 
