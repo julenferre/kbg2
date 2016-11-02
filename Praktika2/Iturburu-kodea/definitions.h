@@ -61,6 +61,10 @@
 
 #define KG_MAX_DOUBLE                       100025
 
+#define KG_TAMAN_ABIA                       1.0f
+#define KG_BIRAK_ABIAD                      1.0f
+#define KG_TRASL_ABIAD                      1.0f
+
 /** STRUCTURES **/
 
 /****************************
