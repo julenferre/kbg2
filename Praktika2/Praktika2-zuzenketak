@@ -73,3 +73,26 @@ Sortutako aldagaiak: char systemTransformType ; keyboard metodoan implementatua:
 
 ********************************************************************************
 
+############################################################################
+
+### Aldaketa #4: Objektuen transformaketak teklatutik egiteko aldaketak  ###
+
+############################################################################
+
+Azalpena
+
+--------
+
+Transformazioaren mota (biraketa, tamaina-aldaketa...) biltegiratzen duen 
+aldagaiaren sorrera eta implementazioa. Adib.: biraketa aukeratuta badago, 
+aldagai honen balioa 'b' izango da.
+
+---------
+
+Aldatutako fitxategia: io.c
+Sortutako aldagaiak: char systemTransformType ; keyboard metodoan implementatua:
+	-> case 'g'/case 'G'-an implementatua
+	-> case 'l'/case 'L'-an implementatua
+
+********************************************************************************
+

@@ -54,6 +54,7 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
+    glutSpecialFunc(keyboardSpecial);
 
     /* this initialization has to be AFTER the creation of the window */
     initialization();

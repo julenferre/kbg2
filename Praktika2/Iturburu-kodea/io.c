@@ -64,189 +64,196 @@ void keyboard(unsigned char key, int x, int y) {
     char systemTransformType = 'l';
 
     switch (key) {
-    case 'f':
-    case 'F':
-        /*Ask for file*/
-        printf("%s", KG_MSSG_SELECT_FILE);
-        scanf("%s", fname);
-        /*Allocate memory for the structure and read the file*/
-        auxiliar_object = (object3d *) malloc(sizeof (object3d));
-        read = read_wavefront(fname, auxiliar_object);
-        switch (read) {
-        /*Errors in the reading*/
-        case 1:
-            printf("%s: %s\n", fname, KG_MSSG_FILENOTFOUND);
-            break;
-        case 2:
-            printf("%s: %s\n", fname, KG_MSSG_INVALIDFILE);
-            break;
-        case 3:
-            printf("%s: %s\n", fname, KG_MSSG_EMPTYFILE);
-            break;
-        /*Read OK*/
-        case 0:
-            /*Insert the new object in the list*/
-            auxiliar_object->next = _first_object;
-            _first_object = auxiliar_object;
-            _selected_object = _first_object;
-            printf("%s\n",KG_MSSG_FILEREAD);
-            break;
-        }
-        break;
-        
-    case 'm':
-    case 'M':
-        printf("Traslazioa aktibatuta\n");
-        objectTransformType = 'm';
-        break;
-    
-    case 'b':
-    case 'B':
-        printf("Biraketa aktibatuta\n");
-        objectTransformType = 'b';
-        break;
-        
-    case 't':
-    case 'T':
-        printf("Tamaina aldaketa aktibatuta\n");
-        objectTransformType = 't';
-        break;
-        
-    case 'g':
-    case 'G':
-        printf("Aldaketak munduaren erreferentzi sisteman eragin (aldaketa globalak)\n");
-        systemTransformType = 'g';
-        break;
-        
-    case 'l':
-    case 'L':
-        printf("Aldaketak objektuaren (edo kameraren, edo argiaren) erreferentzi sisteman eragin (aldaketa lokalak)\n");
-        systemTransformType = 'l';
-        break;
-
-    case 'o':
-    case 'O':
-        printf("Aldaketak hautaturik dagoen objektuari eragin\n");
-        printf("(Hurrengo praktikan implementatuko da)\n");
-        break;
-        
-    case 'z':
-    case 'Z':
-        printf("Aldaketak desegin\n");
-        break;
-
-    case 83: /* <UP> */
-        printf("Mugitu +Y; Txikitu Y; Biratu +X\n");
-        break;
-    
-    case 84:  /* <DOWN> */
-        printf("Mugitu -Y; Handitu Y; Biratu -X\n");
-        break;
-        
-    case 79:  /* <LEFT> */
-        printf("Mugitu -X; Handitu X; Biratu -Y\n");
-        break;
-        
-    case 89:  /* <RIGHT> */
-        printf("Mugitu +X; Txikitu X; Biratu +Y\n");
-        break;
-    
-    case 85: /* <AVPAG> */
-        printf("Mugitu +Z; Txikitu Z; Biratu +Z\n");
-        break;
-        
-    case 86: /* <REPAG> */
-        printf("Mugitu -Z; Handitu Z; Biratu -Z\n");
-        break;
-        
-        
-    case 9: /* <TAB> */
-        if(_selected_object != NULL) {
-            _selected_object = _selected_object->next;
-            /*The selection is circular, thus if we move out of the list we go back to the first element*/
-            if (_selected_object == 0) _selected_object = _first_object;
+        case 'f':
+        case 'F':
+            /*Ask for file*/
+            printf("%s", KG_MSSG_SELECT_FILE);
+            scanf("%s", fname);
+            /*Allocate memory for the structure and read the file*/
+            auxiliar_object = (object3d *) malloc(sizeof (object3d));
+            read = read_wavefront(fname, auxiliar_object);
+            switch (read) {
+                /*Errors in the reading*/
+                case 1:
+                    printf("%s: %s\n", fname, KG_MSSG_FILENOTFOUND);
+                    break;
+                case 2:
+                    printf("%s: %s\n", fname, KG_MSSG_INVALIDFILE);
+                    break;
+                case 3:
+                    printf("%s: %s\n", fname, KG_MSSG_EMPTYFILE);
+                    break;
+                    /*Read OK*/
+                case 0:
+                    /*Insert the new object in the list*/
+                    auxiliar_object->next = _first_object;
+                    _first_object = auxiliar_object;
+                    _selected_object = _first_object;
+                    printf("%s\n",KG_MSSG_FILEREAD);
+                    break;
             }
-        break;
+            break;
 
-    case 127: /* <SUPR> */
-        if(_selected_object != NULL){
-            /*Erasing an object depends on whether it is the first one or not*/
-            if (_selected_object == _first_object)
+        case 'm':
+        case 'M':
+            printf("Traslazioa aktibatuta\n");
+            objectTransformType = 'm';
+            break;
+
+        case 'b':
+        case 'B':
+            printf("Biraketa aktibatuta\n");
+            objectTransformType = 'b';
+            break;
+
+        case 't':
+        case 'T':
+            printf("Tamaina aldaketa aktibatuta\n");
+            objectTransformType = 't';
+            break;
+
+        case 'g':
+        case 'G':
+            printf("Aldaketak munduaren erreferentzi sisteman eragin (aldaketa globalak)\n");
+            systemTransformType = 'g';
+            break;
+
+        case 'l':
+        case 'L':
+            printf("Aldaketak objektuaren (edo kameraren, edo argiaren) erreferentzi sisteman eragin (aldaketa lokalak)\n");
+            systemTransformType = 'l';
+            break;
+
+        case 'o':
+        case 'O':
+            printf("Aldaketak hautaturik dagoen objektuari eragin\n");
+            printf("(Hurrengo praktikan implementatuko da)\n");
+            break;
+
+        case 'z':
+        case 'Z':
+            if (glutGetModifiers() == GLUT_ACTIVE_CTRL) {
+                printf("Aldaketak desegin\n");
+            }
+            break;
+
+        case 9: /* <TAB> */
+            if(_selected_object != NULL) {
+                _selected_object = _selected_object->next;
+                /*The selection is circular, thus if we move out of the list we go back to the first element*/
+                if (_selected_object == 0) _selected_object = _first_object;
+            }
+            break;
+
+        case 127: /* <SUPR> */
+            if(_selected_object != NULL){
+                /*Erasing an object depends on whether it is the first one or not*/
+                if (_selected_object == _first_object)
+                {
+                    /*To remove the first object we just set the first as the current's next*/
+                    _first_object = _first_object->next;
+                    /*Once updated the pointer to the first object it is save to free the memory*/
+                    free(_selected_object);
+                    /*Finally, set the selected to the new first one*/
+                    _selected_object = _first_object;
+                } else {
+                    /*In this case we need to get the previous element to the one we want to erase*/
+                    auxiliar_object = _first_object;
+                    while (auxiliar_object->next != _selected_object)
+                        auxiliar_object = auxiliar_object->next;
+                    /*Now we bypass the element to erase*/
+                    auxiliar_object->next = _selected_object->next;
+                    /*free the memory*/
+                    free(_selected_object);
+                    /*and update the selection*/
+                    _selected_object = auxiliar_object;
+                }
+            }
+            break;
+
+        case '-':
+            if (glutGetModifiers() == GLUT_ACTIVE_CTRL){
+                /*Increase the projection plane; compute the new dimensions*/
+                wd=(_ortho_x_max-_ortho_x_min)/KG_STEP_ZOOM;
+                he=(_ortho_y_max-_ortho_y_min)/KG_STEP_ZOOM;
+                /*In order to avoid moving the center of the plane, we get its coordinates*/
+                midx = (_ortho_x_max+_ortho_x_min)/2;
+                midy = (_ortho_y_max+_ortho_y_min)/2;
+                /*The the new limits are set, keeping the center of the plane*/
+                _ortho_x_max = midx + wd/2;
+                _ortho_x_min = midx - wd/2;
+                _ortho_y_max = midy + he/2;
+                _ortho_y_min = midy - he/2;
+            }
+            else
             {
-                /*To remove the first object we just set the first as the current's next*/
-                _first_object = _first_object->next;
-                /*Once updated the pointer to the first object it is save to free the memory*/
-                free(_selected_object);
-                /*Finally, set the selected to the new first one*/
-                _selected_object = _first_object;
-            } else {
-                /*In this case we need to get the previous element to the one we want to erase*/
-                auxiliar_object = _first_object;
-                while (auxiliar_object->next != _selected_object)
-                    auxiliar_object = auxiliar_object->next;
-                /*Now we bypass the element to erase*/
-                auxiliar_object->next = _selected_object->next;
-                /*free the memory*/
-                free(_selected_object);
-                /*and update the selection*/
-                _selected_object = auxiliar_object;
+                printf("Ardatz guztietan txikitu (Objektuak bakarrik)\n");
             }
-        }
-        break;
+            break;
 
-    case '-':
-        if (glutGetModifiers() == GLUT_ACTIVE_CTRL){
-            /*Increase the projection plane; compute the new dimensions*/
-            wd=(_ortho_x_max-_ortho_x_min)/KG_STEP_ZOOM;
-            he=(_ortho_y_max-_ortho_y_min)/KG_STEP_ZOOM;
-            /*In order to avoid moving the center of the plane, we get its coordinates*/
-            midx = (_ortho_x_max+_ortho_x_min)/2;
-            midy = (_ortho_y_max+_ortho_y_min)/2;
-            /*The the new limits are set, keeping the center of the plane*/
-            _ortho_x_max = midx + wd/2;
-            _ortho_x_min = midx - wd/2;
-            _ortho_y_max = midy + he/2;
-            _ortho_y_min = midy - he/2;
-        }
-        else
-        {
-            printf("Ardatz guztietan txikitu (Objektuak bakarrik)\n");
-        }
-        break;
+        case '+':
+            if (glutGetModifiers() == GLUT_ACTIVE_CTRL){
+                /*Decrease the projection plane; compute the new dimensions*/
+                wd=(_ortho_x_max-_ortho_x_min)*KG_STEP_ZOOM;
+                he=(_ortho_y_max-_ortho_y_min)*KG_STEP_ZOOM;
+                /*In order to avoid moving the center of the plane, we get its coordinates*/
+                midx = (_ortho_x_max+_ortho_x_min)/2;
+                midy = (_ortho_y_max+_ortho_y_min)/2;
+                /*The the new limits are set, keeping the center of the plane*/
+                _ortho_x_max = midx + wd/2;
+                _ortho_x_min = midx - wd/2;
+                _ortho_y_max = midy + he/2;
+                _ortho_y_min = midy - he/2;
+            }
+            else
+            {
+                printf("Ardatz guztietan handitu (Objektuak bakarrik)\n");
+            }
+            break;
 
-    case '+':
-        if (glutGetModifiers() == GLUT_ACTIVE_CTRL){
-            /*Decrease the projection plane; compute the new dimensions*/
-            wd=(_ortho_x_max-_ortho_x_min)*KG_STEP_ZOOM;
-            he=(_ortho_y_max-_ortho_y_min)*KG_STEP_ZOOM;
-            /*In order to avoid moving the center of the plane, we get its coordinates*/
-            midx = (_ortho_x_max+_ortho_x_min)/2;
-            midy = (_ortho_y_max+_ortho_y_min)/2;
-            /*The the new limits are set, keeping the center of the plane*/
-            _ortho_x_max = midx + wd/2;
-            _ortho_x_min = midx - wd/2;
-            _ortho_y_max = midy + he/2;
-            _ortho_y_min = midy - he/2;
-        }        
-        else
-        {
-            printf("Ardatz guztietan handitu (Objektuak bakarrik)\n");
-        }
-        break;
+        case '?':
+            print_help();
+            break;
 
-    case '?':
-        print_help();
-        break;
+        case 27: /* <ESC> */
+            exit(0);
+            break;
 
-    case 27: /* <ESC> */
-        exit(0);
-        break;
-
-    default:
-        /*In the default case we just print the code of the key. This is usefull to define new cases*/
-        printf("%d %c\n", key, key);
+        default:
+            /*In the default case we just print the code of the key. This is usefull to define new cases*/
+            printf("%d %c\n", key, key);
     }
     /*In case we have do any modification affecting the displaying of the object, we redraw them*/
     glutPostRedisplay();
-}
+}//void keyboard
+
+void keyboardSpecial(int key, int x, int y) {
+    switch (key){
+        case GLUT_KEY_LEFT:  /* <LEFT> */
+            printf("Mugitu -X; Handitu X; Biratu -Y\n");
+            break;
+
+        case GLUT_KEY_UP: /* <UP> */
+            printf("Mugitu +Y; Txikitu Y; Biratu +X\n");
+            break;
+
+        case GLUT_KEY_RIGHT:  /* <RIGHT> */
+            printf("Mugitu +X; Txikitu X; Biratu +Y\n");
+            break;
+
+        case GLUT_KEY_DOWN:  /* <DOWN> */
+            printf("Mugitu -Y; Handitu Y; Biratu -X\n");
+            break;
+
+        case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
+            printf("Mugitu +Z; Txikitu Z; Biratu +Z\n");
+            break;
+
+        case GLUT_KEY_PAGE_UP: /* <REPAG> */
+            printf("Mugitu -Z; Handitu Z; Biratu -Z\n");
+            break;
+    }
+
+    glutPostRedisplay();
+}//void keyboardSpecial
 
