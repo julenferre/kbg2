@@ -34,10 +34,10 @@ static int sreadint2(char * lerroa, int * zenbakiak) {
 
     while (sscanf(s, " %d%n", &zbk, &i) > 0) {
         s += i;
-	while ((*s != ' ')&&(*s !='\0')) s++;  // jump vector normal information
+        while ((*s != ' ')&&(*s !='\0')) s++;  // jump vector normal information
         zenbakiak[kont++] = zbk;
     }
-printf("%d numbers in the line\n",kont);
+    printf("%d numbers in the line\n",kont);
     return (kont);
 }
 /**
@@ -93,7 +93,7 @@ int read_wavefront(char * file_name, object3d * object_ptr) {
         }
     }
     fclose(obj_file);
-printf("1 pasada: num vert = %d (%d), num faces = %d(%d) \n",num_vertices,count_vertices,num_faces,count_faces);
+    printf("1 pasada: num vert = %d (%d), num faces = %d(%d) \n",num_vertices,count_vertices,num_faces,count_faces);
     if ((num_vertices != -1 && num_vertices != count_vertices) || (num_faces != -1 && num_faces != count_faces)) {
         printf("WARNING: full file format: (%s)\n", file_name);
         //return (2);
@@ -123,38 +123,38 @@ printf("1 pasada: num vert = %d (%d), num faces = %d(%d) \n",num_vertices,count_
     while (fscanf(obj_file, "\n%[^\n]", line) > 0) {
         switch (line[0]) {
             case 'v':
-            if (line[1] == ' ')  // vn not interested
-		{
-                sscanf(line + 2, "%lf%lf%lf", &(vertex_table[k].coord.x),
-                        &(vertex_table[k].coord.y), &(vertex_table[k].coord.z));
-                k++;
-		}
-               break;
+                if (line[1] == ' ')  // vn not interested
+                {
+                    sscanf(line + 2, "%lf%lf%lf", &(vertex_table[k].coord.x),
+                           &(vertex_table[k].coord.y), &(vertex_table[k].coord.z));
+                    k++;
+                }
+                break;
 
             case 'f':
-	    if (line[1] == ' ') // fn not interested
+                if (line[1] == ' ') // fn not interested
                 {
-                for (i = 2; i <= (int) strlen(line); i++)
-                    line_1[i - 2] = line[i];
-		line_1[i-2] = '\0';
-                face_table[j].num_vertices = sreadint2(line_1, values);
-//printf("f %d vertices\n",face_table[j].num_vertices);
-                face_table[j].vertex_table = (int *) malloc(face_table[j].num_vertices * sizeof (int));
-                for (i = 0; i < face_table[j].num_vertices; i++) {
-                    face_table[j].vertex_table[i] = values[i] - 1;
-//printf(" %d ",values[i] - 1);
-                    vertex_table[face_table[j].vertex_table[i]].num_faces++;
+                    for (i = 2; i <= (int) strlen(line); i++)
+                        line_1[i - 2] = line[i];
+                    line_1[i-2] = '\0';
+                    face_table[j].num_vertices = sreadint2(line_1, values);
+                    //printf("f %d vertices\n",face_table[j].num_vertices);
+                    face_table[j].vertex_table = (int *) malloc(face_table[j].num_vertices * sizeof (int));
+                    for (i = 0; i < face_table[j].num_vertices; i++) {
+                        face_table[j].vertex_table[i] = values[i] - 1;
+                        //printf(" %d ",values[i] - 1);
+                        vertex_table[face_table[j].vertex_table[i]].num_faces++;
                     }
-//printf("\n");
-                j++;
+                    //printf("\n");
+                    j++;
                 }
-              break;
+                break;
         }
     }
 
     fclose(obj_file);
 
-printf("2 pasada\n");
+    printf("2 pasada\n");
 
     /*
      * Information read is introduced in the structure */

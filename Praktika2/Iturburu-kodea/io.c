@@ -1,5 +1,6 @@
 #include "definitions.h"
 #include "load_obj.h"
+#include "display.h"
 #include <GL/glut.h>
 #include <stdio.h>
 
@@ -9,6 +10,9 @@ extern object3d * _selected_object;
 extern GLdouble _ortho_x_min,_ortho_x_max;
 extern GLdouble _ortho_y_min,_ortho_y_max;
 extern GLdouble _ortho_z_min,_ortho_z_max;
+
+char objectTransformType = 't'; //Objektuaren transformazio-mota
+char systemTransformType = 'l'; //
 
 /**
  * @brief This function just prints information about the use
@@ -60,8 +64,6 @@ void keyboard(unsigned char key, int x, int y) {
     int read = 0;
     object3d *auxiliar_object = 0;
     GLdouble wd,he,midx,midy;
-    char objectTransformType = 't';
-    char systemTransformType = 'l';
 
     switch (key) {
         case 'f':
@@ -227,30 +229,96 @@ void keyboard(unsigned char key, int x, int y) {
     glutPostRedisplay();
 }//void keyboard
 
+/**
+ * @brief Teklatuko tekla bereziak kontrolatzeko
+ * @param key Key that has been pressed
+ * @param x X coordinate of the mouse pointer when the key was pressed
+ * @param y Y coordinate of the mouse pointer when the key was pressed
+ */
 void keyboardSpecial(int key, int x, int y) {
     switch (key){
         case GLUT_KEY_LEFT:  /* <LEFT> */
-            printf("Mugitu -X; Handitu X; Biratu -Y\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'X','-');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'X','+');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'Y','-');
+                    break;
+            }
             break;
 
         case GLUT_KEY_UP: /* <UP> */
-            printf("Mugitu +Y; Txikitu Y; Biratu +X\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'Y','+');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'Y','-');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'X','+');
+                    break;
+            }
             break;
 
         case GLUT_KEY_RIGHT:  /* <RIGHT> */
-            printf("Mugitu +X; Txikitu X; Biratu +Y\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'X','+');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'X','-');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'Y','+');
+                    break;
+            }
             break;
 
         case GLUT_KEY_DOWN:  /* <DOWN> */
-            printf("Mugitu -Y; Handitu Y; Biratu -X\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'Y','-');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'Y','+');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'X','-');
+                    break;
+            }
             break;
 
         case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
-            printf("Mugitu +Z; Txikitu Z; Biratu +Z\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'Z','+');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'Z','-');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'Z','+');
+                    break;
+            }
             break;
 
         case GLUT_KEY_PAGE_UP: /* <REPAG> */
-            printf("Mugitu -Z; Handitu Z; Biratu -Z\n");
+            switch (objectTransformType){
+                case 'm':
+                    traslazioa(_selected_object,'Z','-');
+                    break;
+                case 't':
+                    tamainaAldaketa(_selected_object,'Z','+');
+                    break;
+                case 'b':
+                    biraketa(_selected_object,'Z','-');
+                    break;
+            }
             break;
     }
 
