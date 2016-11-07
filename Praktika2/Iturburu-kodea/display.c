@@ -124,11 +124,10 @@ void display(void) {
 
 /**
  * @brief Objektua mugitzeko metodoa
- * @param aux_obj Transformatuko den objektua
  * @param ardatza_arg Transformazioaren ardatza
  * @param norabidea_arg transformazioaren norabidea
  */
-void traslazioa(object3d *aux_obj, char ardatza_arg, char norabidea_arg){
+void traslazioa(char ardatza_arg, char norabidea_arg){
     GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
     trasX [0]=1; trasX [4]=0; trasX [8] =0; trasX [12]=KG_ABIAD_TRASL;
     trasX [1]=0; trasX [5]=1; trasX [9] =0; trasX [13]=0;
@@ -179,11 +178,10 @@ void traslazioa(object3d *aux_obj, char ardatza_arg, char norabidea_arg){
 
 /**
  * @brief Objektuaren tamaina aldatzeko metodoa
- * @param aux_obj Transformatuko den objektua
  * @param ardatza_arg Transformazioaren ardatza
  * @param norabidea_arg transformazioaren norabidea
  */
-void tamainaAldaketa(object3d *aux_obj, char ardatza_arg, char norabidea_arg){
+void tamainaAldaketa(char ardatza_arg, char norabidea_arg){
     GLdouble  * tamaX = malloc ( sizeof ( GLdouble )*16);
     tamaX [0]=KG_ABIAD_TAMAN;  tamaX [4]=0; tamaX [8] =0; tamaX [12]=0;
     tamaX [1]=0;               tamaX [5]=1; tamaX [9] =0; tamaX [13]=0;
@@ -234,11 +232,10 @@ void tamainaAldaketa(object3d *aux_obj, char ardatza_arg, char norabidea_arg){
 
 /**
  * @brief Objektua biratzeko metodoa
- * @param aux_obj Transformatuko den objektua
  * @param ardatza_arg Transformazioaren ardatza
  * @param norabidea_arg transformazioaren norabidea
  */
-void biraketa(object3d *aux_obj, char ardatza_arg, char norabidea_arg){
+void biraketa(char ardatza_arg, char norabidea_arg){
     switch (ardatza_arg){
         case 'X':
             if(norabidea_arg=='+'){
