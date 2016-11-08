@@ -11,8 +11,10 @@ extern GLdouble _ortho_x_min,_ortho_x_max;
 extern GLdouble _ortho_y_min,_ortho_y_max;
 extern GLdouble _ortho_z_min,_ortho_z_max;
 
-char objectTransformType = 't'; //Objektuaren transformazio-mota
-char systemTransformType = 'l'; //
+char transf_helburua = '\0';
+char transf_mota = '\0';
+char transf_ardatza = '\0';
+char transf_norabidea = '\0';
 
 /**
  * @brief This function just prints information about the use
@@ -99,31 +101,31 @@ void keyboard(unsigned char key, int x, int y) {
         case 'm':
         case 'M':
             printf("Traslazioa aktibatuta\n");
-            objectTransformType = 'm';
+            transf_mota = 'm';
             break;
 
         case 'b':
         case 'B':
             printf("Biraketa aktibatuta\n");
-            objectTransformType = 'b';
+            transf_mota = 'b';
             break;
 
         case 't':
         case 'T':
             printf("Tamaina aldaketa aktibatuta\n");
-            objectTransformType = 't';
+            transf_mota = 't';
             break;
 
         case 'g':
         case 'G':
             printf("Aldaketak munduaren erreferentzi sisteman eragin (aldaketa globalak)\n");
-            systemTransformType = 'g';
+            transf_helburua = 'g';
             break;
 
         case 'l':
         case 'L':
             printf("Aldaketak objektuaren (edo kameraren, edo argiaren) erreferentzi sisteman eragin (aldaketa lokalak)\n");
-            systemTransformType = 'l';
+            transf_helburua = 'l';
             break;
 
         case 'o':
@@ -238,85 +240,103 @@ void keyboard(unsigned char key, int x, int y) {
 void keyboardSpecial(int key, int x, int y) {
     switch (key){
         case GLUT_KEY_LEFT:  /* <LEFT> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'X','-');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '-';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'X','+');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '+';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'Y','-');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '-';
                     break;
             }
             break;
 
         case GLUT_KEY_UP: /* <UP> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'Y','+');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '+';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'Y','-');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '-';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'X','+');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '+';
                     break;
             }
             break;
 
         case GLUT_KEY_RIGHT:  /* <RIGHT> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'X','+');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '+';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'X','-');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '-';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'Y','+');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '+';
                     break;
             }
             break;
 
         case GLUT_KEY_DOWN:  /* <DOWN> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'Y','-');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '-';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'Y','+');
+                    transf_ardatza = 'Y';
+                    transf_norabidea = '+';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'X','-');
+                    transf_ardatza = 'X';
+                    transf_norabidea = '-';
                     break;
             }
             break;
 
         case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'Z','+');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '+';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'Z','-');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '-';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'Z','+');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '+';
                     break;
             }
             break;
 
         case GLUT_KEY_PAGE_UP: /* <REPAG> */
-            switch (objectTransformType){
+            switch (transf_mota){
                 case 'm':
-                    traslazioa(_selected_object,'Z','-');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '-';
                     break;
                 case 't':
-                    tamainaAldaketa(_selected_object,'Z','+');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '+';
                     break;
                 case 'b':
-                    biraketa(_selected_object,'Z','-');
+                    transf_ardatza = 'Z';
+                    transf_norabidea = '-';
                     break;
             }
             break;

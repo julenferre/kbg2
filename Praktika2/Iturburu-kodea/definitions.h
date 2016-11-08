@@ -63,7 +63,7 @@
 
 #define KG_ABIAD_TAMAN                      1.0f
 #define KG_ABIAD_BIRAK                      1.0f
-#define KG_ABIAD_TRASL                      1.0f
+#define KG_ABIAD_TRASL                      50.0f
 
 /** STRUCTURES **/
 

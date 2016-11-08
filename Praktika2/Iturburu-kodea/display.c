@@ -14,6 +14,11 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
+extern char transf_helburua;
+extern char transf_mota;
+extern char transf_ardatza;
+extern char transf_norabidea;
+
 /**
  * @brief Function to draw the axes
  */
@@ -54,6 +59,174 @@ void reshape(int width, int height) {
     _window_ratio = (GLdouble) width / (GLdouble) height;
 }
 
+/**
+ * @brief Objektua mugitzeko metodoa
+ * @param transf_ardatza Transformazioaren ardatza
+ * @param transf_norabidea transformazioaren norabidea
+ */
+void traslazioa(){
+    GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
+    trasX [0]=1; trasX [4]=0; trasX [8] =0; trasX [12]=KG_ABIAD_TRASL;
+    trasX [1]=0; trasX [5]=1; trasX [9] =0; trasX [13]=0;
+    trasX [2]=0; trasX [6]=0; trasX [10]=1; trasX [14]=0;
+    trasX [3]=0; trasX [7]=0; trasX [11]=0; trasX [15]=1;
+
+    GLdouble  * trasY = malloc ( sizeof ( GLdouble )*16);
+    trasY [0]=1; trasY [4]=0; trasY [8] =0; trasY [12]=0;
+    trasY [1]=0; trasY [5]=1; trasY [9] =0; trasY [13]=KG_ABIAD_TRASL;
+    trasY [2]=0; trasY [6]=0; trasY [10]=1; trasY [14]=0;
+    trasY [3]=0; trasY [7]=0; trasY [11]=0; trasY [15]=1;
+
+    GLdouble  * trasZ = malloc ( sizeof ( GLdouble )*16);
+    trasZ [0]=1; trasZ [4]=0; trasZ [8] =0; trasZ [12]=0;
+    trasZ [1]=0; trasZ [5]=1; trasZ [9] =0; trasZ [13]=0;
+    trasZ [2]=0; trasZ [6]=0; trasZ [10]=1; trasZ [14]=KG_ABIAD_TRASL;
+    trasZ [3]=0; trasZ [7]=0; trasZ [11]=0; trasZ [15]=1;
+
+    GLdouble  * trasXn = malloc ( sizeof ( GLdouble )*16);
+    trasXn [0]=1; trasXn [4]=0; trasXn [8] =0; trasXn [12]=KG_ABIAD_TRASL*(-1);
+    trasXn [1]=0; trasXn [5]=1; trasXn [9] =0; trasXn [13]=0;
+    trasXn [2]=0; trasXn [6]=0; trasXn [10]=1; trasXn [14]=0;
+    trasXn [3]=0; trasXn [7]=0; trasXn [11]=0; trasXn [15]=1;
+
+    GLdouble  * trasYn = malloc ( sizeof ( GLdouble )*16);
+    trasYn [0]=1; trasYn [4]=0; trasYn [8] =0; trasYn [12]=0;
+    trasYn [1]=0; trasYn [5]=1; trasYn [9] =0; trasYn [13]=KG_ABIAD_TRASL*(-1);
+    trasYn [2]=0; trasYn [6]=0; trasYn [10]=1; trasYn [14]=0;
+    trasYn [3]=0; trasYn [7]=0; trasYn [11]=0; trasYn [15]=1;
+
+    GLdouble  * trasZn = malloc ( sizeof ( GLdouble )*16);
+    trasZn [0]=1; trasZn [4]=0; trasZn [8] =0; trasZn [12]=0;
+    trasZn [1]=0; trasZn [5]=1; trasZn [9] =0; trasZn [13]=0;
+    trasZn [2]=0; trasZn [6]=0; trasZn [10]=1; trasZn [14]=KG_ABIAD_TRASL*(-1);
+    trasZn [3]=0; trasZn [7]=0; trasZn [11]=0; trasZn [15]=1;
+
+    switch (transf_ardatza){
+        case 'X':
+            if(transf_norabidea=='+'){
+                printf("Traslazioa: +X\n");
+                glMultMatrixd(trasX);
+            }
+            else{
+                printf("Traslazioa: -X\n");
+                glMultMatrixd(trasXn);
+            }
+            break;
+
+        case 'Y':
+            if(transf_norabidea=='+'){
+                printf("Traslazioa: +Y\n");
+                glMultMatrixd(trasY);
+            }
+            else{
+                printf("Traslazioa: -Y\n");
+                glMultMatrixd(trasYn);
+            }
+            break;
+
+        case 'Z':
+            if(transf_norabidea=='+'){
+                printf("Traslazioa: +Z\n");
+                glMultMatrixd(trasZ);
+            }
+            else{
+                printf("Traslazioa: -Z\n");
+                glMultMatrixd(trasZn);
+            }
+            break;
+    }
+}//void traslazioa()
+
+/**
+ * @brief Objektuaren tamaina aldatzeko metodoa
+ * @param transf_ardatza Transformazioaren ardatza
+ * @param transf_norabidea transformazioaren norabidea
+ */
+void tamainaAldaketa(){
+    GLdouble  * tamaX = malloc ( sizeof ( GLdouble )*16);
+    tamaX [0]=KG_ABIAD_TAMAN;  tamaX [4]=0; tamaX [8] =0; tamaX [12]=0;
+    tamaX [1]=0;               tamaX [5]=1; tamaX [9] =0; tamaX [13]=0;
+    tamaX [2]=0;               tamaX [6]=0; tamaX [10]=1; tamaX [14]=0;
+    tamaX [3]=0;               tamaX [7]=0; tamaX [11]=0; tamaX [15]=1;
+
+    GLdouble  * tamaY = malloc ( sizeof ( GLdouble )*16);
+    tamaY [0]=1; tamaY [4]=0;               tamaY [8] =0; tamaY [12]=0;
+    tamaY [1]=0; tamaY [5]=KG_ABIAD_TAMAN;  tamaY [9] =0; tamaY [13]=0;
+    tamaY [2]=0; tamaY [6]=0;               tamaY [10]=1; tamaY [14]=0;
+    tamaY [3]=0; tamaY [7]=0;               tamaY [11]=0; tamaY [15]=1;
+
+    GLdouble  * tamaZ = malloc ( sizeof ( GLdouble )*16);
+    tamaZ [0]=1; tamaZ [4]=0; tamaZ [8] =0;               tamaZ [12]=0;
+    tamaZ [1]=0; tamaZ [5]=1; tamaZ [9] =0;               tamaZ [13]=0;
+    tamaZ [2]=0; tamaZ [6]=0; tamaZ [10]=KG_ABIAD_TAMAN;  tamaZ [14]=0;
+    tamaZ [3]=0; tamaZ [7]=0; tamaZ [11]=0;               tamaZ [15]=1;
+
+    switch (transf_ardatza){
+        case 'X':
+            if(transf_norabidea=='+'){
+                printf("Tamaina aldaketa: +X\n");
+            }
+            else{
+                printf("Tamaina aldaketa: -X\n");
+            }
+            break;
+
+        case 'Y':
+            if(transf_norabidea=='+'){
+                printf("Tamaina aldaketa: +Y\n");
+            }
+            else{
+                printf("Tamaina aldaketa: -Y\n");
+            }
+            break;
+
+        case 'Z':
+            if(transf_norabidea=='+'){
+                printf("Tamaina aldaketa: +Z\n");
+            }
+            else{
+                printf("Tamaina aldaketa: -Z\n");
+            }
+            break;
+    }
+}//void tamainaAldaketa()
+
+/**
+ * @brief Objektua biratzeko metodoa
+ * @param transf_ardatza Transformazioaren ardatza
+ * @param transf_norabidea transformazioaren norabidea
+ */
+void biraketa(){
+    switch (transf_ardatza){
+        case 'X':
+            if(transf_norabidea=='+'){
+                printf("Biraketa: +X\n");
+            }
+            else{
+                printf("Biraketa: -X\n");
+            }
+            break;
+
+        case 'Y':
+            if(transf_norabidea=='+'){
+                printf("Biraketa: +Y\n");
+            }
+            else{
+                printf("Biraketa: -Y\n");
+            }
+            break;
+
+        case 'Z':
+            if(transf_norabidea=='+'){
+                printf("Biraketa: +Z\n");
+            }
+            else{
+                printf("Biraketa: -Z\n");
+            }
+            break;
+    }
+}//void biraketa()
+
 
 /**
  * @brief Callback display function
@@ -61,6 +234,7 @@ void reshape(int width, int height) {
 void display(void) {
     GLint v_index, v, f;
     object3d *aux_obj = _first_object;
+    object3d *trans_obj = _first_object;
 
     /* Clear the screen */
     glClear(GL_COLOR_BUFFER_BIT);
@@ -93,6 +267,46 @@ void display(void) {
     /*First, we draw the axes*/
     draw_axes();
 
+    switch(transf_mota){
+        case 'b':
+            if(transf_helburua=='l'){
+                biraketa();
+            }
+            else{
+                while (trans_obj != 0){
+                    biraketa();
+                    trans_obj = trans_obj->next;
+                }
+            }
+            break;
+        case 'm':
+            if(transf_helburua=='l'){
+                traslazioa();
+            }
+            else{
+                while (trans_obj != 0){
+                    traslazioa();
+                    trans_obj = trans_obj->next;
+                }
+            }
+            break;
+        case 't':
+            if(transf_helburua=='l'){
+                tamainaAldaketa();
+            }
+            else{
+                while (trans_obj != 0){
+                    tamainaAldaketa();
+                    trans_obj = trans_obj->next;
+                }
+            }
+            break;
+        default:
+            transf_ardatza = 's';
+            transf_norabidea = 's';
+            break;
+    }
+
     /*Now each of the objects in the list*/
     while (aux_obj != 0) {
 
@@ -121,148 +335,3 @@ void display(void) {
     /*Do the actual drawing*/
     glFlush();
 }
-
-/**
- * @brief Objektua mugitzeko metodoa
- * @param ardatza_arg Transformazioaren ardatza
- * @param norabidea_arg transformazioaren norabidea
- */
-void traslazioa(char ardatza_arg, char norabidea_arg){
-    GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
-    trasX [0]=1; trasX [4]=0; trasX [8] =0; trasX [12]=KG_ABIAD_TRASL;
-    trasX [1]=0; trasX [5]=1; trasX [9] =0; trasX [13]=0;
-    trasX [2]=0; trasX [6]=0; trasX [10]=1; trasX [14]=0;
-    trasX [3]=0; trasX [7]=0; trasX [11]=0; trasX [15]=1;
-
-    GLdouble  * trasY = malloc ( sizeof ( GLdouble )*16);
-    trasY [0]=1; trasY [4]=0; trasY [8] =0; trasY [12]=0;
-    trasY [1]=0; trasY [5]=1; trasY [9] =0; trasY [13]=KG_ABIAD_TRASL;
-    trasY [2]=0; trasY [6]=0; trasY [10]=1; trasY [14]=0;
-    trasY [3]=0; trasY [7]=0; trasY [11]=0; trasY [15]=1;
-
-    GLdouble  * trasZ = malloc ( sizeof ( GLdouble )*16);
-    trasZ [0]=1; trasZ [4]=0; trasZ [8] =0; trasZ [12]=0;
-    trasZ [1]=0; trasZ [5]=1; trasZ [9] =0; trasZ [13]=0;
-    trasZ [2]=0; trasZ [6]=0; trasZ [10]=1; trasZ [14]=KG_ABIAD_TRASL;
-    trasZ [3]=0; trasZ [7]=0; trasZ [11]=0; trasZ [15]=1;
-
-    switch (ardatza_arg){
-        case 'X':
-            if(norabidea_arg=='+'){
-                printf("Traslazioa: +X\n");
-            }
-            else{
-                printf("Traslazioa: -X\n");
-            }
-            break;
-
-        case 'Y':
-            if(norabidea_arg=='+'){
-                printf("Traslazioa: +Y\n");
-            }
-            else{
-                printf("Traslazioa: -Y\n");
-            }
-            break;
-
-        case 'Z':
-            if(norabidea_arg=='+'){
-                printf("Traslazioa: +Z\n");
-            }
-            else{
-                printf("Traslazioa: -Z\n");
-            }
-            break;
-    }
-}//void traslazioa(char ardatza_arg, char ardatza_arg, char norabidea)
-
-/**
- * @brief Objektuaren tamaina aldatzeko metodoa
- * @param ardatza_arg Transformazioaren ardatza
- * @param norabidea_arg transformazioaren norabidea
- */
-void tamainaAldaketa(char ardatza_arg, char norabidea_arg){
-    GLdouble  * tamaX = malloc ( sizeof ( GLdouble )*16);
-    tamaX [0]=KG_ABIAD_TAMAN;  tamaX [4]=0; tamaX [8] =0; tamaX [12]=0;
-    tamaX [1]=0;               tamaX [5]=1; tamaX [9] =0; tamaX [13]=0;
-    tamaX [2]=0;               tamaX [6]=0; tamaX [10]=1; tamaX [14]=0;
-    tamaX [3]=0;               tamaX [7]=0; tamaX [11]=0; tamaX [15]=1;
-
-    GLdouble  * tamaY = malloc ( sizeof ( GLdouble )*16);
-    tamaY [0]=1; tamaY [4]=0;               tamaY [8] =0; tamaY [12]=0;
-    tamaY [1]=0; tamaY [5]=KG_ABIAD_TAMAN;  tamaY [9] =0; tamaY [13]=0;
-    tamaY [2]=0; tamaY [6]=0;               tamaY [10]=1; tamaY [14]=0;
-    tamaY [3]=0; tamaY [7]=0;               tamaY [11]=0; tamaY [15]=1;
-
-    GLdouble  * tamaZ = malloc ( sizeof ( GLdouble )*16);
-    tamaZ [0]=1; tamaZ [4]=0; tamaZ [8] =0;               tamaZ [12]=0;
-    tamaZ [1]=0; tamaZ [5]=1; tamaZ [9] =0;               tamaZ [13]=0;
-    tamaZ [2]=0; tamaZ [6]=0; tamaZ [10]=KG_ABIAD_TAMAN;  tamaZ [14]=0;
-    tamaZ [3]=0; tamaZ [7]=0; tamaZ [11]=0;               tamaZ [15]=1;
-
-    switch (ardatza_arg){
-        case 'X':
-            if(norabidea_arg=='+'){
-                printf("Tamaina aldaketa: +X\n");
-            }
-            else{
-                printf("Tamaina aldaketa: -X\n");
-            }
-            break;
-
-        case 'Y':
-            if(norabidea_arg=='+'){
-                printf("Tamaina aldaketa: +Y\n");
-            }
-            else{
-                printf("Tamaina aldaketa: -Y\n");
-            }
-            break;
-
-        case 'Z':
-            if(norabidea_arg=='+'){
-                printf("Tamaina aldaketa: +Z\n");
-            }
-            else{
-                printf("Tamaina aldaketa: -Z\n");
-            }
-            break;
-    }
-}//void tamainaAldaketa(char ardatza_arg, char ardatza_arg, char norabidea)
-
-/**
- * @brief Objektua biratzeko metodoa
- * @param ardatza_arg Transformazioaren ardatza
- * @param norabidea_arg transformazioaren norabidea
- */
-void biraketa(char ardatza_arg, char norabidea_arg){
-    switch (ardatza_arg){
-        case 'X':
-            if(norabidea_arg=='+'){
-                printf("Biraketa: +X\n");
-            }
-            else{
-                printf("Biraketa: -X\n");
-            }
-            break;
-
-        case 'Y':
-            if(norabidea_arg=='+'){
-                printf("Biraketa: +Y\n");
-            }
-            else{
-                printf("Biraketa: -Y\n");
-            }
-            break;
-
-        case 'Z':
-            if(norabidea_arg=='+'){
-                printf("Biraketa: +Z\n");
-            }
-            else{
-                printf("Biraketa: -Z\n");
-            }
-            break;
-    }
-}//void biraketa(char ardatza_arg, char ardatza_arg, char norabidea)
-
