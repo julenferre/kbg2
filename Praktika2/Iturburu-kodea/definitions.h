@@ -61,9 +61,11 @@
 
 #define KG_MAX_DOUBLE                       100025
 
+#define PI                                  3.14159f
+
 #define KG_ABIAD_TAMAN                      1.0f
-#define KG_ABIAD_BIRAK                      1.0f
-#define KG_ABIAD_TRASL                      50.0f
+#define KG_ABIAD_BIRAK                      PI/8
+#define KG_ABIAD_TRASL                      0.1f
 
 /** STRUCTURES **/
 
@@ -123,6 +125,7 @@ struct object3d{
     point3 min;                         /* coordinates' lower bounds */
     point3 max;                         /* coordinates' bigger bounds */
     struct object3d *next;              /* next element in the pile of objects */
+    GLdouble * matrix;
 };
 
 typedef struct object3d object3d;

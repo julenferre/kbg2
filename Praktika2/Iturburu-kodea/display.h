@@ -6,4 +6,8 @@
 void display(void);
 void reshape(int width, int height);
 
+void traslazioa();
+void biraketa();
+void tamainaAldaketa();
+
 #endif // DISPLAY_H

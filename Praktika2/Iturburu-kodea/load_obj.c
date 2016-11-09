@@ -194,6 +194,13 @@ int read_wavefront(char * file_name, object3d * object_ptr) {
             object_ptr->max.z = object_ptr->vertex_table[i].coord.z;
 
     }
+
+    object_ptr->matrix = malloc ( sizeof ( GLdouble )*16);
+    object_ptr->matrix [0]=1; object_ptr->matrix [4]=0; object_ptr->matrix [8] =0; object_ptr->matrix [12]=0;
+    object_ptr->matrix [1]=0; object_ptr->matrix [5]=1; object_ptr->matrix [9] =0; object_ptr->matrix [13]=0;
+    object_ptr->matrix [2]=0; object_ptr->matrix [6]=0; object_ptr->matrix [10]=1; object_ptr->matrix [14]=0;
+    object_ptr->matrix [3]=0; object_ptr->matrix [7]=0; object_ptr->matrix [11]=0; object_ptr->matrix [15]=1;
+
     return (0);
 }
 

@@ -20,43 +20,32 @@ extern char transf_ardatza;
 extern char transf_norabidea;
 
 /**
- * @brief Function to draw the axes
+ * @brief Matrizeak biderkatzeko metodoa
  */
-void draw_axes()
-{
-    /*Draw X axis*/
-    glColor3f(KG_COL_X_AXIS_R,KG_COL_X_AXIS_G,KG_COL_X_AXIS_B);
-    glBegin(GL_LINES);
-    glVertex3d(KG_MAX_DOUBLE,0,0);
-    glVertex3d(-1*KG_MAX_DOUBLE,0,0);
-    glEnd();
-    /*Draw Y axis*/
-    glColor3f(KG_COL_Y_AXIS_R,KG_COL_Y_AXIS_G,KG_COL_Y_AXIS_B);
-    glBegin(GL_LINES);
-    glVertex3d(0,KG_MAX_DOUBLE,0);
-    glVertex3d(0,-1*KG_MAX_DOUBLE,0);
-    glEnd();
-    /*Draw Z axis*/
-    glColor3f(KG_COL_Z_AXIS_R,KG_COL_Z_AXIS_G,KG_COL_Z_AXIS_B);
-    glBegin(GL_LINES);
-    glVertex3d(0,0,KG_MAX_DOUBLE);
-    glVertex3d(0,0,-1*KG_MAX_DOUBLE);
-    glEnd();
-}
+GLdouble *mult(GLdouble *m1, GLdouble *m2) {
+    GLdouble *result = malloc(sizeof(GLdouble) * 4 * 4);
+    // @formatter:off
+    result[0 + 4* 0] = m1[0 + 4* 0] * m2[0 + 4* 0] + m1[0 + 4* 1] * m2[1 + 4* 0] + m1[0 + 4* 2] * m2[2 + 4* 0] + m1[0 + 4* 3] * m2[3 + 4* 0];
+    result[1 + 4* 0] = m1[1 + 4* 0] * m2[0 + 4* 0] + m1[1 + 4* 1] * m2[1 + 4* 0] + m1[1 + 4* 2] * m2[2 + 4* 0] + m1[1 + 4* 3] * m2[3 + 4* 0];
+    result[2 + 4* 0] = m1[2 + 4* 0] * m2[0 + 4* 0] + m1[2 + 4* 1] * m2[1 + 4* 0] + m1[2 + 4* 2] * m2[2 + 4* 0] + m1[2 + 4* 3] * m2[3 + 4* 0];
+    result[3 + 4* 0] = m1[3 + 4* 0] * m2[0 + 4* 0] + m1[3 + 4* 1] * m2[1 + 4* 0] + m1[3 + 4* 2] * m2[2 + 4* 0] + m1[3 + 4* 3] * m2[3 + 4* 0];
 
+    result[0 + 4* 1] = m1[0 + 4* 0] * m2[0 + 4* 1] + m1[0 + 4* 1] * m2[1 + 4* 1] + m1[0 + 4* 2] * m2[2 + 4* 1] + m1[0 + 4* 3] * m2[3 + 4* 1];
+    result[1 + 4* 1] = m1[1 + 4* 0] * m2[0 + 4* 1] + m1[1 + 4* 1] * m2[1 + 4* 1] + m1[1 + 4* 2] * m2[2 + 4* 1] + m1[1 + 4* 3] * m2[3 + 4* 1];
+    result[2 + 4* 1] = m1[2 + 4* 0] * m2[0 + 4* 1] + m1[2 + 4* 1] * m2[1 + 4* 1] + m1[2 + 4* 2] * m2[2 + 4* 1] + m1[2 + 4* 3] * m2[3 + 4* 1];
+    result[3 + 4* 1] = m1[3 + 4* 0] * m2[0 + 4* 1] + m1[3 + 4* 1] * m2[1 + 4* 1] + m1[3 + 4* 2] * m2[2 + 4* 1] + m1[3 + 4* 3] * m2[3 + 4* 1];
 
-/**
- * @brief Callback reshape function. We just store the new proportions of the window
- * @param width New width of the window
- * @param height New height of the window
- */
-void reshape(int width, int height) {
-    /*VIEWPORT nagusia*/
-    glViewport(0, 0, width, height);
-    
-    /*  Take care, the width and height are integer numbers, but the ratio is a GLdouble so, in order to avoid
-     *  rounding the ratio to integer values we need to cast width and height before computing the ratio */
-    _window_ratio = (GLdouble) width / (GLdouble) height;
+    result[0 + 4* 2] = m1[0 + 4* 0] * m2[0 + 4* 2] + m1[0 + 4* 1] * m2[1 + 4* 2] + m1[0 + 4* 2] * m2[2 + 4* 2] + m1[0 + 4* 3] * m2[3 + 4* 2];
+    result[1 + 4* 2] = m1[1 + 4* 0] * m2[0 + 4* 2] + m1[1 + 4* 1] * m2[1 + 4* 2] + m1[1 + 4* 2] * m2[2 + 4* 2] + m1[1 + 4* 3] * m2[3 + 4* 2];
+    result[2 + 4* 2] = m1[2 + 4* 0] * m2[0 + 4* 2] + m1[2 + 4* 1] * m2[1 + 4* 2] + m1[2 + 4* 2] * m2[2 + 4* 2] + m1[2 + 4* 3] * m2[3 + 4* 2];
+    result[3 + 4* 2] = m1[3 + 4* 0] * m2[0 + 4* 2] + m1[3 + 4* 1] * m2[1 + 4* 2] + m1[3 + 4* 2] * m2[2 + 4* 2] + m1[3 + 4* 3] * m2[3 + 4* 2];
+
+    result[0 + 4* 3] = m1[0 + 4* 0] * m2[0 + 4* 3] + m1[0 + 4* 1] * m2[1 + 4* 3] + m1[0 + 4* 2] * m2[2 + 4* 3] + m1[0 + 4* 3] * m2[3 + 4* 3];
+    result[1 + 4* 3] = m1[1 + 4* 0] * m2[0 + 4* 3] + m1[1 + 4* 1] * m2[1 + 4* 3] + m1[1 + 4* 2] * m2[2 + 4* 3] + m1[1 + 4* 3] * m2[3 + 4* 3];
+    result[2 + 4* 3] = m1[2 + 4* 0] * m2[0 + 4* 3] + m1[2 + 4* 1] * m2[1 + 4* 3] + m1[2 + 4* 2] * m2[2 + 4* 3] + m1[2 + 4* 3] * m2[3 + 4* 3];
+    result[3 + 4* 3] = m1[3 + 4* 0] * m2[0 + 4* 3] + m1[3 + 4* 1] * m2[1 + 4* 3] + m1[3 + 4* 2] * m2[2 + 4* 3] + m1[3 + 4* 3] * m2[3 + 4* 3];
+    // @formatter:on
+    return result;
 }
 
 /**
@@ -105,33 +94,33 @@ void traslazioa(){
         case 'X':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +X\n");
-                glMultMatrixd(trasX);
+                _selected_object->matrix=mult(_selected_object->matrix,trasX);
             }
             else{
                 printf("Traslazioa: -X\n");
-                glMultMatrixd(trasXn);
+                _selected_object->matrix=mult(_selected_object->matrix,trasXn);
             }
             break;
 
         case 'Y':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +Y\n");
-                glMultMatrixd(trasY);
+                _selected_object->matrix=mult(_selected_object->matrix,trasY);
             }
             else{
                 printf("Traslazioa: -Y\n");
-                glMultMatrixd(trasYn);
+                _selected_object->matrix=mult(_selected_object->matrix,trasYn);
             }
             break;
 
         case 'Z':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +Z\n");
-                glMultMatrixd(trasZ);
+                _selected_object->matrix=mult(_selected_object->matrix,trasZ);
             }
             else{
                 printf("Traslazioa: -Z\n");
-                glMultMatrixd(trasZn);
+                _selected_object->matrix=mult(_selected_object->matrix,trasZn);
             }
             break;
     }
@@ -161,31 +150,55 @@ void tamainaAldaketa(){
     tamaZ [2]=0; tamaZ [6]=0; tamaZ [10]=KG_ABIAD_TAMAN;  tamaZ [14]=0;
     tamaZ [3]=0; tamaZ [7]=0; tamaZ [11]=0;               tamaZ [15]=1;
 
+    GLdouble  * tamaXn = malloc ( sizeof ( GLdouble )*16);
+    tamaXn [0]=KG_ABIAD_TAMAN*(-1);  tamaXn [4]=0; tamaXn [8] =0; tamaXn [12]=0;
+    tamaXn [1]=0;               tamaXn [5]=1; tamaXn [9] =0; tamaXn [13]=0;
+    tamaXn [2]=0;               tamaXn [6]=0; tamaXn [10]=1; tamaXn [14]=0;
+    tamaXn [3]=0;               tamaXn [7]=0; tamaXn [11]=0; tamaXn [15]=1;
+
+    GLdouble  * tamaYn = malloc ( sizeof ( GLdouble )*16);
+    tamaYn [0]=1; tamaYn [4]=0;               tamaYn [8] =0; tamaYn [12]=0;
+    tamaYn [1]=0; tamaYn [5]=KG_ABIAD_TAMAN*(-1);  tamaYn [9] =0; tamaYn [13]=0;
+    tamaYn [2]=0; tamaYn [6]=0;               tamaYn [10]=1; tamaYn [14]=0;
+    tamaYn [3]=0; tamaYn [7]=0;               tamaYn [11]=0; tamaYn [15]=1;
+
+    GLdouble  * tamaZn = malloc ( sizeof ( GLdouble )*16);
+    tamaZn [0]=1; tamaZn [4]=0; tamaZn [8] =0;               tamaZn [12]=0;
+    tamaZn [1]=0; tamaZn [5]=1; tamaZn [9] =0;               tamaZn [13]=0;
+    tamaZn [2]=0; tamaZn [6]=0; tamaZn [10]=KG_ABIAD_TAMAN*(-1);  tamaZn [14]=0;
+    tamaZn [3]=0; tamaZn [7]=0; tamaZn [11]=0;               tamaZn [15]=1;
+
     switch (transf_ardatza){
         case 'X':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +X\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaX);
             }
             else{
                 printf("Tamaina aldaketa: -X\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaXn);
             }
             break;
 
         case 'Y':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +Y\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaY);
             }
             else{
                 printf("Tamaina aldaketa: -Y\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaYn);
             }
             break;
 
         case 'Z':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +Z\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaZ);
             }
             else{
                 printf("Tamaina aldaketa: -Z\n");
+                _selected_object->matrix=mult(_selected_object->matrix,tamaZn);
             }
             break;
     }
@@ -227,6 +240,45 @@ void biraketa(){
     }
 }//void biraketa()
 
+/**
+ * @brief Function to draw the axes
+ */
+void draw_axes()
+{
+    /*Draw X axis*/
+    glColor3f(KG_COL_X_AXIS_R,KG_COL_X_AXIS_G,KG_COL_X_AXIS_B);
+    glBegin(GL_LINES);
+    glVertex3d(KG_MAX_DOUBLE,0,0);
+    glVertex3d(-1*KG_MAX_DOUBLE,0,0);
+    glEnd();
+    /*Draw Y axis*/
+    glColor3f(KG_COL_Y_AXIS_R,KG_COL_Y_AXIS_G,KG_COL_Y_AXIS_B);
+    glBegin(GL_LINES);
+    glVertex3d(0,KG_MAX_DOUBLE,0);
+    glVertex3d(0,-1*KG_MAX_DOUBLE,0);
+    glEnd();
+    /*Draw Z axis*/
+    glColor3f(KG_COL_Z_AXIS_R,KG_COL_Z_AXIS_G,KG_COL_Z_AXIS_B);
+    glBegin(GL_LINES);
+    glVertex3d(0,0,KG_MAX_DOUBLE);
+    glVertex3d(0,0,-1*KG_MAX_DOUBLE);
+    glEnd();
+}
+
+
+/**
+ * @brief Callback reshape function. We just store the new proportions of the window
+ * @param width New width of the window
+ * @param height New height of the window
+ */
+void reshape(int width, int height) {
+    /*VIEWPORT nagusia*/
+    glViewport(0, 0, width, height);
+
+    /*  Take care, the width and height are integer numbers, but the ratio is a GLdouble so, in order to avoid
+     *  rounding the ratio to integer values we need to cast width and height before computing the ratio */
+    _window_ratio = (GLdouble) width / (GLdouble) height;
+}
 
 /**
  * @brief Callback display function
@@ -319,6 +371,9 @@ void display(void) {
 
         /* Draw the object; for each face create a new polygon with the corresponding vertices */
         glLoadIdentity();
+
+        glMultMatrixd(aux_obj->matrix);
+
         for (f = 0; f < aux_obj->num_faces; f++) {
             glBegin(GL_POLYGON);
             for (v = 0; v < aux_obj->face_table[f].num_vertices; v++) {
