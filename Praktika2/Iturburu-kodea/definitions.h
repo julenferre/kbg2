@@ -63,7 +63,7 @@
 
 #define PI                                  3.14159f
 
-#define KG_ABIAD_TAMAN                      1.0f
+#define KG_ABIAD_TAMAN                      0.1f
 #define KG_ABIAD_BIRAK                      PI/8
 #define KG_ABIAD_TRASL                      0.1f
 
