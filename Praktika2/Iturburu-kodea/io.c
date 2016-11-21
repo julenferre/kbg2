@@ -3,7 +3,7 @@
 #include "display.h"
 #include <GL/glut.h>
 #include <stdio.h>
-
+#include "multiMatrix.h"
 extern object3d * _first_object;
 extern object3d * _selected_object;
 
@@ -11,59 +11,12 @@ extern GLdouble _ortho_x_min,_ortho_x_max;
 extern GLdouble _ortho_y_min,_ortho_y_max;
 extern GLdouble _ortho_z_min,_ortho_z_max;
 
-extern object3d *trans_obj; 
 
-char transf_helburua = '\0';
-char transf_mota = '\0';
-char transf_ardatza = '\0';
-char transf_norabidea = '\0';
+extern char transf_helburua;
+extern char transf_mota;
+extern char transf_ardatza;
+extern char transf_norabidea;
 
-void biratu(){
-
-if(transf_helburua=='l'){
-biraketa();
-}
- else if(transf_helburua=='g'){
-	 while (trans_obj != 0){
-biraketa();
-_selected_object = _selected_object->next;
-trans_obj = trans_obj->next;
-if(_selected_object==0) _selected_object= _first_object;
-	}
-	}
-
-}
-
-void mugitu(){
-if(transf_helburua=='l'){
-        traslazioa();
-    }
-    else if(transf_helburua=='g'){
-        while (trans_obj != 0){
-            traslazioa();
-	    _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-	    if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-
-}
-
-void tAldatu(){
-
-if(transf_helburua=='l'){
-        tamainaAldaketa();
-    }
-    else if(transf_helburua=='g'){
-        while (trans_obj != 0){
-            tamainaAldaketa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-	    if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-
-}
 /**
  * @brief This function just prints information about the use
  * of the keys
