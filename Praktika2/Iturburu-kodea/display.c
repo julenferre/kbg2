@@ -20,6 +20,7 @@ extern char transf_mota;
 extern char transf_ardatza;
 extern char transf_norabidea;
 
+object3d *trans_obj;
 /**
  * @brief Matrizeak biderkatzeko metodoa
  */
@@ -328,7 +329,7 @@ void reshape(int width, int height) {
 void display(void) {
     GLint v_index, v, f;
     object3d *aux_obj = _first_object;
-    object3d *trans_obj = _first_object;
+    trans_obj = _first_object;
 
     /* Clear the screen */
     glClear(GL_COLOR_BUFFER_BIT);
@@ -362,36 +363,42 @@ void display(void) {
     draw_axes();
 
     switch(transf_mota){
-        case 'b':
+       /* case 'b':
             if(transf_helburua=='l'){
                 biraketa();
             }
-            else{
+            else if(transf_helburua=='g'){
                 while (trans_obj != 0){
                     biraketa();
+		    _selected_object = _selected_object->next;
                     trans_obj = trans_obj->next;
+		    if(_selected_object==0) _selected_object= _first_object;
                 }
             }
-            break;
-        case 'm':
+            break;*/
+        /*case 'm':
             if(transf_helburua=='l'){
                 traslazioa();
             }
-            else{
+            else if(transf_helburua=='g'){
                 while (trans_obj != 0){
                     traslazioa();
+		    _selected_object = _selected_object->next;
                     trans_obj = trans_obj->next;
+		    if(_selected_object==0) _selected_object= _first_object;
                 }
             }
-            break;
+            break;*/
         case 't':
             if(transf_helburua=='l'){
                 tamainaAldaketa();
             }
-            else{
+            else if(transf_helburua=='g'){
                 while (trans_obj != 0){
                     tamainaAldaketa();
+                    _selected_object = _selected_object->next;
                     trans_obj = trans_obj->next;
+		    if(_selected_object==0) _selected_object= _first_object;
                 }
             }
             break;

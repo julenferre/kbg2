@@ -11,11 +11,59 @@ extern GLdouble _ortho_x_min,_ortho_x_max;
 extern GLdouble _ortho_y_min,_ortho_y_max;
 extern GLdouble _ortho_z_min,_ortho_z_max;
 
+extern object3d *trans_obj; 
+
 char transf_helburua = '\0';
 char transf_mota = '\0';
 char transf_ardatza = '\0';
 char transf_norabidea = '\0';
 
+void biratu(){
+
+if(transf_helburua=='l'){
+biraketa();
+}
+ else if(transf_helburua=='g'){
+	 while (trans_obj != 0){
+biraketa();
+_selected_object = _selected_object->next;
+trans_obj = trans_obj->next;
+if(_selected_object==0) _selected_object= _first_object;
+	}
+	}
+
+}
+
+void mugitu(){
+if(transf_helburua=='l'){
+        traslazioa();
+    }
+    else if(transf_helburua=='g'){
+        while (trans_obj != 0){
+            traslazioa();
+	    _selected_object = _selected_object->next;
+            trans_obj = trans_obj->next;
+	    if(_selected_object==0) _selected_object= _first_object;
+        }
+    }
+
+}
+
+void tAldatu(){
+
+if(transf_helburua=='l'){
+        tamainaAldaketa();
+    }
+    else if(transf_helburua=='g'){
+        while (trans_obj != 0){
+            tamainaAldaketa();
+            _selected_object = _selected_object->next;
+            trans_obj = trans_obj->next;
+	    if(_selected_object==0) _selected_object= _first_object;
+        }
+    }
+
+}
 /**
  * @brief This function just prints information about the use
  * of the keys
@@ -224,8 +272,11 @@ void keyboard(unsigned char key, int x, int y) {
             break;
 
         default:
+	    transf_ardatza = 's';
+            transf_norabidea = 's';
             /*In the default case we just print the code of the key. This is usefull to define new cases*/
             printf("%d %c\n", key, key);
+	    break;
     }
     /*In case we have do any modification affecting the displaying of the object, we redraw them*/
     glutPostRedisplay();
@@ -244,14 +295,18 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
+		    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
+		    tAldatu();
                     break;
                 case 'b':
-                    transf_ardatza = 'Y';
+		    transf_ardatza = 'Y';
                     transf_norabidea = '-';
+		     biratu();
+                    
                     break;
             }
             break;
@@ -261,14 +316,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
+		    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
+		    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
+		     biratu();
                     break;
             }
             break;
@@ -278,14 +336,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
+		    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
+		    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
+		     biratu();
                     break;
             }
             break;
@@ -295,14 +356,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Y';
                     transf_norabidea = '-';
+		   mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Y';
                     transf_norabidea = '-';
+		   tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
+		     biratu();
                     break;
             }
             break;
@@ -312,14 +376,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
+		    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
+		    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
+		     biratu();
                     break;
             }
             break;
@@ -329,19 +396,27 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
+		   mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
+		    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
+		    biratu();
                     break;
             }
             break;
+	default:
+		transf_ardatza = 's';
+            	transf_norabidea = 's';
+		break;
     }
 
     glutPostRedisplay();
 }//void keyboardSpecial
+
 
