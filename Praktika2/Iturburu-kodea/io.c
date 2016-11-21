@@ -225,11 +225,11 @@ void keyboard(unsigned char key, int x, int y) {
             break;
 
         default:
-	    transf_ardatza = 's';
+            transf_ardatza = 's';
             transf_norabidea = 's';
             /*In the default case we just print the code of the key. This is usefull to define new cases*/
             printf("%d %c\n", key, key);
-	    break;
+            break;
     }
     /*In case we have do any modification affecting the displaying of the object, we redraw them*/
     glutPostRedisplay();
@@ -248,18 +248,18 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
-		    mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
-		    tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
-		    transf_ardatza = 'Y';
+                    transf_ardatza = 'Y';
                     transf_norabidea = '-';
-		     biratu();
-                    
+                    biratu();
+
                     break;
             }
             break;
@@ -269,17 +269,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
-		    mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
-		    tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
-		     biratu();
+                    biratu();
                     break;
             }
             break;
@@ -289,17 +289,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
-		    mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'X';
                     transf_norabidea = '+';
-		    tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Y';
                     transf_norabidea = '+';
-		     biratu();
+                    biratu();
                     break;
             }
             break;
@@ -309,17 +309,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Y';
                     transf_norabidea = '-';
-		   mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Y';
                     transf_norabidea = '-';
-		   tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'X';
                     transf_norabidea = '-';
-		     biratu();
+                    biratu();
                     break;
             }
             break;
@@ -329,17 +329,17 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
-		    mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
-		    tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
-		     biratu();
+                    biratu();
                     break;
             }
             break;
@@ -349,24 +349,24 @@ void keyboardSpecial(int key, int x, int y) {
                 case 'm':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
-		   mugitu();
+                    mugitu();
                     break;
                 case 't':
                     transf_ardatza = 'Z';
                     transf_norabidea = '+';
-		    tAldatu();
+                    tAldatu();
                     break;
                 case 'b':
                     transf_ardatza = 'Z';
                     transf_norabidea = '-';
-		    biratu();
+                    biratu();
                     break;
             }
             break;
-	default:
-		transf_ardatza = 's';
-            	transf_norabidea = 's';
-		break;
+        default:
+            transf_ardatza = 's';
+            transf_norabidea = 's';
+            break;
     }
 
     glutPostRedisplay();

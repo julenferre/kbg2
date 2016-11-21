@@ -22,9 +22,6 @@ char transf_norabidea = '\0';
 
 extern object3d *trans_obj;
 
-
-
-
 /**
  * @brief Matrizeak biderkatzeko metodoa
  */
@@ -288,40 +285,38 @@ void biraketa(){
 }//void biraketa()
 
 void biratu(){
-trans_obj= _first_object;
-if(transf_helburua=='l'){
-biraketa();
-}
- else if(transf_helburua=='g'){
-	 while (trans_obj != 0){
-biraketa();
-_selected_object = _selected_object->next;
-trans_obj = trans_obj->next;
-if(_selected_object==0) _selected_object= _first_object;
-	}
-	}
-
-}
+    trans_obj= _first_object;
+    if(transf_helburua=='l'){
+        biraketa();
+    }
+    else if(transf_helburua=='g'){
+        while (trans_obj != 0){
+            biraketa();
+            _selected_object = _selected_object->next;
+            trans_obj = trans_obj->next;
+            if(_selected_object==0) _selected_object= _first_object;
+        }
+    }
+}//void biratu()
 
 void mugitu(){
-trans_obj= _first_object;
-if(transf_helburua=='l'){
+    trans_obj= _first_object;
+    if(transf_helburua=='l'){
         traslazioa();
     }
     else if(transf_helburua=='g'){
         while (trans_obj != 0){
             traslazioa();
-	    _selected_object = _selected_object->next;
+            _selected_object = _selected_object->next;
             trans_obj = trans_obj->next;
-	    if(_selected_object==0) _selected_object= _first_object;
+            if(_selected_object==0) _selected_object= _first_object;
         }
     }
-
-}
+}//void mugitu()
 
 void tAldatu(){
-trans_obj= _first_object;
-if(transf_helburua=='l'){
+    trans_obj= _first_object;
+    if(transf_helburua=='l'){
         tamainaAldaketa();
     }
     else if(transf_helburua=='g'){
@@ -329,10 +324,7 @@ if(transf_helburua=='l'){
             tamainaAldaketa();
             _selected_object = _selected_object->next;
             trans_obj = trans_obj->next;
-	    if(_selected_object==0) _selected_object= _first_object;
+            if(_selected_object==0) _selected_object= _first_object;
         }
     }
-
-}
-
-
+}//void tAldatu()
