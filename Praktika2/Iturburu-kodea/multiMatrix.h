@@ -9,4 +9,7 @@ void biratu();
 void tAldatu();
 void mugitu();
 
+void guztiaHanditu();
+void guztiaTxikitu();
+
 #endif // multiMatrix_H

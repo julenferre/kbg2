@@ -135,6 +135,7 @@ void keyboard(unsigned char key, int x, int y) {
             printf("(Hurrengo praktikan implementatuko da)\n");
             break;
 
+        /*
         case 'z':
         case 'Z':
             if (glutGetModifiers() == GLUT_ACTIVE_CTRL) {
@@ -144,6 +145,11 @@ void keyboard(unsigned char key, int x, int y) {
             else{
                 printf("Z\n");
             }
+            break;
+        */
+        case 26: /* <CTRL + Z*/
+            printf("Aldaketak desegin\n");
+            aldaketaDesegin();
             break;
 
         case 9: /* <TAB> */
@@ -197,6 +203,7 @@ void keyboard(unsigned char key, int x, int y) {
             else
             {
                 printf("Ardatz guztietan txikitu (Objektuak bakarrik)\n");
+                guztiaTxikitu();
             }
             break;
 
@@ -217,6 +224,7 @@ void keyboard(unsigned char key, int x, int y) {
             else
             {
                 printf("Ardatz guztietan handitu (Objektuak bakarrik)\n");
+                guztiaHanditu();
             }
             break;
 
@@ -263,7 +271,6 @@ void keyboardSpecial(int key, int x, int y) {
                     transf_ardatza = 'Y';
                     transf_norabidea = '-';
                     biratu();
-
                     break;
             }
             break;

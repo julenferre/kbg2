@@ -62,7 +62,8 @@ void aldaketaDesegin(){
     _selected_object->aldaketaPila = 0;
     _selected_object->aldaketaPila = first_matrix;
     _selected_object->matrix=mult(first_matrix->matrix,_selected_object->matrix);
-}
+    printf("Aldaketak desegin dira\n");
+}//aldaketaDesegin
 
 /**
  * @brief Objektua mugitzeko metodoa
@@ -350,3 +351,68 @@ void tAldatu(){
         }
     }
 }//void tAldatu()
+
+void guztiaHanditu(){
+    char aux_norabid = transf_norabidea;
+    char aux_ardatza = transf_ardatza;
+    transf_norabidea = '+';
+
+    trans_obj= _first_object;
+
+    if(transf_helburua=='l'){
+        transf_ardatza = 'X';
+        tamainaAldaketa();
+        transf_ardatza = 'Y';
+        tamainaAldaketa();
+        transf_ardatza = 'Z';
+        tamainaAldaketa();
+    }
+    else if(transf_helburua=='g'){
+        while (trans_obj != 0){
+            transf_ardatza = 'X';
+            tamainaAldaketa();
+            transf_ardatza = 'Y';
+            tamainaAldaketa();
+            transf_ardatza = 'Z';
+            tamainaAldaketa();
+            _selected_object = _selected_object->next;
+            trans_obj = trans_obj->next;
+            if(_selected_object==0) _selected_object= _first_object;
+        }
+    }
+    transf_ardatza = aux_ardatza;
+    transf_norabidea = aux_norabid;
+}//guztiaHanditu
+
+void guztiaTxikitu(){
+    char aux_norabid = transf_norabidea;
+    char aux_ardatza = transf_ardatza;
+    transf_norabidea = '-';
+
+    trans_obj= _first_object;
+
+    if(transf_helburua=='l'){
+        transf_ardatza = 'X';
+        tamainaAldaketa();
+        transf_ardatza = 'Y';
+        tamainaAldaketa();
+        transf_ardatza = 'Z';
+        tamainaAldaketa();
+    }
+    else if(transf_helburua=='g'){
+        while (trans_obj != 0){
+            transf_ardatza = 'X';
+            tamainaAldaketa();
+            transf_ardatza = 'Y';
+            tamainaAldaketa();
+            transf_ardatza = 'Z';
+            tamainaAldaketa();
+            _selected_object = _selected_object->next;
+            trans_obj = trans_obj->next;
+            if(_selected_object==0) _selected_object= _first_object;
+        }
+    }
+    transf_ardatza = aux_ardatza;
+    transf_norabidea = aux_norabid;
+}//guztiaTxikitu
+
