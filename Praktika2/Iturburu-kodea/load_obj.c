@@ -55,6 +55,7 @@ int read_wavefront(char * file_name, object3d * object_ptr) {
     int k;
     int i, j;
     int values[MAXLINE];
+    pila * aldaketaPila;
 
 
     /*
@@ -200,6 +201,10 @@ int read_wavefront(char * file_name, object3d * object_ptr) {
     object_ptr->matrix [1]=0; object_ptr->matrix [5]=1; object_ptr->matrix [9] =0; object_ptr->matrix [13]=0;
     object_ptr->matrix [2]=0; object_ptr->matrix [6]=0; object_ptr->matrix [10]=1; object_ptr->matrix [14]=0;
     object_ptr->matrix [3]=0; object_ptr->matrix [7]=0; object_ptr->matrix [11]=0; object_ptr->matrix [15]=1;
+
+    pila * pilaBerria = (pila *)malloc(sizeof(pila));
+    pilaBerria->matrix = object_ptr->matrix;
+    object_ptr->aldaketaPila = pilaBerria;
 
     return (0);
 }

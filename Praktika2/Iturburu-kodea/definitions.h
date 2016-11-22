@@ -113,6 +113,12 @@ typedef struct {
 } face;
 
 
+struct aldaketaPila{
+    GLdouble * matrix;
+    struct aldaketaPila *next;
+};
+typedef struct aldaketaPila pila;
+
 /****************************
  * Structure to store a     *
  * pile of 3D objects       *
@@ -126,6 +132,7 @@ struct object3d{
     point3 max;                         /* coordinates' bigger bounds */
     struct object3d *next;              /* next element in the pile of objects */
     GLdouble * matrix;
+    pila * aldaketaPila;
 };
 
 typedef struct object3d object3d;

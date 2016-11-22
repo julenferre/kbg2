@@ -3,6 +3,8 @@
 
 #include "definitions.h"
 
+void aldaketaDesegin();
+
 void biratu();
 void tAldatu();
 void mugitu();

@@ -51,6 +51,19 @@ GLdouble *mult(GLdouble *m1, GLdouble *m2) {
     return result;
 }
 
+void pilanGehitu(pila * matrix_aux){
+    matrix_aux->next = trans_obj->aldaketaPila;
+    trans_obj->aldaketaPila = matrix_aux;
+}
+
+void aldaketaDesegin(){
+    pila *first_matrix;
+    first_matrix = _selected_object->aldaketaPila->next;
+    _selected_object->aldaketaPila = 0;
+    _selected_object->aldaketaPila = first_matrix;
+    _selected_object->matrix=mult(first_matrix->matrix,_selected_object->matrix);
+}
+
 /**
  * @brief Objektua mugitzeko metodoa
  * @param transf_ardatza Transformazioaren ardatza
@@ -103,6 +116,7 @@ void traslazioa(){
                 printf("Traslazioa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasXn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Y':
@@ -114,6 +128,7 @@ void traslazioa(){
                 printf("Traslazioa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasYn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Z':
@@ -125,6 +140,7 @@ void traslazioa(){
                 printf("Traslazioa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasZn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
     }
 }//void traslazioa()
@@ -181,6 +197,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaXn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Y':
@@ -192,6 +209,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaYn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Z':
@@ -203,6 +221,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaZn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
     }
 }//void tamainaAldaketa()
@@ -258,6 +277,7 @@ void biraketa(){
                 printf("Biraketa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraXn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Y':
@@ -269,6 +289,7 @@ void biraketa(){
                 printf("Biraketa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraYn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
 
         case 'Z':
@@ -280,6 +301,7 @@ void biraketa(){
                 printf("Biraketa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraZn);
             }
+            pilanGehitu(_selected_object->aldaketaPila);
             break;
     }
 }//void biraketa()
