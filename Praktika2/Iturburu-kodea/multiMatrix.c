@@ -378,66 +378,25 @@ void tAldatu(){
 }//void tAldatu()
 
 void guztiaHanditu(){
-    char aux_norabid = transf_norabidea;
-    char aux_ardatza = transf_ardatza;
-    transf_norabidea = '+';
+    GLdouble  * tama = malloc ( sizeof ( GLdouble )*16);
+    tama [0]=1+KG_ABIAD_TAMAN;  tama [4]=0;                tama [8] =0;                tama [12]=0;
+    tama [1]=0;                 tama [5]=1+KG_ABIAD_TAMAN; tama [9] =0;                tama [13]=0;
+    tama [2]=0;                 tama [6]=0;                tama [10]=1+KG_ABIAD_TAMAN; tama [14]=0;
+    tama [3]=0;                 tama [7]=0;                tama [11]=0;                tama [15]=1;
 
-    trans_obj= _first_object;
-
-    if(transf_helburua=='l'){
-        transf_ardatza = 'X';
-        tamainaAldaketa();
-        transf_ardatza = 'Y';
-        tamainaAldaketa();
-        transf_ardatza = 'Z';
-        tamainaAldaketa();
-    }
-    else if(transf_helburua=='g'){
-        while (trans_obj != 0){
-            transf_ardatza = 'X';
-            tamainaAldaketa();
-            transf_ardatza = 'Y';
-            tamainaAldaketa();
-            transf_ardatza = 'Z';
-            tamainaAldaketa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-            if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-    transf_ardatza = aux_ardatza;
-    transf_norabidea = aux_norabid;
-}//guztiaHanditu
+    printf("Tamaina aldaketa: handitze orokorra\n");
+    _selected_object->matrix=mult(_selected_object->matrix,tama);
+    pilanGehitu(_selected_object->matrix);
+}
 
 void guztiaTxikitu(){
-    char aux_norabid = transf_norabidea;
-    char aux_ardatza = transf_ardatza;
-    transf_norabidea = '-';
+    GLdouble  * tamaN = malloc ( sizeof ( GLdouble )*16);
+    tamaN [0]=1-KG_ABIAD_TAMAN;  tamaN [4]=0;                tamaN [8] =0;                tamaN [12]=0;
+    tamaN [1]=0;                 tamaN [5]=1-KG_ABIAD_TAMAN; tamaN [9] =0;                tamaN [13]=0;
+    tamaN [2]=0;                 tamaN [6]=0;                tamaN [10]=1-KG_ABIAD_TAMAN; tamaN [14]=0;
+    tamaN [3]=0;                 tamaN [7]=0;                tamaN [11]=0;                tamaN [15]=1;
 
-    trans_obj= _first_object;
-
-    if(transf_helburua=='l'){
-        transf_ardatza = 'X';
-        tamainaAldaketa();
-        transf_ardatza = 'Y';
-        tamainaAldaketa();
-        transf_ardatza = 'Z';
-        tamainaAldaketa();
-    }
-    else if(transf_helburua=='g'){
-        while (trans_obj != 0){
-            transf_ardatza = 'X';
-            tamainaAldaketa();
-            transf_ardatza = 'Y';
-            tamainaAldaketa();
-            transf_ardatza = 'Z';
-            tamainaAldaketa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-            if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-    transf_ardatza = aux_ardatza;
-    transf_norabidea = aux_norabid;
-}//guztiaTxikitu
-
+    printf("Tamaina aldaketa: txikitze orokorra\n");
+    _selected_object->matrix=mult(_selected_object->matrix,tamaN);
+    pilanGehitu(_selected_object->matrix);
+}
