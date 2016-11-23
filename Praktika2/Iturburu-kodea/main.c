@@ -15,7 +15,7 @@ GLdouble _ortho_z_min,_ortho_z_max;         /*Variables for the control of the o
 
 object3d * _first_object= 0;                /*List of objects*/
 object3d * _selected_object = 0;            /*Object currently selected*/
-object3d *trans_obj =0;
+
 /** GENERAL INITIALIZATION **/
 void initialization (){
 

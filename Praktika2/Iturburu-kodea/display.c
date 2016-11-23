@@ -16,12 +16,6 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
-
-
-/**
- * @brief Matrizeak biderkatzeko metodoa
- */
-
 /**
  * @brief Function to draw the axes
  */

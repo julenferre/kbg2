@@ -15,12 +15,12 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
+object3d * trans_obj =0;                    /*Transformazioa jasango duen objektua*/
+
 char transf_helburua = '\0';
 char transf_mota = '\0';
 char transf_ardatza = '\0';
 char transf_norabidea = '\0';
-
-extern object3d *trans_obj;
 
 /**
  * @brief Matrizeak biderkatzeko metodoa
@@ -54,7 +54,7 @@ GLdouble *mult(GLdouble *m1, GLdouble *m2) {
 void pilanGehitu(GLdouble *matrix_aux){
     pila *pila_aux = (pila *) malloc(sizeof(pila));
     pila_aux->matrix= matrix_aux;
-    pila_aux->next = _selected_object->aldaketaPila; 		
+    pila_aux->next = _selected_object->aldaketaPila;
     _selected_object->aldaketaPila = pila_aux;
     _selected_object->num_aldaketak+=1;
 }
@@ -79,15 +79,15 @@ while(ver->next != NULL){
 
 void aldaketaDesegin(){
     if(_selected_object->num_aldaketak>0){
-    pila *first_matrix;
-    first_matrix = _selected_object->aldaketaPila->next;
-    _selected_object->aldaketaPila = 0;
-    _selected_object->aldaketaPila = first_matrix;
-    _selected_object->matrix = first_matrix->matrix;
-    _selected_object->num_aldaketak-=1;
-    printf("Aldaketak desegin dira\n");}
+        pila *first_matrix;
+        first_matrix = _selected_object->aldaketaPila->next;
+        _selected_object->aldaketaPila = 0;
+        _selected_object->aldaketaPila = first_matrix;
+        _selected_object->matrix = first_matrix->matrix;
+        _selected_object->num_aldaketak-=1;
+        printf("Aldaketak desegin dira\n");}
     else{
-	printf("Ezin dira aldaketa gehiagorik desegin\n");}
+        printf("Ezin dira aldaketa gehiagorik desegin\n");}
 }//aldaketaDesegin
 
 /**
@@ -333,11 +333,11 @@ void biraketa(){
 }//void biraketa()
 
 void biratu(){
-    trans_obj= _first_object;
     if(transf_helburua=='l'){
         biraketa();
     }
     else if(transf_helburua=='g'){
+        trans_obj= _first_object;
         while (trans_obj != 0){
             biraketa();
             _selected_object = _selected_object->next;
@@ -348,11 +348,11 @@ void biratu(){
 }//void biratu()
 
 void mugitu(){
-    trans_obj= _first_object;
     if(transf_helburua=='l'){
         traslazioa();
     }
     else if(transf_helburua=='g'){
+        trans_obj = _first_object;
         while (trans_obj != 0){
             traslazioa();
             _selected_object = _selected_object->next;
@@ -363,11 +363,11 @@ void mugitu(){
 }//void mugitu()
 
 void tAldatu(){
-    trans_obj= _first_object;
     if(transf_helburua=='l'){
         tamainaAldaketa();
     }
     else if(transf_helburua=='g'){
+        trans_obj = _first_object;
         while (trans_obj != 0){
             tamainaAldaketa();
             _selected_object = _selected_object->next;

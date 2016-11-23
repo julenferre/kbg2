@@ -12,7 +12,6 @@ extern GLdouble _ortho_x_min,_ortho_x_max;
 extern GLdouble _ortho_y_min,_ortho_y_max;
 extern GLdouble _ortho_z_min,_ortho_z_max;
 
-
 extern char transf_helburua;
 extern char transf_mota;
 extern char transf_ardatza;
