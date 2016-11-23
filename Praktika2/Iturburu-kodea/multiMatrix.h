@@ -11,5 +11,5 @@ void mugitu();
 
 void guztiaHanditu();
 void guztiaTxikitu();
-
+void pilaikusi();
 #endif // multiMatrix_H

@@ -51,18 +51,43 @@ GLdouble *mult(GLdouble *m1, GLdouble *m2) {
     return result;
 }
 
-void pilanGehitu(pila * matrix_aux){
-    matrix_aux->next = trans_obj->aldaketaPila;
-    trans_obj->aldaketaPila = matrix_aux;
+void pilanGehitu(GLdouble *matrix_aux){
+    pila *pila_aux = (pila *) malloc(sizeof(pila));
+    pila_aux->matrix= matrix_aux;
+    pila_aux->next = _selected_object->aldaketaPila; 		
+    _selected_object->aldaketaPila = pila_aux;
+    _selected_object->num_aldaketak+=1;
 }
 
+/*void pilaikusi(){
+	pila *ver = (pila *) malloc(sizeof(pila));
+	GLdouble *matriz = malloc(sizeof(GLdouble) * 4 * 4);
+	ver= _selected_object->aldaketaPila;
+	int i;
+while(ver->next != NULL){
+	matriz = ver->matrix;
+	for(i=0;i<16; i++){
+	printf("Elemto %d es %f\n",i,matriz[i]);	
+	}
+	if(ver->next != NULL)ver=ver->next;
+	else break;
+
+}
+
+
+}*/
+
 void aldaketaDesegin(){
+    if(_selected_object->num_aldaketak>0){
     pila *first_matrix;
     first_matrix = _selected_object->aldaketaPila->next;
     _selected_object->aldaketaPila = 0;
     _selected_object->aldaketaPila = first_matrix;
-    _selected_object->matrix=mult(first_matrix->matrix,_selected_object->matrix);
-    printf("Aldaketak desegin dira\n");
+    _selected_object->matrix = first_matrix->matrix;
+    _selected_object->num_aldaketak-=1;
+    printf("Aldaketak desegin dira\n");}
+    else{
+	printf("Ezin dira aldaketa gehiagorik desegin\n");}
 }//aldaketaDesegin
 
 /**
@@ -117,7 +142,7 @@ void traslazioa(){
                 printf("Traslazioa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasXn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Y':
@@ -129,7 +154,7 @@ void traslazioa(){
                 printf("Traslazioa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasYn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Z':
@@ -141,7 +166,7 @@ void traslazioa(){
                 printf("Traslazioa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,trasZn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
     }
 }//void traslazioa()
@@ -198,7 +223,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaXn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Y':
@@ -210,7 +235,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaYn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Z':
@@ -222,7 +247,7 @@ void tamainaAldaketa(){
                 printf("Tamaina aldaketa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,tamaZn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
     }
 }//void tamainaAldaketa()
@@ -278,7 +303,7 @@ void biraketa(){
                 printf("Biraketa: -X\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraXn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Y':
@@ -290,7 +315,7 @@ void biraketa(){
                 printf("Biraketa: -Y\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraYn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
 
         case 'Z':
@@ -302,7 +327,7 @@ void biraketa(){
                 printf("Biraketa: -Z\n");
                 _selected_object->matrix=mult(_selected_object->matrix,biraZn);
             }
-            pilanGehitu(_selected_object->aldaketaPila);
+            pilanGehitu(_selected_object->matrix);
             break;
     }
 }//void biraketa()

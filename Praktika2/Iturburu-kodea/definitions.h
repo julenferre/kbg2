@@ -131,6 +131,7 @@ struct object3d{
     struct object3d *next;              /* next element in the pile of objects */
     GLdouble * matrix;
     pila * aldaketaPila;
+    GLint num_aldaketak;
 };
 
 typedef struct object3d object3d;

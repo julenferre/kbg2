@@ -136,18 +136,12 @@ void keyboard(unsigned char key, int x, int y) {
             printf("(Hurrengo praktikan implementatuko da)\n");
             break;
 
-        /*
-        case 'z':
+        
+        /*case 'z':
         case 'Z':
-            if (glutGetModifiers() == GLUT_ACTIVE_CTRL) {
-                printf("Aldaketak desegin\n");
-                aldaketaDesegin();
-            }
-            else{
-                printf("Z\n");
-            }
-            break;
-        */
+            pilaikusi();
+            break;*/
+        
         case 26: /* <CTRL + Z*/
             printf("Aldaketak desegin\n");
             aldaketaDesegin();
