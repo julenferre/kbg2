@@ -1,3 +1,13 @@
+/*********************************************
+ * File with the functions to  				 *
+ * show in the display the objects 			 *
+ * ----------------------------------------- *
+ * Authors: 								 *
+ *  Robin Espinosa   						 *
+ *	Julen Ferrero 							 *
+ * Date:  November 2016                      *
+ *********************************************/
+
 #include "definitions.h"
 #include <GL/glut.h>
 #include <GL/gl.h>

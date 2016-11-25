@@ -1,3 +1,14 @@
+/*********************************************
+ * File with the functions to make all the   *
+ * transformations to the objects 			 *
+ * ----------------------------------------- *
+ * Authors: 								 *
+ *  Robin Espinosa   						 *
+ *	Julen Ferrero 							 *
+ * Date:  November 2016                      *
+ *********************************************/
+
+
 #include "definitions.h"
 #include <GL/glut.h>
 #include <GL/gl.h>
@@ -15,12 +26,14 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
+/** GLOBAL VARIABLES **/
+
 object3d * trans_obj =0;                    /*Transformazioa jasango duen objektua*/
 
-char transf_helburua = '\0';
-char transf_mota = '\0';
-char transf_ardatza = '\0';
-char transf_norabidea = '\0';
+char transf_helburua = '\0';				//Transformazio lokala edo globala 
+char transf_mota = '\0';					//Biraketa, traslazio edo tamaina aldaketa
+char transf_ardatza = '\0';					//X,Y,Z
+char transf_norabidea = '\0';				//+,-
 
 /**
  * @brief Matrizeak biderkatzeko metodoa
@@ -50,7 +63,10 @@ GLdouble *mult(GLdouble *m1, GLdouble *m2) {
     // @formatter:on
     return result;
 }
-
+/**
+ * @brief Objektu baten aldaketa pilan aldaketa egin ondoren lortu den matrizea gordetzeko metodoa
+ * @param matrix_aux aldeketa egin ondoren lortutako matrizea
+ */
 void pilanGehitu(GLdouble *matrix_aux){
     pila *pila_aux = (pila *) malloc(sizeof(pila));
     pila_aux->matrix= matrix_aux;
@@ -59,24 +75,9 @@ void pilanGehitu(GLdouble *matrix_aux){
     _selected_object->num_aldaketak+=1;
 }
 
-/*void pilaikusi(){
-	pila *ver = (pila *) malloc(sizeof(pila));
-	GLdouble *matriz = malloc(sizeof(GLdouble) * 4 * 4);
-	ver= _selected_object->aldaketaPila;
-	int i;
-while(ver->next != NULL){
-	matriz = ver->matrix;
-	for(i=0;i<16; i++){
-	printf("Elemto %d es %f\n",i,matriz[i]);	
-	}
-	if(ver->next != NULL)ver=ver->next;
-	else break;
-
-}
-
-
-}*/
-
+/**
+ * @brief Objetu baten aldaketak desegiteko metodoa
+ */
 void aldaketaDesegin(){
     if(_selected_object->num_aldaketak>0){
         pila *first_matrix;
@@ -332,6 +333,10 @@ void biraketa(){
     }
 }//void biraketa()
 
+/**
+ * @brief Objektuen biraketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
+ * @param transf_helburua biraketa modua l= lokala g= globala 
+ */
 void biratu(){
     if(transf_helburua=='l'){
         biraketa();
@@ -347,6 +352,10 @@ void biratu(){
     }
 }//void biratu()
 
+/**
+ * @brief Objektuen traslazio lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
+ * @param transf_helburua traslazio modua l=lokala g=globala 
+ */
 void mugitu(){
     if(transf_helburua=='l'){
         traslazioa();
@@ -362,6 +371,10 @@ void mugitu(){
     }
 }//void mugitu()
 
+/**
+ * @brief Objektuen tamaina aldaketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
+ * @param transf_helburua tamaina aldaketa modua l=lokala g=globala 
+ */
 void tAldatu(){
     if(transf_helburua=='l'){
         tamainaAldaketa();
@@ -377,6 +390,10 @@ void tAldatu(){
     }
 }//void tAldatu()
 
+
+/**
+ * @brief Objektuen tamaina aldaketa globala (objektu guztiak) egiteko erabiltzen den metodoa, objektu guztiak handitzen ditu.
+ */
 void guztiaHanditu(){
     GLdouble  * tama = malloc ( sizeof ( GLdouble )*16);
     tama [0]=1+KG_ABIAD_TAMAN;  tama [4]=0;                tama [8] =0;                tama [12]=0;
@@ -389,6 +406,9 @@ void guztiaHanditu(){
     pilanGehitu(_selected_object->matrix);
 }
 
+/**
+ * @brief Objektuen tamaina aldaketa globala (objektu guztiak) egiteko erabiltzen den metodoa, objektu guztiak txikitzen ditu.
+ */
 void guztiaTxikitu(){
     GLdouble  * tamaN = malloc ( sizeof ( GLdouble )*16);
     tamaN [0]=1-KG_ABIAD_TAMAN;  tamaN [4]=0;                tamaN [8] =0;                tamaN [12]=0;

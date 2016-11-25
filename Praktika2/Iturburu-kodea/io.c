@@ -1,9 +1,21 @@
+/*********************************************
+ * File with callbacks functions for  		 *
+ * the keyboards specials and basics keys	 *
+ * ----------------------------------------- *
+ * Authors: 								 *
+ *  Robin Espinosa   						 *
+ *	Julen Ferrero 							 *
+ * Date:   November 2016                     *
+ *********************************************/
+
 #include "definitions.h"
 #include "load_obj.h"
 #include "display.h"
 #include <GL/glut.h>
 #include <stdio.h>
 #include "multiMatrix.h"
+
+/** EXTERNAL VARIABLES **/
 
 extern object3d * _first_object;
 extern object3d * _selected_object;

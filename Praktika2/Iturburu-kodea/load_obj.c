@@ -2,8 +2,10 @@
  * File with the function to load objects    *
  * from files                                *
  * ----------------------------------------- *
- * Author: Borja Calvo (borja.calvo@ehu.es)  *
- * Date:   September 2014                    *
+ * Authors: 								 *
+ *  Robin Espinosa   						 *
+ *	Julen Ferrero 							 *
+ * Date:  November 2016                      *
  *********************************************/
 
 #include <stdio.h>

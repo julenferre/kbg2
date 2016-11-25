@@ -1,3 +1,13 @@
+/*********************************************
+ * File with the main function of the project*
+ * and with the initialization function 	 *
+ * ----------------------------------------- *
+ * Authors: 								 *
+ *  Robin Espinosa   						 *
+ *	Julen Ferrero 							 *
+ * Date:  November 2016                      *
+ *********************************************/
+
 #include <stdio.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
