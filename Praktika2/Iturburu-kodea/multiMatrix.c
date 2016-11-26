@@ -37,6 +37,9 @@ char transf_norabidea = '\0';				//+,-
 
 /**
  * @brief Matrizeak biderkatzeko metodoa
+ * @param m1 Biderkadurako ezkerreko matrizea
+ * @param m2 Biderkadurako eskuineko matrizea
+ * @return GLdouble motako matrizea, m1Xm2-ren emaitza
  */
 GLdouble *mult(GLdouble *m1, GLdouble *m2) {
     GLdouble *result = malloc(sizeof(GLdouble) * 4 * 4);
@@ -93,8 +96,6 @@ void aldaketaDesegin(){
 
 /**
  * @brief Objektua mugitzeko metodoa
- * @param transf_ardatza Transformazioaren ardatza
- * @param transf_norabidea transformazioaren norabidea
  */
 void traslazioa(){
     GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
@@ -174,8 +175,6 @@ void traslazioa(){
 
 /**
  * @brief Objektuaren tamaina aldatzeko metodoa
- * @param transf_ardatza Transformazioaren ardatza
- * @param transf_norabidea transformazioaren norabidea
  */
 void tamainaAldaketa(){
     GLdouble  * tamaX = malloc ( sizeof ( GLdouble )*16);
@@ -255,8 +254,6 @@ void tamainaAldaketa(){
 
 /**
  * @brief Objektua biratzeko metodoa
- * @param transf_ardatza Transformazioaren ardatza
- * @param transf_norabidea transformazioaren norabidea
  */
 void biraketa(){
     GLdouble  * biraX = malloc ( sizeof ( GLdouble )*16);
@@ -335,7 +332,6 @@ void biraketa(){
 
 /**
  * @brief Objektuen biraketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- * @param transf_helburua biraketa modua l= lokala g= globala 
  */
 void biratu(){
     if(transf_helburua=='l'){
@@ -354,7 +350,6 @@ void biratu(){
 
 /**
  * @brief Objektuen traslazio lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- * @param transf_helburua traslazio modua l=lokala g=globala 
  */
 void mugitu(){
     if(transf_helburua=='l'){
@@ -373,7 +368,6 @@ void mugitu(){
 
 /**
  * @brief Objektuen tamaina aldaketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- * @param transf_helburua tamaina aldaketa modua l=lokala g=globala 
  */
 void tAldatu(){
     if(transf_helburua=='l'){
