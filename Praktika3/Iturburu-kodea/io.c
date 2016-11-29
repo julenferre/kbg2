@@ -32,10 +32,10 @@ extern char transf_ardatza;
 extern char transf_norabidea;
 
 //Kameraren aldagaiak
-extern char kamera_tmota;			 						
-extern char kamera_tardatza;			
+extern char kamera_tmota;
+extern char kamera_tardatza;
 extern char kamera_tnorabidea;
-	
+
 //Aldagai globala
 extern char obj_kam_hautatu;
 /**
@@ -59,7 +59,7 @@ void print_help(){
     printf("<G>\t\t Aldaketak munduaren erreferentzi sisteman eragin (aldaketa globalak)\n");
     printf("<L>\t\t Aldaketak objektuaren (edo kameraren, edo argiaren) erreferentzi sisteman eragin (aldaketa lokalak)\n");
     printf("<O>\t\t Aldaketak hautaturik dagoen objektuari eragin\n");
-    printf("<K>\t\t Aldaketak uneko kamerari eragin\n"); 
+    printf("<K>\t\t Aldaketak uneko kamerari eragin\n");
     printf("<C>\t\t Kamera mota aldatu(Ortografikoa,Objektu-mota edo Ibilitaria)\n");
     printf("<GORA>\t\t Mugitu +Y; Txikitu Y; Biratu +X\n");
     printf("<BEHERA>\t\t Mugitu -Y; Handitu Y; Biratu -X\n");
@@ -126,15 +126,14 @@ void keyboard(unsigned char key, int x, int y) {
         case 'M':
             printf("Traslazioa aktibatuta\n");
             transf_mota = 'm';
-	    kamera_tmota = 'm';
-
+            kamera_tmota = 'm';
             break;
 
         case 'b':
         case 'B':
             printf("Biraketa aktibatuta\n");
             transf_mota = 'b';
-	    kamera_tmota = 'b';
+            kamera_tmota = 'b';
             break;
 
         case 't':
@@ -157,20 +156,20 @@ void keyboard(unsigned char key, int x, int y) {
 
         case 'o':
         case 'O':
-		obj_kam_hautatu= 'o';
             printf("Aldaketak hautaturik dagoen objektuari eragin\n");
+            obj_kam_hautatu= 'o';
             break;
-	case 'c':
+        case 'c':
         case 'C':
-		kamera_mota_aldatu();
             printf("Kamera mota aldatu\n");
+            kamera_mota_aldatu();
             break;
         case 'k':
         case 'K':
-		obj_kam_hautatu= 'k';
             printf("Kamerari aldaketak eragin\n");
+            obj_kam_hautatu= 'k';
             break;
-        
+
         case 26: /* <CTRL + Z*/
             printf("Aldaketak desegin\n");
             aldaketaDesegin();
@@ -278,239 +277,239 @@ void keyboard(unsigned char key, int x, int y) {
  * @param y Y coordinate of the mouse pointer when the key was pressed
  */
 void keyboardSpecial(int key, int x, int y) {
-if(obj_kam_hautatu== 'o'){
-    switch (key){
-        case GLUT_KEY_LEFT:  /* <LEFT> */            
-		switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '-';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '-';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '-';
-                    biratu();
-                    break;
-            }
-	
-            break;
+    if(obj_kam_hautatu== 'o'){
+        switch (key){
+            case GLUT_KEY_LEFT:  /* <LEFT> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '-';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '-';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '-';
+                        biratu();
+                        break;
+                }
 
-        case GLUT_KEY_UP: /* <UP> */
-            switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '+';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '+';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+                break;
 
-        case GLUT_KEY_RIGHT:  /* <RIGHT> */
-            switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '+';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '+';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+            case GLUT_KEY_UP: /* <UP> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '+';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '+';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
 
-        case GLUT_KEY_DOWN:  /* <DOWN> */
-            switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '-';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'Y';
-                    transf_norabidea = '-';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'X';
-                    transf_norabidea = '-';
-                    biratu();
-                    break;
-            }
-            break;
+            case GLUT_KEY_RIGHT:  /* <RIGHT> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '+';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '+';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
 
-        case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
-            switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '+';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '-';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+            case GLUT_KEY_DOWN:  /* <DOWN> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '-';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'Y';
+                        transf_norabidea = '-';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'X';
+                        transf_norabidea = '-';
+                        biratu();
+                        break;
+                }
+                break;
 
-        case GLUT_KEY_PAGE_UP: /* <REPAG> */
-            switch (transf_mota){
-                case 'm':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '-';
-                    mugitu();
-                    break;
-                case 't':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '+';
-                    tAldatu();
-                    break;
-                case 'b':
-                    transf_ardatza = 'Z';
-                    transf_norabidea = '-';
-                    biratu();
-                    break;
-            }
-            break;
-        default:
-            transf_ardatza = 's';
-            transf_norabidea = 's';
-            break;
+            case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '+';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '-';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
+
+            case GLUT_KEY_PAGE_UP: /* <REPAG> */
+                switch (transf_mota){
+                    case 'm':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '-';
+                        mugitu();
+                        break;
+                    case 't':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '+';
+                        tAldatu();
+                        break;
+                    case 'b':
+                        transf_ardatza = 'Z';
+                        transf_norabidea = '-';
+                        biratu();
+                        break;
+                }
+                break;
+            default:
+                transf_ardatza = 's';
+                transf_norabidea = 's';
+                break;
+        }
     }
-}
-else if(obj_kam_hautatu== 'k'){
-	switch (key){
-        case GLUT_KEY_LEFT:  /* <LEFT> */            
-		switch (kamera_tmota){
-                case 'm':
-                    kamera_tardatza = 'X';
-                    kamera_tnorabidea = '-';
-                    mugitu();
-                    break;
-                
-                case 'b':
-                    kamera_tardatza = 'Y';
-                    kamera_tnorabidea = '-';
-                    biratu();
-                    break;
-            }
-	
-            break;
+    else if(obj_kam_hautatu== 'k'){
+        switch (key){
+            case GLUT_KEY_LEFT:  /* <LEFT> */
+                switch (kamera_tmota){
+                    case 'm':
+                        kamera_tardatza = 'X';
+                        kamera_tnorabidea = '-';
+                        mugitu();
+                        break;
 
-        case GLUT_KEY_UP: /* <UP> */
-            switch (kamera_tmota){
-                case 'm':
-                   kamera_tardatza = 'Y';
-                    kamera_tnorabidea = '+';
-                    mugitu();
-                    break;
-                
-                case 'b':
-                    kamera_tardatza = 'X';
-                    kamera_tnorabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+                    case 'b':
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '-';
+                        biratu();
+                        break;
+                }
 
-        case GLUT_KEY_RIGHT:  /* <RIGHT> */
-            switch (kamera_tmota){
-                case 'm':
-                    kamera_tardatza = 'X';
-                    kamera_tnorabidea = '+';
-                    mugitu();
-                    break;
-                
-                case 'b':
-                    kamera_tardatza = 'Y';
-                    kamera_tnorabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+                break;
 
-        case GLUT_KEY_DOWN:  /* <DOWN> */
-            switch (kamera_tmota){
-                case 'm':
-                    kamera_tardatza = 'Y';
-                    kamera_tnorabidea = '-';
-                    mugitu();
-                    break;
-          
-                case 'b':
-                    kamera_tardatza= 'X';
-                    kamera_tnorabidea = '-';
-                    biratu();
-                    break;
-            }
-            break;
+            case GLUT_KEY_UP: /* <UP> */
+                switch (kamera_tmota){
+                    case 'm':
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '+';
+                        mugitu();
+                        break;
 
-        case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
-            switch (transf_mota){
-                case 'm':
-                    kamera_tardatza = 'Z';
-                    kamera_tnorabidea = '+';
-                    mugitu();
-                    break;
-               
-                case 'b':
-                    kamera_tardatza = 'Z';
-                    kamera_tnorabidea = '+';
-                    biratu();
-                    break;
-            }
-            break;
+                    case 'b':
+                        kamera_tardatza = 'X';
+                        kamera_tnorabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
 
-        case GLUT_KEY_PAGE_UP: /* <REPAG> */
-            switch (transf_mota){
-                case 'm':
-                    kamera_tardatza = 'Z';
-                    kamera_tnorabidea = '-';
-                    mugitu();
-                    break;
-                
-                case 'b':
-                    kamera_tardatza = 'Z';
-                    kamera_tnorabidea = '-';
-                    biratu();
-                    break;
-            }
-            break;
+            case GLUT_KEY_RIGHT:  /* <RIGHT> */
+                switch (kamera_tmota){
+                    case 'm':
+                        kamera_tardatza = 'X';
+                        kamera_tnorabidea = '+';
+                        mugitu();
+                        break;
 
-        default:
-            kamera_tardatza = 's';
-            kamera_tnorabidea = 's';
-            break;
+                    case 'b':
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
+
+            case GLUT_KEY_DOWN:  /* <DOWN> */
+                switch (kamera_tmota){
+                    case 'm':
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '-';
+                        mugitu();
+                        break;
+
+                    case 'b':
+                        kamera_tardatza= 'X';
+                        kamera_tnorabidea = '-';
+                        biratu();
+                        break;
+                }
+                break;
+
+            case GLUT_KEY_PAGE_DOWN: /* <AVPAG> */
+                switch (transf_mota){
+                    case 'm':
+                        kamera_tardatza = 'Z';
+                        kamera_tnorabidea = '+';
+                        mugitu();
+                        break;
+
+                    case 'b':
+                        kamera_tardatza = 'Z';
+                        kamera_tnorabidea = '+';
+                        biratu();
+                        break;
+                }
+                break;
+
+            case GLUT_KEY_PAGE_UP: /* <REPAG> */
+                switch (transf_mota){
+                    case 'm':
+                        kamera_tardatza = 'Z';
+                        kamera_tnorabidea = '-';
+                        mugitu();
+                        break;
+
+                    case 'b':
+                        kamera_tardatza = 'Z';
+                        kamera_tnorabidea = '-';
+                        biratu();
+                        break;
+                }
+                break;
+
+            default:
+                kamera_tardatza = 's';
+                kamera_tnorabidea = 's';
+                break;
+        }
     }
-}
     glutPostRedisplay();
 }//void keyboardSpecial
 
