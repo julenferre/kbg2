@@ -146,6 +146,12 @@ void keyboard(unsigned char key, int x, int y) {
             printf("Aldaketak hautaturik dagoen objektuari eragin\n");
             printf("(Hurrengo praktikan implementatuko da)\n");
             break;
+
+        
+        /*case 'z':
+        case 'Z':
+            pilaikusi();
+            break;*/
         
         case 26: /* <CTRL + Z*/
             printf("Aldaketak desegin\n");
