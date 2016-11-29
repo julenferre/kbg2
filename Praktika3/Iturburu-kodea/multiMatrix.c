@@ -30,7 +30,7 @@ extern object3d *_selected_object;
 
 object3d * trans_obj =0;                    /*Transformazioa jasango duen objektua*/
 
-char transf_helburua = '\0';				//Transformazio lokala edo globala 
+extern char transf_helburua;				
 char transf_mota = '\0';					//Biraketa, traslazio edo tamaina aldaketa
 char transf_ardatza = '\0';					//X,Y,Z
 char transf_norabidea = '\0';				//+,-
