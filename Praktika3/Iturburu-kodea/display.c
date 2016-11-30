@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <math.h> /** cos eta sin **/
 #include "multiMatrix.h"
+#include "multiKamera.h"
 
 /** EXTERNAL VARIABLES **/
 
@@ -26,7 +27,9 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
-extern
+extern kamera kamera1;
+extern char kamera_mota;
+
 
 /**
  * @brief Function to draw the axes
@@ -82,22 +85,35 @@ void display(void) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    /*When the window is wider than our original projection plane we extend the plane in the X axis*/
-    if ((_ortho_x_max - _ortho_x_min) / (_ortho_y_max - _ortho_y_min) < _window_ratio) {
-        /* New width */
-        GLdouble wd = (_ortho_y_max - _ortho_y_min) * _window_ratio;
-        /* Midpoint in the X axis */
-        GLdouble midpt = (_ortho_x_min + _ortho_x_max) / 2;
-        /*Definition of the projection*/
-        glOrtho(midpt - (wd / 2), midpt + (wd / 2), _ortho_y_min, _ortho_y_max, _ortho_z_min, _ortho_z_max);
-    } else {/* In the opposite situation we extend the Y axis */
-        /* New height */
-        GLdouble he = (_ortho_x_max - _ortho_x_min) / _window_ratio;
-        /* Midpoint in the Y axis */
-        GLdouble midpt = (_ortho_y_min + _ortho_y_max) / 2;
-        /*Definition of the projection*/
-        glOrtho(_ortho_x_min, _ortho_x_max, midpt - (he / 2), midpt + (he / 2), _ortho_z_min, _ortho_z_max);
+    GLdouble he = (_ortho_x_max - _ortho_x_min) / _window_ratio;
+    GLdouble wd = (_ortho_y_max - _ortho_y_min) * _window_ratio;
+
+    switch (kamera_mota) {
+        case 'o':
+            /*When the window is wider than our original projection plane we extend the plane in the X axis*/
+            if ((_ortho_x_max - _ortho_x_min) / (_ortho_y_max - _ortho_y_min) < _window_ratio) {
+                /* Midpoint in the X axis */
+                GLdouble midpt = (_ortho_x_min + _ortho_x_max) / 2;
+                /*Definition of the projection*/
+                glOrtho(midpt - (wd / 2), midpt + (wd / 2), _ortho_y_min, _ortho_y_max, _ortho_z_min, _ortho_z_max);
+            } else {/* In the opposite situation we extend the Y axis */
+                /* Midpoint in the Y axis */
+                GLdouble midpt = (_ortho_y_min + _ortho_y_max) / 2;
+                /*Definition of the projection*/
+                glOrtho(_ortho_x_min, _ortho_x_max, midpt - (he / 2), midpt + (he / 2), _ortho_z_min, _ortho_z_max);
+            }
+            break;
+        case 'k':
+            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)1, (GLfloat)20);
+            break;
+        case 'i':
+            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)1, (GLfloat)20);
+            break;
     }
+
+    gluLookAt(kamera1.eyeX, kamera1.eyeY, kamera1.eyeZ,
+              kamera1.centerX, kamera1.centerY, kamera1.centerZ,
+              kamera1.upX, kamera1.upY, kamera1.upZ);
 
     /* Now we start drawing the object */
     glMatrixMode(GL_MODELVIEW);
@@ -105,7 +121,6 @@ void display(void) {
 
     /*First, we draw the axes*/
     draw_axes();
-
 
     /*Now each of the objects in the list*/
     while (aux_obj != 0) {

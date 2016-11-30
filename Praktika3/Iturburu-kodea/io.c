@@ -412,13 +412,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'X';
                         kamera_tnorabidea = '-';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza = 'Y';
                         kamera_tnorabidea = '-';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
 
@@ -429,13 +429,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'Y';
                         kamera_tnorabidea = '+';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza = 'X';
                         kamera_tnorabidea = '+';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
                 break;
@@ -445,13 +445,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'X';
                         kamera_tnorabidea = '+';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza = 'Y';
                         kamera_tnorabidea = '+';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
                 break;
@@ -461,13 +461,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'Y';
                         kamera_tnorabidea = '-';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza= 'X';
                         kamera_tnorabidea = '-';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
                 break;
@@ -477,13 +477,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'Z';
                         kamera_tnorabidea = '+';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza = 'Z';
                         kamera_tnorabidea = '+';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
                 break;
@@ -493,13 +493,13 @@ void keyboardSpecial(int key, int x, int y) {
                     case 'm':
                         kamera_tardatza = 'Z';
                         kamera_tnorabidea = '-';
-                        mugitu();
+                        kam_mugitu();
                         break;
 
                     case 'b':
                         kamera_tardatza = 'Z';
                         kamera_tnorabidea = '-';
-                        biratu();
+                        kam_biratu();
                         break;
                 }
                 break;

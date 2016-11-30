@@ -5,7 +5,6 @@
 
 void kamera_mota_aldatu();
 
-void orto_kam();
-void obj_kam();
-void ibil_kam();
+void kam_mugitu();
+void kam_biratu();
 #endif // multiKamera_H

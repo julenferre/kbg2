@@ -27,7 +27,9 @@ object3d * _first_object= 0;                /*List of objects*/
 object3d * _selected_object = 0;            /*Object currently selected*/
 
 char obj_kam_hautatu = '\0';                //Transformazioak objektuan edo kameran eragin
-char transf_helburua = '\0';				//Transformazio lokala edo globala 
+char transf_helburua = '\0';				//Transformazio lokala edo globala
+
+kamera kamera1;
 
 /** GENERAL INITIALIZATION **/
 void initialization (){
@@ -47,6 +49,18 @@ void initialization (){
 
     /*Definition of the method to draw the objects*/
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    /*Kamera hasiarazten da*/
+    kamera1.eyeX = 0;
+    kamera1.eyeY = 0;
+    kamera1.eyeZ = 0;
+    kamera1.centerX = 0;
+    kamera1.centerY = 0;
+    kamera1.centerZ = 0;
+    kamera1.upX = 0;
+    kamera1.upY = 0;
+    kamera1.upZ = 0;
+    kamera1.angelua = 0;
 }
 
 
