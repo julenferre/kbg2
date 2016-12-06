@@ -62,7 +62,7 @@ void initialization (){
     kamera1.upZ = 1.0f;
     kamera1.angelua = 0;
     kamera1.n = 1.0f;
-    kamera1.f = 100.0f;
+    kamera1.f = 1000.0f;
 }
 
 

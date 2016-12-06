@@ -105,17 +105,23 @@ void display(void) {
             break;
         case 'k':
             gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), kamera1.n, kamera1.f);
+
+            glLoadIdentity();
+
+            gluLookAt(kamera1.eyeX, kamera1.eyeY, kamera1.eyeZ,
+                      kamera1.centerX, kamera1.centerY, kamera1.centerZ,
+                      kamera1.upX, kamera1.upY, kamera1.upZ);
             break;
         case 'i':
             gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), kamera1.n, kamera1.f);
+
+            glLoadIdentity();
+
+            gluLookAt(kamera1.eyeX, kamera1.eyeY, kamera1.eyeZ,
+                      kamera1.centerX, kamera1.centerY, kamera1.centerZ,
+                      kamera1.upX, kamera1.upY, kamera1.upZ);
             break;
     }
-
-    glLoadIdentity();
-
-    gluLookAt(kamera1.eyeX, kamera1.eyeY, kamera1.eyeZ,
-              kamera1.centerX, kamera1.centerY, kamera1.centerZ,
-              kamera1.upX, kamera1.upY, kamera1.upZ);
 
     /* Now we start drawing the object */
     glMatrixMode(GL_MODELVIEW);

@@ -28,8 +28,6 @@ extern char transf_helburua;
 
 extern kamera kamera1;
 
-
-
 void kamera_mota_aldatu(){
 
 	if(kamera_mota == 'o') kamera_mota='k';
@@ -46,13 +44,11 @@ void kam_mugitu(){
 				printf("Kamera Traslazioa: +X\n");
 				kamera1.eyeX += KG_KAM_ABIAD_TRASL;
 				kamera1.centerX += KG_KAM_ABIAD_TRASL;
-				kamera1.upX += KG_KAM_ABIAD_TRASL;
 			}
 			else{
 				printf("Kamera Traslazioa: -X\n");
 				kamera1.eyeX -= KG_KAM_ABIAD_TRASL;
 				kamera1.centerX -= KG_KAM_ABIAD_TRASL;
-				kamera1.upX -= KG_KAM_ABIAD_TRASL;
 			}
 			break;
 
@@ -61,13 +57,11 @@ void kam_mugitu(){
 				printf("Kamera Traslazioa: +Y\n");
 				kamera1.eyeY += KG_KAM_ABIAD_TRASL;
 				kamera1.centerY += KG_KAM_ABIAD_TRASL;
-				kamera1.upY += KG_KAM_ABIAD_TRASL;
 			}
 			else{
 				printf("Kamera Traslazioa: -Y\n");
 				kamera1.eyeY -= KG_KAM_ABIAD_TRASL;
 				kamera1.centerY -= KG_KAM_ABIAD_TRASL;
-				kamera1.upY -= KG_KAM_ABIAD_TRASL;
 			}
 			break;
 
@@ -76,18 +70,56 @@ void kam_mugitu(){
 				printf("Kamera Traslazioa: +Z\n");
 				kamera1.eyeZ += KG_KAM_ABIAD_TRASL;
 				kamera1.centerZ += KG_KAM_ABIAD_TRASL;
-				kamera1.upZ += KG_KAM_ABIAD_TRASL;
 			}
 			else{
 				printf("Kamera Traslazioa: -Z\n");
 				kamera1.eyeZ -= KG_KAM_ABIAD_TRASL;
 				kamera1.centerZ -= KG_KAM_ABIAD_TRASL;
-				kamera1.upZ -= KG_KAM_ABIAD_TRASL;
 			}
 			break;
 	}
 }
 
 void kam_biratu(){
+	switch (kamera_tardatza){
+		case 'X':
+			if(kamera_tnorabidea=='+'){
+				printf("Kamera Biraketa: +X\n");
+				kamera1.centerX += sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerZ -= cos(KG_KAM_ABIAD_BIRAK);
 
+			}
+			else{
+				printf("Kamera Biraketa: -X\n");
+				kamera1.centerX -= sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerZ += cos(KG_KAM_ABIAD_BIRAK);
+			}
+			break;
+
+		case 'Y':
+			if(kamera_tnorabidea=='+'){
+				printf("Kamera Biraketa: +Y\n");
+				kamera1.centerY += sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerX -= cos(KG_KAM_ABIAD_BIRAK);
+			}
+			else{
+				printf("Kamera Biraketa: -Y\n");
+				kamera1.centerY -= sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerX += cos(KG_KAM_ABIAD_BIRAK);
+			}
+			break;
+
+		case 'Z':
+			if(kamera_tnorabidea=='+'){
+				printf("Kamera Biraketa: +Z\n");
+				kamera1.centerZ += sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerY -= cos(KG_KAM_ABIAD_BIRAK);
+			}
+			else{
+				printf("Kamera Biraketa: -Z\n");
+				kamera1.centerZ -= sin(KG_KAM_ABIAD_BIRAK);
+				kamera1.centerY += cos(KG_KAM_ABIAD_BIRAK);
+			}
+			break;
+	}
 }
