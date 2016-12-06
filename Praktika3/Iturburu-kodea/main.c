@@ -51,16 +51,18 @@ void initialization (){
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     /*Kamera hasiarazten da*/
-    kamera1.eyeX = 0;
-    kamera1.eyeY = 0;
-    kamera1.eyeZ = 0;
-    kamera1.centerX = 0;
-    kamera1.centerY = 0;
-    kamera1.centerZ = 0;
-    kamera1.upX = 0;
-    kamera1.upY = 0;
-    kamera1.upZ = 0;
+    kamera1.eyeX = 0.0f;
+    kamera1.eyeY = 1.0f;
+    kamera1.eyeZ = -1.0f;
+    kamera1.centerX = 0.0f;
+    kamera1.centerY = 1.0f;
+    kamera1.centerZ = 0.0f;
+    kamera1.upX = 0.0f;
+    kamera1.upY = 1.0f;
+    kamera1.upZ = 1.0f;
     kamera1.angelua = 0;
+    kamera1.n = 1.0f;
+    kamera1.f = 100.0f;
 }
 
 
@@ -85,6 +87,9 @@ int main(int argc, char** argv) {
 
     /* this initialization has to be AFTER the creation of the window */
     initialization();
+
+    // OpenGL init
+    glEnable(GL_DEPTH_TEST);
 
     /* start the main loop */
     glutMainLoop();

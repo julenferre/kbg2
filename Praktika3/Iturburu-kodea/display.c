@@ -104,12 +104,14 @@ void display(void) {
             }
             break;
         case 'k':
-            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)1, (GLfloat)20);
+            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), kamera1.n, kamera1.f);
             break;
         case 'i':
-            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)1, (GLfloat)20);
+            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), kamera1.n, kamera1.f);
             break;
     }
+
+    glLoadIdentity();
 
     gluLookAt(kamera1.eyeX, kamera1.eyeY, kamera1.eyeZ,
               kamera1.centerX, kamera1.centerY, kamera1.centerZ,

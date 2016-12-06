@@ -154,6 +154,8 @@ struct kamera{
     GLdouble upY;
     GLdouble upZ;
     GLfloat angelua;
+    GLfloat n;
+    GLfloat f;
 };
 
 typedef struct kamera kamera;
