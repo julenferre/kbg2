@@ -410,13 +410,13 @@ void keyboardSpecial(int key, int x, int y) {
             case GLUT_KEY_LEFT:  /* <LEFT> */
                 switch (kamera_tmota){
                     case 'm':
-                        kamera_tardatza = 'X';
+                        kamera_tardatza = 'Y';
                         kamera_tnorabidea = '-';
                         kam_mugitu();
                         break;
 
                     case 'b':
-                        kamera_tardatza = 'Y';
+                        kamera_tardatza = 'Z';
                         kamera_tnorabidea = '-';
                         kam_biratu();
                         break;
@@ -427,7 +427,7 @@ void keyboardSpecial(int key, int x, int y) {
             case GLUT_KEY_UP: /* <UP> */
                 switch (kamera_tmota){
                     case 'm':
-                        kamera_tardatza = 'Y';
+                        kamera_tardatza = 'X';
                         kamera_tnorabidea = '+';
                         kam_mugitu();
                         break;
@@ -443,13 +443,13 @@ void keyboardSpecial(int key, int x, int y) {
             case GLUT_KEY_RIGHT:  /* <RIGHT> */
                 switch (kamera_tmota){
                     case 'm':
-                        kamera_tardatza = 'X';
+                        kamera_tardatza = 'Y';
                         kamera_tnorabidea = '+';
                         kam_mugitu();
                         break;
 
                     case 'b':
-                        kamera_tardatza = 'Y';
+                        kamera_tardatza = 'Z';
                         kamera_tnorabidea = '+';
                         kam_biratu();
                         break;
@@ -459,7 +459,7 @@ void keyboardSpecial(int key, int x, int y) {
             case GLUT_KEY_DOWN:  /* <DOWN> */
                 switch (kamera_tmota){
                     case 'm':
-                        kamera_tardatza = 'Y';
+                        kamera_tardatza = 'X';
                         kamera_tnorabidea = '-';
                         kam_mugitu();
                         break;
@@ -481,8 +481,8 @@ void keyboardSpecial(int key, int x, int y) {
                         break;
 
                     case 'b':
-                        kamera_tardatza = 'Z';
-                        kamera_tnorabidea = '+';
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '-';
                         kam_biratu();
                         break;
                 }
@@ -497,8 +497,8 @@ void keyboardSpecial(int key, int x, int y) {
                         break;
 
                     case 'b':
-                        kamera_tardatza = 'Z';
-                        kamera_tnorabidea = '-';
+                        kamera_tardatza = 'Y';
+                        kamera_tnorabidea = '+';
                         kam_biratu();
                         break;
                 }

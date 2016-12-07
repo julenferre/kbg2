@@ -156,6 +156,7 @@ struct kamera{
     GLfloat angelua;
     GLfloat n;
     GLfloat f;
+    GLfloat birak;
 };
 
 typedef struct kamera kamera;

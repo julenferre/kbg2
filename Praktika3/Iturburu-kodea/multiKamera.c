@@ -3,7 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <stdio.h>
-#include <math.h> /** cos eta sin **/
+#include <math.h> /* cos eta sin */
 #include "multiMatrix.h"
 
 /** EXTERNAL VARIABLES **/
@@ -38,88 +38,109 @@ void kamera_mota_aldatu(){
 }
 
 void kam_mugitu(){
+    glMatrixMode(GL_PROJECTION);
 	switch (kamera_tardatza){
 		case 'X':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Traslazioa: +X\n");
-				kamera1.eyeX += KG_KAM_ABIAD_TRASL;
-				kamera1.centerX += KG_KAM_ABIAD_TRASL;
+                kamera1.eyeX += KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.eyeZ += KG_KAM_ABIAD_TRASL * kamera1.centerZ;
+                kamera1.centerX += KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.centerZ += KG_KAM_ABIAD_TRASL * kamera1.centerZ;
 			}
 			else{
 				printf("Kamera Traslazioa: -X\n");
-				kamera1.eyeX -= KG_KAM_ABIAD_TRASL;
-				kamera1.centerX -= KG_KAM_ABIAD_TRASL;
+                kamera1.eyeX -= KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.eyeZ -= KG_KAM_ABIAD_TRASL * kamera1.centerZ;
+                kamera1.centerX -= KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.centerZ -= KG_KAM_ABIAD_TRASL * kamera1.centerZ;
 			}
 			break;
 
 		case 'Y':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Traslazioa: +Y\n");
-				kamera1.eyeY += KG_KAM_ABIAD_TRASL;
-				kamera1.centerY += KG_KAM_ABIAD_TRASL;
+                kamera1.eyeX += KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.eyeY += KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.centerX += KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.centerY += KG_KAM_ABIAD_TRASL * kamera1.centerY;
 			}
 			else{
 				printf("Kamera Traslazioa: -Y\n");
-				kamera1.eyeY -= KG_KAM_ABIAD_TRASL;
-				kamera1.centerY -= KG_KAM_ABIAD_TRASL;
+                kamera1.eyeX -= KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.eyeY -= KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.centerX -= KG_KAM_ABIAD_TRASL * kamera1.centerX;
+                kamera1.centerY -= KG_KAM_ABIAD_TRASL * kamera1.centerY;
 			}
 			break;
 
 		case 'Z':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Traslazioa: +Z\n");
-				kamera1.eyeZ += KG_KAM_ABIAD_TRASL;
-				kamera1.centerZ += KG_KAM_ABIAD_TRASL;
+                kamera1.eyeY += KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.eyeZ += KG_KAM_ABIAD_TRASL * kamera1.centerZ;
+                kamera1.centerY += KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.centerZ += KG_KAM_ABIAD_TRASL * kamera1.centerZ;
 			}
 			else{
 				printf("Kamera Traslazioa: -Z\n");
-				kamera1.eyeZ -= KG_KAM_ABIAD_TRASL;
-				kamera1.centerZ -= KG_KAM_ABIAD_TRASL;
+                kamera1.eyeY -= KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.eyeZ -= KG_KAM_ABIAD_TRASL * kamera1.centerZ;
+                kamera1.centerY -= KG_KAM_ABIAD_TRASL * kamera1.centerY;
+                kamera1.centerZ -= KG_KAM_ABIAD_TRASL * kamera1.centerZ;
 			}
 			break;
 	}
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void kam_biratu(){
+    glMatrixMode(GL_PROJECTION);
 	switch (kamera_tardatza){
 		case 'X':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Biraketa: +X\n");
-				kamera1.centerX += sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerZ -= cos(KG_KAM_ABIAD_BIRAK);
-
+                kamera1.birak += KG_KAM_ABIAD_BIRAK;
+				kamera1.centerX = sin(kamera1.birak);
+				kamera1.centerZ = cos(kamera1.birak)*(-1);
 			}
 			else{
 				printf("Kamera Biraketa: -X\n");
-				kamera1.centerX -= sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerZ += cos(KG_KAM_ABIAD_BIRAK);
+                kamera1.birak -= KG_KAM_ABIAD_BIRAK;
+                kamera1.centerX = sin(kamera1.birak);
+                kamera1.centerZ = cos(kamera1.birak)*(-1);
 			}
 			break;
 
 		case 'Y':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Biraketa: +Y\n");
-				kamera1.centerY += sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerX -= cos(KG_KAM_ABIAD_BIRAK);
+                kamera1.birak += KG_KAM_ABIAD_BIRAK;
+                kamera1.centerX = sin(kamera1.birak);
+                kamera1.centerY = cos(kamera1.birak)*(-1);
 			}
 			else{
 				printf("Kamera Biraketa: -Y\n");
-				kamera1.centerY -= sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerX += cos(KG_KAM_ABIAD_BIRAK);
+                kamera1.birak -= KG_KAM_ABIAD_BIRAK;
+                kamera1.centerX = sin(kamera1.birak);
+                kamera1.centerY = cos(kamera1.birak)*(-1);
 			}
 			break;
 
 		case 'Z':
 			if(kamera_tnorabidea=='+'){
 				printf("Kamera Biraketa: +Z\n");
-				kamera1.centerZ += sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerY -= cos(KG_KAM_ABIAD_BIRAK);
+                kamera1.birak += KG_KAM_ABIAD_BIRAK;
+                kamera1.centerY = sin(kamera1.birak);
+                kamera1.centerZ = cos(kamera1.birak)*(-1);
 			}
 			else{
 				printf("Kamera Biraketa: -Z\n");
-				kamera1.centerZ -= sin(KG_KAM_ABIAD_BIRAK);
-				kamera1.centerY += cos(KG_KAM_ABIAD_BIRAK);
+                kamera1.birak -= KG_KAM_ABIAD_BIRAK;
+                kamera1.centerY = sin(kamera1.birak);
+                kamera1.centerZ = cos(kamera1.birak)*(-1);
 			}
 			break;
 	}
+    glMatrixMode(GL_MODELVIEW);
 }

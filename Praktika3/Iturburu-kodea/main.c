@@ -52,17 +52,18 @@ void initialization (){
 
     /*Kamera hasiarazten da*/
     kamera1.eyeX = 0.0f;
-    kamera1.eyeY = 1.0f;
-    kamera1.eyeZ = -1.0f;
+    kamera1.eyeY = 0.0f;
+    kamera1.eyeZ = 1.0f;
     kamera1.centerX = 0.0f;
-    kamera1.centerY = 1.0f;
-    kamera1.centerZ = 0.0f;
+    kamera1.centerY = 0.0f;
+    kamera1.centerZ = -1.0f;
     kamera1.upX = 0.0f;
     kamera1.upY = 1.0f;
     kamera1.upZ = 1.0f;
-    kamera1.angelua = 0;
-    kamera1.n = 1.0f;
+    kamera1.angelua = 0.0f;
+    kamera1.n = 0.1f;
     kamera1.f = 1000.0f;
+    kamera1.birak = 0.0f;
 }
 
 

@@ -1,1 +1,1 @@
-gcc -o KbGprograma *.c -lGL -lGLU -lglut
+gcc -o KbGprograma *.c -lGL -lGLU -lglut -lm
