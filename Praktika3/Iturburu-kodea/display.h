@@ -3,6 +3,8 @@
 
 #include "definitions.h"
 
+void camera_init();
+
 void display(void);
 void reshape(int width, int height);
 

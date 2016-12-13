@@ -289,7 +289,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'X';
                         transf_norabidea = '-';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'Y';
@@ -310,7 +310,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'Y';
                         transf_norabidea = '+';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'X';
@@ -330,7 +330,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'X';
                         transf_norabidea = '+';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'Y';
@@ -350,7 +350,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'Y';
                         transf_norabidea = '-';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'X';
@@ -370,7 +370,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'Z';
                         transf_norabidea = '-';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'Z';
@@ -390,7 +390,7 @@ void keyboardSpecial(int key, int x, int y) {
                     case 't':
                         transf_ardatza = 'Z';
                         transf_norabidea = '+';
-                        tAldatu();
+                        tamainaAldatu();
                         break;
                     case 'b':
                         transf_ardatza = 'Z';

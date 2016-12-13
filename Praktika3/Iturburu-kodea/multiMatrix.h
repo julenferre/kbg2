@@ -6,7 +6,7 @@
 void aldaketaDesegin();
 
 void biratu();
-void tAldatu();
+void tamainaAldatu();
 void mugitu();
 
 void guztiaHanditu();

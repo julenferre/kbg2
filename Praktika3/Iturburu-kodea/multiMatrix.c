@@ -97,7 +97,7 @@ void aldaketaDesegin(){
 /**
  * @brief Objektua mugitzeko metodoa
  */
-void traslazioa(){
+void mugitu(){
     GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
     trasX [0]=1; trasX [4]=0; trasX [8] =0; trasX [12]=KG_ABIAD_TRASL;
     trasX [1]=0; trasX [5]=1; trasX [9] =0; trasX [13]=0;
@@ -138,11 +138,17 @@ void traslazioa(){
         case 'X':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasX);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasX);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasX,_selected_object->matrix);
             }
             else{
                 printf("Traslazioa: -X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasXn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasXn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasXn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -150,11 +156,17 @@ void traslazioa(){
         case 'Y':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasY);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasY);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasY,_selected_object->matrix);
             }
             else{
                 printf("Traslazioa: -Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasYn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasYn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasYn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -162,21 +174,27 @@ void traslazioa(){
         case 'Z':
             if(transf_norabidea=='+'){
                 printf("Traslazioa: +Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasZ);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasZ);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasZ,_selected_object->matrix);
             }
             else{
-                printf("Traslazioa: -Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,trasZn);
+                printf("Traslazioa: -X\n");
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,trasZn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(trasZn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
     }
-}//void traslazioa()
+}//void mugitu()
 
 /**
  * @brief Objektuaren tamaina aldatzeko metodoa
  */
-void tamainaAldaketa(){
+void tamainaAldatu(){
     GLdouble  * tamaX = malloc ( sizeof ( GLdouble )*16);
     tamaX [0]=1+KG_ABIAD_TAMAN;  tamaX [4]=0; tamaX [8] =0; tamaX [12]=0;
     tamaX [1]=0;               tamaX [5]=1; tamaX [9] =0; tamaX [13]=0;
@@ -217,11 +235,17 @@ void tamainaAldaketa(){
         case 'X':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaX);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaX);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaX,_selected_object->matrix);
             }
             else{
                 printf("Tamaina aldaketa: -X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaXn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaXn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaXn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -229,11 +253,17 @@ void tamainaAldaketa(){
         case 'Y':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaY);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaY);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaY,_selected_object->matrix);
             }
             else{
                 printf("Tamaina aldaketa: -Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaYn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaYn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaYn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -241,21 +271,27 @@ void tamainaAldaketa(){
         case 'Z':
             if(transf_norabidea=='+'){
                 printf("Tamaina aldaketa: +Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaZ);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaZ);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaZ,_selected_object->matrix);
             }
             else{
                 printf("Tamaina aldaketa: -Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,tamaZn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,tamaZn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(tamaZn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
     }
-}//void tamainaAldaketa()
+}//void tamainaAldatu()
 
 /**
  * @brief Objektua biratzeko metodoa
  */
-void biraketa(){
+void biratu(){
     GLdouble  * biraX = malloc ( sizeof ( GLdouble )*16);
     biraX [0]=1;  biraX [4]=0;                   biraX [8] =0;                        biraX [12]=0;
     biraX [1]=0;  biraX [5]=cos(KG_ABIAD_BIRAK); biraX [9] =sin(KG_ABIAD_BIRAK)*(-1); biraX [13]=0;
@@ -295,11 +331,17 @@ void biraketa(){
         case 'X':
             if(transf_norabidea=='+'){
                 printf("Biraketa: +X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraX);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraX);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraX,_selected_object->matrix);
             }
             else{
                 printf("Biraketa: -X\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraXn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraXn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraXn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -307,11 +349,17 @@ void biraketa(){
         case 'Y':
             if(transf_norabidea=='+'){
                 printf("Biraketa: +Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraY);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraY);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraY,_selected_object->matrix);
             }
             else{
                 printf("Biraketa: -Y\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraYn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraYn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraYn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
@@ -319,71 +367,22 @@ void biraketa(){
         case 'Z':
             if(transf_norabidea=='+'){
                 printf("Biraketa: +Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraZ);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraZ);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraZ,_selected_object->matrix);
             }
             else{
                 printf("Biraketa: -Z\n");
-                _selected_object->matrix=mult(_selected_object->matrix,biraZn);
+                if(transf_helburua=='l')
+                    _selected_object->matrix=mult(_selected_object->matrix,biraZn);
+                else if(transf_helburua=='g')
+                    _selected_object->matrix=mult(biraZn,_selected_object->matrix);
             }
             pilanGehitu(_selected_object->matrix);
             break;
     }
-}//void biraketa()
-
-/**
- * @brief Objektuen biraketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- */
-void biratu(){
-    if(transf_helburua=='l'){
-        biraketa();
-    }
-    else if(transf_helburua=='g'){
-        trans_obj= _first_object;
-        while (trans_obj != 0){
-            biraketa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-            if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
 }//void biratu()
-
-/**
- * @brief Objektuen traslazio lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- */
-void mugitu(){
-    if(transf_helburua=='l'){
-        traslazioa();
-    }
-    else if(transf_helburua=='g'){
-        trans_obj = _first_object;
-        while (trans_obj != 0){
-            traslazioa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-            if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-}//void mugitu()
-
-/**
- * @brief Objektuen tamaina aldaketa lokala (aukeratutako objektua) edo globala (objektu guztiak) egiteko erabiltzen den metodoa
- */
-void tAldatu(){
-    if(transf_helburua=='l'){
-        tamainaAldaketa();
-    }
-    else if(transf_helburua=='g'){
-        trans_obj = _first_object;
-        while (trans_obj != 0){
-            tamainaAldaketa();
-            _selected_object = _selected_object->next;
-            trans_obj = trans_obj->next;
-            if(_selected_object==0) _selected_object= _first_object;
-        }
-    }
-}//void tAldatu()
-
 
 /**
  * @brief Objektuen tamaina aldaketa globala (objektu guztiak) egiteko erabiltzen den metodoa, objektu guztiak handitzen ditu.

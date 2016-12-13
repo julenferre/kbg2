@@ -157,6 +157,7 @@ struct kamera{
     GLfloat n;
     GLfloat f;
     GLfloat birak;
+    GLdouble * matrix;
 };
 
 typedef struct kamera kamera;
