@@ -3,6 +3,8 @@
 
 #include "definitions.h"
 
+GLdouble *mult(GLdouble *m1, GLdouble *m2);
+
 void aldaketaDesegin();
 
 void biratu();

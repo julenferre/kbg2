@@ -144,20 +144,20 @@ typedef struct object3d object3d;
  * camera position and angle *
  *****************************/
 struct kamera{
-    GLdouble eyeX;
-    GLdouble eyeY;
-    GLdouble eyeZ;
-    GLdouble centerX;
-    GLdouble centerY;
-    GLdouble centerZ;
-    GLdouble upX;
-    GLdouble upY;
-    GLdouble upZ;
+    GLfloat eyeX;
+    GLfloat eyeY;
+    GLfloat eyeZ;
+    GLfloat centerX;
+    GLfloat centerY;
+    GLfloat centerZ;
+    GLfloat upX;
+    GLfloat upY;
+    GLfloat upZ;
     GLfloat angelua;
     GLfloat n;
     GLfloat f;
     GLfloat birak;
-    GLdouble * matrix;
+    GLfloat * matrix;
 };
 
 typedef struct kamera kamera;

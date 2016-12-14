@@ -13,6 +13,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <stdio.h>
+#include <malloc.h>
 #include <math.h> /** cos eta sin **/
 #include "multiMatrix.h"
 #include "multiKamera.h"
@@ -27,32 +28,33 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
-kamera kamera1;
+kamera * kamera1;
 extern char kamera_mota;
 
 void camera_init(){
     /*Kamera hasiarazten da*/
-    kamera1.eyeX = 0.0f;
-    kamera1.eyeY = 0.0f;
-    kamera1.eyeZ = 1.0f;
-    kamera1.centerX = 0.0f;
-    kamera1.centerY = 0.0f;
-    kamera1.centerZ = -1.0f;
-    kamera1.upX = 0.0f;
-    kamera1.upY = 1.0f;
-    kamera1.upZ = 1.0f;
-    kamera1.angelua = 0.0f;
-    kamera1.n = 0.1f;
-    kamera1.f = 1000.0f;
-    kamera1.birak = 0.0f;
+    kamera1 = malloc(sizeof(kamera1));
+
+    kamera1->eyeX = 0.0f;
+    kamera1->eyeY = 0.0f;
+    kamera1->eyeZ = 1.0f;
+    kamera1->centerX = 0.0f;
+    kamera1->centerY = 0.0f;
+    kamera1->centerZ = 1.0f;
+    kamera1->upX = 0.0f;
+    kamera1->upY = 1.0f;
+    kamera1->upZ = 1.0f;
+    kamera1->angelua = 0.0f;
+    kamera1->n = 0.1f;
+    kamera1->f = 1000.0f;
+    kamera1->birak = 0.0f;
 
     /*Kameraren matrizea hasiarazten da*/
-    kamera1->matrix = malloc ( sizeof ( GLdouble )*16);
-    kamera1->matrix[0]=kamera1.eyeX; kamera1->matrix[4]=kamera1.upX; kamera1->matrix[8]=kamera1.centerX; kamera1->matrix[12]=0;
-    kamera1->matrix[1]=kamera1.eyeY; kamera1->matrix[5]=kamera1.upY; kamera1->matrix[9]=kamera1.centerY; kamera1->matrix[13]=0;
-    kamera1->matrix[2]=kamera1.eyeZ; kamera1->matrix[6]=kamera1.upZ; kamera1->matrix[10]=kamera1.centerZ;kamera1->matrix[14]=0;
-    kamera1->matrix[3]=0;            kamera1->matrix[7]=0;           kamera1->matrix[11]=0;              kamera1->matrix[15]=1;
-
+    kamera1->matrix = malloc(sizeof(GLfloat)*16);
+    kamera1->matrix[0]=kamera1->eyeX; kamera1->matrix[4]=kamera1->upX; kamera1->matrix[8]=kamera1->centerX; kamera1->matrix[12]=0;
+    kamera1->matrix[1]=kamera1->eyeY; kamera1->matrix[5]=kamera1->upY; kamera1->matrix[9]=kamera1->centerY; kamera1->matrix[13]=0;
+    kamera1->matrix[2]=kamera1->eyeZ; kamera1->matrix[6]=kamera1->upZ; kamera1->matrix[10]=kamera1->centerZ;kamera1->matrix[14]=0;
+    kamera1->matrix[3]=0;             kamera1->matrix[7]=0;            kamera1->matrix[11]=0;               kamera1->matrix[15]=1;
 }
 
 /**
@@ -128,17 +130,17 @@ void display(void) {
             }
             break;
         case 'k':
-            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)kamera1.n, (GLfloat)kamera1.f);
+            gluPerspective((GLfloat)kamera1->angelua, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
 
-            gluLookAt(kamera1.eyeX,                 kamera1.eyeY,                 kamera1.eyeZ,
-                      kamera1.eyeX+kamera1.centerX, kamera1.eyeY+kamera1.centerY, kamera1.eyeZ+kamera1.centerZ,
-                      kamera1.upX,                  kamera1.upY,                  kamera1.upZ);
+            gluLookAt(kamera1->matrix[0],                 kamera1->matrix[1],                 kamera1->matrix[2],
+                      kamera1->matrix[0]+kamera1->matrix[8], kamera1->matrix[1]+kamera1->matrix[9], kamera1->matrix[2]+kamera1->matrix[10],
+                      kamera1->matrix[4],                  kamera1->matrix[5],                  kamera1->matrix[6]);
             break;
         case 'i':
-            gluPerspective((GLfloat)kamera1.angelua, (GLfloat)(wd / he), (GLfloat)kamera1.n, (GLfloat)kamera1.f);
+            gluPerspective((GLfloat)kamera1->angelua, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
 
-            gluLookAt(kamera1.eyeX,                 1.0f, kamera1.eyeZ,
-                      kamera1.eyeX+kamera1.centerX, 1.0f, kamera1.eyeZ+kamera1.centerZ,
+            gluLookAt(kamera1->eyeX,                 1.0f, kamera1->eyeZ,
+                      kamera1->eyeX+kamera1->centerX, 1.0f, kamera1->eyeZ+kamera1->centerZ,
                       0.0f,                         1.0f, 0.0f);
             break;
     }
