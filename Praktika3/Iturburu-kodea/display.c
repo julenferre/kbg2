@@ -134,7 +134,7 @@ void display(void) {
 
             gluLookAt(kamera1->matrix[0],                 kamera1->matrix[1],                 kamera1->matrix[2],
                       kamera1->matrix[0]+kamera1->matrix[8], kamera1->matrix[1]+kamera1->matrix[9], kamera1->matrix[2]+kamera1->matrix[10],
-                      kamera1->matrix[4],                  kamera1->matrix[5],                  kamera1->matrix[6]);
+                      kamera1->matrix[4],                 kamera1->matrix[5],                 kamera1->matrix[6]);
             break;
         case 'i':
             gluPerspective((GLfloat)kamera1->angelua, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
