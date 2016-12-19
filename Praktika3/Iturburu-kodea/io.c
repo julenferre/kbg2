@@ -170,9 +170,19 @@ void keyboard(unsigned char key, int x, int y) {
             obj_kam_hautatu= 'k';
             break;
 
-        case 26: /* <CTRL + Z*/
-            printf("Aldaketak desegin\n");
-            aldaketaDesegin();
+        case 26: /* <CTRL + Z>*/
+            if(obj_kam_hautatu== 'o') {
+                printf("Objektuari aldaketak desegin\n");
+                aldaketaDesegin();
+            }
+            else if(obj_kam_hautatu== 'k'){
+                printf("Kamerari aldaketak desegin\n");
+                kamAldaketaDesegin();
+            }
+            else if(obj_kam_hautatu== 'i') {
+                printf("Kamerari aldaketak desegin\n");
+                kamAldaketaDesegin();
+            }
             break;
 
         case 9: /* <TAB> */
@@ -277,6 +287,7 @@ void keyboard(unsigned char key, int x, int y) {
  * @param y Y coordinate of the mouse pointer when the key was pressed
  */
 void keyboardSpecial(int key, int x, int y) {
+    glPushMatrix();
     if(obj_kam_hautatu== 'o'){
         switch (key){
             case GLUT_KEY_LEFT:  /* <LEFT> */
@@ -411,7 +422,7 @@ void keyboardSpecial(int key, int x, int y) {
                 switch (kamera_tmota){
                     case 'm':
                         kamera_tardatza = 'X';
-                        kamera_tnorabidea = '+';
+                        kamera_tnorabidea = '-';
                         kam_mugitu();
                         break;
 
@@ -444,7 +455,7 @@ void keyboardSpecial(int key, int x, int y) {
                 switch (kamera_tmota){
                     case 'm':
                         kamera_tardatza = 'X';
-                        kamera_tnorabidea = '-';
+                        kamera_tnorabidea = '+';
                         kam_mugitu();
                         break;
 
@@ -511,6 +522,7 @@ void keyboardSpecial(int key, int x, int y) {
         }
     }
     glutPostRedisplay();
+    glPopMatrix();
 }//void keyboardSpecial
 
 

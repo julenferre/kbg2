@@ -89,7 +89,7 @@ void aldaketaDesegin(){
         _selected_object->aldaketaPila = first_matrix;
         _selected_object->matrix = first_matrix->matrix;
         _selected_object->num_aldaketak-=1;
-        printf("Aldaketak desegin dira\n");}
+        printf("Objektuaren aldaketak desegin dira\n");}
     else{
         printf("Ezin dira aldaketa gehiagorik desegin\n");}
 }//aldaketaDesegin

@@ -3,6 +3,10 @@
 
 #include "definitions.h"
 
+GLdouble *mult_vec(GLdouble *m, GLdouble *v);
+
+void kamAldaketaDesegin();
+
 void kamera_mota_aldatu();
 
 void kam_mugitu();

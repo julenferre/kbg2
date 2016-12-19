@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h> /** cos eta sin **/
-#include "multiMatrix.h"
 #include "multiKamera.h"
 
 /** EXTERNAL VARIABLES **/
@@ -35,26 +34,39 @@ void camera_init(){
     /*Kamera hasiarazten da*/
     kamera1 = malloc(sizeof(kamera1));
 
-    kamera1->eyeX = 0.0f;
-    kamera1->eyeY = 0.0f;
-    kamera1->eyeZ = 1.0f;
-    kamera1->centerX = 0.0f;
-    kamera1->centerY = 0.0f;
-    kamera1->centerZ = 1.0f;
-    kamera1->upX = 0.0f;
-    kamera1->upY = 1.0f;
-    kamera1->upZ = 1.0f;
-    kamera1->angelua = 0.0f;
-    kamera1->n = 0.1f;
-    kamera1->f = 1000.0f;
-    kamera1->birak = 0.0f;
+    kamera1->eye = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kamera1->eye[0]=0;
+    kamera1->eye[1]=0;
+    kamera1->eye[2]=0;
+    kamera1->eye[3]=1;
 
-    /*Kameraren matrizea hasiarazten da*/
-    kamera1->matrix = malloc(sizeof(GLfloat)*16);
-    kamera1->matrix[0]=kamera1->eyeX; kamera1->matrix[4]=kamera1->upX; kamera1->matrix[8]=kamera1->centerX; kamera1->matrix[12]=0;
-    kamera1->matrix[1]=kamera1->eyeY; kamera1->matrix[5]=kamera1->upY; kamera1->matrix[9]=kamera1->centerY; kamera1->matrix[13]=0;
-    kamera1->matrix[2]=kamera1->eyeZ; kamera1->matrix[6]=kamera1->upZ; kamera1->matrix[10]=kamera1->centerZ;kamera1->matrix[14]=0;
-    kamera1->matrix[3]=0;             kamera1->matrix[7]=0;            kamera1->matrix[11]=0;               kamera1->matrix[15]=1;
+    kamera1->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kamera1->center[0]=0;
+    kamera1->center[1]=0;
+    kamera1->center[2]=-10;
+    kamera1->center[3]=1;
+
+    kamera1->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kamera1->up[0]=0;
+    kamera1->up[1]=1;
+    kamera1->up[2]=0;
+    kamera1->up[3]=0;
+
+    kamera1->ikus_ang = 90;
+    kamera1->n = 0;
+    kamera1->f = 1000;
+    kamera1->has_ang = 8;
+
+    kamera1->aldaketaPila = (pila*)malloc(sizeof(pila));
+    kamera1->aldaketaPila->matrix = malloc ( sizeof ( GLdouble )*16);
+    kamera1->aldaketaPila->matrix [0]=1; kamera1->aldaketaPila->matrix [4]=0; kamera1->aldaketaPila->matrix [8] =0; kamera1->aldaketaPila->matrix [12]=0;
+    kamera1->aldaketaPila->matrix [1]=0; kamera1->aldaketaPila->matrix [5]=1; kamera1->aldaketaPila->matrix [9] =0; kamera1->aldaketaPila->matrix [13]=0;
+    kamera1->aldaketaPila->matrix [2]=0; kamera1->aldaketaPila->matrix [6]=0; kamera1->aldaketaPila->matrix [10]=1; kamera1->aldaketaPila->matrix [14]=0;
+    kamera1->aldaketaPila->matrix [3]=0; kamera1->aldaketaPila->matrix [7]=0; kamera1->aldaketaPila->matrix [11]=0; kamera1->aldaketaPila->matrix [15]=1;
+    
+    kamera1->aldaketaPila->next   = NULL;
+
+    printf("Kamera hasiarazi da\n");
 }
 
 /**
@@ -62,6 +74,7 @@ void camera_init(){
  */
 void draw_axes()
 {
+    glTranslatef(0.0, 0.0, 0.0);
     /*Draw X axis*/
     glColor3f(KG_COL_X_AXIS_R,KG_COL_X_AXIS_G,KG_COL_X_AXIS_B);
     glBegin(GL_LINES);
@@ -91,7 +104,6 @@ void draw_axes()
 void reshape(int width, int height) {
     /*VIEWPORT nagusia*/
     glViewport(0, 0, width, height);
-
     /*  Take care, the width and height are integer numbers, but the ratio is a GLdouble so, in order to avoid
      *  rounding the ratio to integer values we need to cast width and height before computing the ratio */
     _window_ratio = (GLdouble) width / (GLdouble) height;
@@ -108,14 +120,17 @@ void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     /* Define the projection */
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+    GLdouble *eye;
+    GLdouble *center;
+    GLdouble *up;
 
     GLdouble he = (_ortho_x_max - _ortho_x_min) / _window_ratio;
     GLdouble wd = (_ortho_y_max - _ortho_y_min) * _window_ratio;
 
     switch (kamera_mota) {
         case 'o':
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
             /*When the window is wider than our original projection plane we extend the plane in the X axis*/
             if ((_ortho_x_max - _ortho_x_min) / (_ortho_y_max - _ortho_y_min) < _window_ratio) {
                 /* Midpoint in the X axis */
@@ -130,27 +145,41 @@ void display(void) {
             }
             break;
         case 'k':
-            gluPerspective((GLfloat)kamera1->angelua, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
+            eye = mult_vec(kamera1->aldaketaPila->matrix, kamera1->eye);
+            center = mult_vec(kamera1->aldaketaPila->matrix, kamera1->center);
+            up = mult_vec(kamera1->aldaketaPila->matrix, kamera1->up);
 
-            gluLookAt(kamera1->matrix[0],                 kamera1->matrix[1],                 kamera1->matrix[2],
-                      kamera1->matrix[0]+kamera1->matrix[8], kamera1->matrix[1]+kamera1->matrix[9], kamera1->matrix[2]+kamera1->matrix[10],
-                      kamera1->matrix[4],                 kamera1->matrix[5],                 kamera1->matrix[6]);
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+            gluPerspective((GLfloat)kamera1->ikus_ang, (GLfloat)(wd / he), kamera1->n, kamera1->f);
             break;
         case 'i':
-            gluPerspective((GLfloat)kamera1->angelua, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
+            eye = mult_vec(kamera1->aldaketaPila->matrix, kamera1->eye);
+            center = mult_vec(kamera1->aldaketaPila->matrix, kamera1->center);
+            up = mult_vec(kamera1->aldaketaPila->matrix, kamera1->up);
 
-            gluLookAt(kamera1->eyeX,                 1.0f, kamera1->eyeZ,
-                      kamera1->eyeX+kamera1->centerX, 1.0f, kamera1->eyeZ+kamera1->centerZ,
-                      0.0f,                         1.0f, 0.0f);
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+            gluPerspective((GLfloat)kamera1->ikus_ang, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
             break;
     }
 
     /* Now we start drawing the object */
+    glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
+
     glLoadIdentity();
+    /*Kamera kokatzen da*/
+    if(kamera_mota!='o'){
+        gluLookAt(eye[0],    eye[1],    eye[2],
+                  center[0], center[1], center[2],
+                  up[0],     up[1],     up[2]);
+    }
 
     /*First, we draw the axes*/
     draw_axes();
+
+    glPopMatrix();
 
     /*Now each of the objects in the list*/
     while (aux_obj != 0) {
@@ -164,6 +193,13 @@ void display(void) {
 
         /* Draw the object; for each face create a new polygon with the corresponding vertices */
         glLoadIdentity();
+
+        /*Kamera kokatzen da*/
+        if(kamera_mota!='o'){
+            gluLookAt(eye[0],    eye[1],    eye[2],
+                      center[0], center[1], center[2],
+                      up[0],     up[1],     up[2]);
+        }
 
         glMultMatrixd(aux_obj->matrix);
 

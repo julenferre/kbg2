@@ -65,8 +65,8 @@
 #define KG_ABIAD_BIRAK                      3.14159265359f/8
 #define KG_ABIAD_TRASL                      0.1f
 
-#define KG_KAM_ABIAD_BIRAK                  3.14159265359f/64
-#define KG_KAM_ABIAD_TRASL                  0.1f
+#define KG_KAM_ABIAD_BIRAK                  3.14159265359f/512
+#define KG_KAM_ABIAD_TRASL                  0.0001f;
 
 /** STRUCTURES **/
 
@@ -144,20 +144,15 @@ typedef struct object3d object3d;
  * camera position and angle *
  *****************************/
 struct kamera{
-    GLfloat eyeX;
-    GLfloat eyeY;
-    GLfloat eyeZ;
-    GLfloat centerX;
-    GLfloat centerY;
-    GLfloat centerZ;
-    GLfloat upX;
-    GLfloat upY;
-    GLfloat upZ;
-    GLfloat angelua;
+    GLdouble * eye;
+    GLdouble * center;
+    GLdouble * up;
+    GLfloat ikus_ang;
     GLfloat n;
     GLfloat f;
-    GLfloat birak;
-    GLfloat * matrix;
+    GLfloat has_ang;
+    pila * aldaketaPila;
+    GLint num_aldaketak;
 };
 
 typedef struct kamera kamera;
