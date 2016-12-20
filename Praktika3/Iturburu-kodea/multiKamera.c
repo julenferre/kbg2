@@ -84,7 +84,7 @@ void kamera_mota_aldatu(){
 	printf("Kamera mota: %c (o: ortografikoa, k: objektu-kamera, i: ibiltaria)\n",kamera_mota);
 }
 
-void kam_mugitu(){
+void objektuKameraMugitu(){
     GLdouble  * trasX = malloc ( sizeof ( GLdouble )*16);
     trasX[0]=1; trasX[4]=0; trasX[8] =0; trasX[12]=KG_KAM_ABIAD_TRASL;
     trasX[1]=0; trasX[5]=1; trasX[9] =0; trasX[13]=0;
@@ -129,95 +129,96 @@ void kam_mugitu(){
 
     GLdouble *matBerria;
 
-    if(kamera_mota=='o'){    
-        switch (kamera_tardatza){
-            case 'X':
-                if(kamera_tnorabidea=='+'){
-                    printf("Kamera traslazioa: +X\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasX);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasX, kameraO->aldaketaPila->matrix);
+    switch (kamera_tardatza) {
+        case 'X':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera traslazioa: +X\n");
+                if (transf_helburua == 'l') {
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasX);
                 }
-                else{
-                    printf("Kamera traslazioa: -X\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasXn);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasXn,kameraO->aldaketaPila->matrix);
+                else if (transf_helburua == 'g'){
+                    matBerria = mult(trasX, kameraO->aldaketaPila->matrix);
                 }
-                pilanGehituK(matBerria);
-                break;
-    
-            case 'Y':
-                if(kamera_tnorabidea=='+'){
-                    printf("Kamera traslazioa: +Y\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasY);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasY,kameraO->aldaketaPila->matrix);
-                }
-                else{
-                    printf("Kamera traslazioa: -Y\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasYn);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasYn,kameraO->aldaketaPila->matrix);
-                }
-                pilanGehituK(matBerria);
-                break;
-    
-            case 'Z':
-                if(kamera_tnorabidea=='+'){
-                    printf("Kamera traslazioa: +Z\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasZ);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasZ,kameraO->aldaketaPila->matrix);
-                }
-                else{
-                    printf("Kamera traslazioa: -Z\n");
-                    if(transf_helburua=='l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix,trasZn);
-                    else if(transf_helburua=='g')
-                        matBerria = mult(trasZn,kameraO->aldaketaPila->matrix);
-                }
-                pilanGehituK(matBerria);
-                break;
-        }
+            } else {
+                printf("Kamera traslazioa: -X\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasXn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(trasXn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
+
+        case 'Y':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera traslazioa: +Y\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasY);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(trasY, kameraO->aldaketaPila->matrix);
+            } else {
+                printf("Kamera traslazioa: -Y\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasYn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(trasYn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
+
+        case 'Z':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera traslazioa: +Z\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasZ);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(trasZ, kameraO->aldaketaPila->matrix);
+            } else {
+                printf("Kamera traslazioa: -Z\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, trasZn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(trasZn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
     }
-    else if (kamera_mota=='i'){ /*Kamera ibiltaria*/
+}//objektuKameraMugitu
 
-        double angelua, ardatzaX, ardatzaZ;
-        angelua = kameraI->angeluaXZ*KG_KAM_ABIAD_BIRAK;
+void kamIbiltariaMugitu(){
+    double angelua, ardatzaX, ardatzaZ;
+    angelua = kameraI->angeluaXZ*3.14159265359f/8;
 
-        switch (kamera_tardatza){
-            case 'Y':
-                if(kamera_tnorabidea=='+'){
-                    printf("Kamera aurrera ibiltzen\n");
-                    ardatzaX = -cos(angelua);
-                    ardatzaZ = -sin(angelua);
-                }
-                else{
-                    printf("Kamera atzera ibiltzen\n");
-                    ardatzaX = cos(angelua);
-                    ardatzaZ = sin(angelua);
-                }
-                GLdouble  * trasY_I = malloc ( sizeof ( GLdouble )*16);
-                trasY_I[0]=1; trasY_I[4]=0; trasY_I[8] =0; trasY_I[12]=ardatzaX;
-                trasY_I[1]=0; trasY_I[5]=1; trasY_I[9] =0; trasY_I[13]=0;
-                trasY_I[2]=0; trasY_I[6]=0; trasY_I[10]=1; trasY_I[14]=ardatzaZ;
-                trasY_I[3]=0; trasY_I[7]=0; trasY_I[11]=0; trasY_I[15]=1;
+    GLdouble *matBerria;
 
-                matBerria = mult(kameraI->aldaketaPila->matrix,trasY_I);
-
-                pilanGehituK(matBerria);
-                break;
-        }
+    if(kamera_tnorabidea=='+'){
+        printf("Kamera aurrera ibiltzen\n");
+        ardatzaX = cos(angelua);
+        ardatzaZ = -sin(angelua);
     }
-}//kam_mugitu
+    else{
+        printf("Kamera atzera ibiltzen\n");
+        ardatzaX = -cos(angelua);
+        ardatzaZ = sin(angelua);
+    }
+    GLdouble  * trasY_I = malloc ( sizeof ( GLdouble )*16);
+    trasY_I[0]=1; trasY_I[4]=0; trasY_I[8] =0; trasY_I[12]=ardatzaX*KG_KAM_ABIAD_TRASL;
+    trasY_I[1]=0; trasY_I[5]=1; trasY_I[9] =0; trasY_I[13]=0;
+    trasY_I[2]=0; trasY_I[6]=0; trasY_I[10]=1; trasY_I[14]=ardatzaZ*KG_KAM_ABIAD_TRASL;
+    trasY_I[3]=0; trasY_I[7]=0; trasY_I[11]=0; trasY_I[15]=1;
 
-void kam_biratu(){
+    matBerria = mult(trasY_I, kameraI->aldaketaPila->matrix);
+
+    for(int i = 0; i < 16; i++){
+        printf("%f ",kameraI->aldaketaPila->matrix[i]);
+        if(i==3 || i==7 || i==11) printf("\n");
+    }
+    printf("\n");
+
+    pilanGehituK(matBerria);
+}
+
+void objektuKameraBiratu(){
     GLdouble  * biraX = malloc ( sizeof ( GLdouble )*16);
     biraX [0]=1;  biraX [4]=0;                   biraX [8] =0;                    biraX [12]=0;
     biraX [1]=0;  biraX [5]=cos(KG_KAM_ABIAD_BIRAK); biraX [9] =-sin(KG_KAM_ABIAD_BIRAK); biraX [13]=0;
@@ -256,130 +257,134 @@ void kam_biratu(){
 
     GLdouble *matBerria;
 
-    if(kamera_mota=='o') {
-        switch (kamera_tardatza) {
-            case 'X':
-                if (kamera_tnorabidea == '+') {
-                    printf("Kamera biraketa: +X\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraX);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraX, kameraO->aldaketaPila->matrix);
-                } else {
-                    printf("Kamera biraketa: -X\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraXn);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraXn, kameraO->aldaketaPila->matrix);
-                }
-                pilanGehituK(matBerria);
-                break;
+    switch (kamera_tardatza) {
+        case 'X':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera biraketa: +X\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraX);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraX, kameraO->aldaketaPila->matrix);
+            } else {
+                printf("Kamera biraketa: -X\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraXn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraXn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
 
-            case 'Y':
-                if (kamera_tnorabidea == '+') {
-                    printf("Kamera biraketa: +Y\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraY);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraY, kameraO->aldaketaPila->matrix);
-                } else {
-                    printf("Kamera biraketa: -Y\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraYn);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraYn, kameraO->aldaketaPila->matrix);
-                }
-                pilanGehituK(matBerria);
-                break;
+        case 'Y':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera biraketa: +Y\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraY);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraY, kameraO->aldaketaPila->matrix);
+            } else {
+                printf("Kamera biraketa: -Y\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraYn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraYn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
 
-            case 'Z':
-                if (kamera_tnorabidea == '+') {
-                    printf("Kamera biraketa: +Z\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraZ);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraZ, kameraO->aldaketaPila->matrix);
-                } else {
-                    printf("Kamera biraketa: -Z\n");
-                    if (transf_helburua == 'l')
-                        matBerria = mult(kameraO->aldaketaPila->matrix, biraZn);
-                    else if (transf_helburua == 'g')
-                        matBerria = mult(biraZn, kameraO->aldaketaPila->matrix);
-                }
-                pilanGehituK(matBerria);
-                break;
-        }
-        for(int i = 0; i < 16; i++){
-            printf("%f ",kameraO->aldaketaPila->matrix[i]);
-            if(i==3 || i==7 || i==11) printf("\n");
-        }
-        printf("\n");
+        case 'Z':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera biraketa: +Z\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraZ);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraZ, kameraO->aldaketaPila->matrix);
+            } else {
+                printf("Kamera biraketa: -Z\n");
+                if (transf_helburua == 'l')
+                    matBerria = mult(kameraO->aldaketaPila->matrix, biraZn);
+                else if (transf_helburua == 'g')
+                    matBerria = mult(biraZn, kameraO->aldaketaPila->matrix);
+            }
+            pilanGehituK(matBerria);
+            break;
     }
-    else if (kamera_mota=='i'){
-        switch (kamera_tardatza) {
-            case 'Y':
-                if (kamera_tnorabidea == '+') {
-                    printf("Kamera eskuinera biratu\n");
-                    kameraI->angeluaXZ += KG_KAM_ABIAD_BIRAK*8;
-
-                    GLdouble  * biraY_I_R = malloc ( sizeof ( GLdouble )*16);
-                    biraY_I_R [0]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_R [4]=0;  biraY_I_R [8]=-sin(KG_KAM_ABIAD_BIRAK); biraY_I_R [12]=0;
-                    biraY_I_R [1]=0;                       biraY_I_R [5]=1;  biraY_I_R [9]=0;                    biraY_I_R [13]=0;
-                    biraY_I_R [2]=sin(KG_KAM_ABIAD_BIRAK); biraY_I_R [6]=0;  biraY_I_R [10]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_R [14]=0;
-                    biraY_I_R [3]=0;                       biraY_I_R [7]=0;  biraY_I_R [11]=0;                   biraY_I_R [15]=1;
-
-                    matBerria = mult(kameraI->aldaketaPila->matrix,biraY_I_R);
-
-                } else {
-                    printf("Kamera ezkerrera biratu\n");
-                    kameraI->angeluaXZ -= KG_KAM_ABIAD_BIRAK*8;
-
-                    GLdouble  * biraY_I_L = malloc ( sizeof ( GLdouble )*16);
-                    biraY_I_L [0]=cos(KG_KAM_ABIAD_BIRAK);  biraY_I_L [4]=0;  biraY_I_L [8] =sin(KG_KAM_ABIAD_BIRAK); biraY_I_L [12]=0;
-                    biraY_I_L [1]=0;                    biraY_I_L [5]=1;  biraY_I_L [9]=0;                    biraY_I_L [13]=0;
-                    biraY_I_L [2]=-sin(KG_KAM_ABIAD_BIRAK); biraY_I_L [6]=0;  biraY_I_L [10]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_L [14]=0;
-                    biraY_I_L [3]=0;                    biraY [7]=0;  biraY [11]=0;                   biraY [15]=1;
-
-                    matBerria = mult(kameraI->aldaketaPila->matrix,biraY_I_L);
-                }
-                pilanGehituK(matBerria);
-                break;
-
-            case 'Z':
-                if (kamera_tnorabidea == '+') {
-                    printf("Kamera goruntz begira\n");
-
-                    GLdouble  * biraX_I_U = malloc ( sizeof ( GLdouble )*16);
-                    biraX_I_U [0]=1;  biraX_I_U [4]=0;                   biraX_I_U [8] =0;                        biraX_I_U [12]=0;
-                    biraX_I_U [1]=0;  biraX_I_U [5]=cos(KG_KAM_ABIAD_BIRAK); biraX_I_U [9] =sin(KG_KAM_ABIAD_BIRAK); biraX_I_U [13]=0;
-                    biraX_I_U [2]=0;  biraX_I_U [6]=-sin(KG_KAM_ABIAD_BIRAK); biraX_I_U [10]=cos(KG_KAM_ABIAD_BIRAK);      biraX_I_U [14]=0;
-                    biraX_I_U [3]=0;  biraX_I_U [7]=0;                   biraX_I_U [11]=0;                        biraX_I_U [15]=1;
-
-                    if(kameraI->angeluaY < 24){
-                        kameraI->angeluaY += 1;
-                        matBerria = mult(kameraI->aldaketaPila->matrix,biraX_I_U);
-                    }
-
-                } else {
-                    printf("Kamera beheruntz begira\n");
-                    GLdouble  * biraX_I_D = malloc ( sizeof ( GLdouble )*16);
-                    biraX_I_D [0]=1;  biraX_I_D [4]=0;                   biraX_I_D [8] =0;                    biraX_I_D [12]=0;
-                    biraX_I_D [1]=0;  biraX_I_D [5]=cos(KG_KAM_ABIAD_BIRAK); biraX_I_D [9] =-sin(KG_KAM_ABIAD_BIRAK); biraX_I_D [13]=0;
-                    biraX_I_D [2]=0;  biraX_I_D [6]=sin(KG_KAM_ABIAD_BIRAK); biraX_I_D [10]=cos(KG_KAM_ABIAD_BIRAK);  biraX_I_D [14]=0;
-                    biraX_I_D [3]=0;  biraX_I_D [7]=0;                   biraX_I_D [11]=0;                    biraX_I_D [15]=1;
-
-                    if(kameraI->angeluaY > -8){
-                        kameraI->angeluaY -= 1;
-                        matBerria = mult(kameraI->aldaketaPila->matrix,biraX_I_D);
-                    }
-                }
-                pilanGehituK(matBerria);
-                break;
-        }
-        for(int i = 0; i < 16; i++){
-            printf("%f ",kameraI->aldaketaPila->matrix[i]);
-            if(i==3 || i==7 || i==11) printf("\n");
-        }
-        printf("\n");
+    for(int i = 0; i < 16; i++){
+        printf("%f ",kameraO->aldaketaPila->matrix[i]);
+        if(i==3 || i==7 || i==11) printf("\n");
     }
-}//kam_biratu
+    printf("\n");
+}//objektuKameraBiratu
+
+void kamIbiltariaBiratu(){
+    GLdouble *matBerria;
+
+    switch (kamera_tardatza) {
+        case 'Y':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera eskuinera biratu\n");
+                kameraI->angeluaXZ += KG_KAM_ABIAD_BIRAK*8;
+
+                GLdouble  * biraY_I_R = malloc ( sizeof ( GLdouble )*16);
+                biraY_I_R [0]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_R [4]=0;  biraY_I_R [8]=-sin(KG_KAM_ABIAD_BIRAK); biraY_I_R [12]=0;
+                biraY_I_R [1]=0;                       biraY_I_R [5]=1;  biraY_I_R [9]=0;                    biraY_I_R [13]=0;
+                biraY_I_R [2]=sin(KG_KAM_ABIAD_BIRAK); biraY_I_R [6]=0;  biraY_I_R [10]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_R [14]=0;
+                biraY_I_R [3]=0;                       biraY_I_R [7]=0;  biraY_I_R [11]=0;                   biraY_I_R [15]=1;
+
+                matBerria = mult(kameraI->aldaketaPila->matrix,biraY_I_R);
+
+            } else {
+                printf("Kamera ezkerrera biratu\n");
+                kameraI->angeluaXZ -= KG_KAM_ABIAD_BIRAK*8;
+
+                GLdouble  * biraY_I_L = malloc ( sizeof ( GLdouble )*16);
+                biraY_I_L [0]=cos(KG_KAM_ABIAD_BIRAK);  biraY_I_L [4]=0;  biraY_I_L [8] =sin(KG_KAM_ABIAD_BIRAK); biraY_I_L [12]=0;
+                biraY_I_L [1]=0;                        biraY_I_L [5]=1;  biraY_I_L [9]=0;                        biraY_I_L [13]=0;
+                biraY_I_L [2]=-sin(KG_KAM_ABIAD_BIRAK); biraY_I_L [6]=0;  biraY_I_L [10]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_L [14]=0;
+                biraY_I_L [3]=0;                        biraY_I_L [7]=0;  biraY_I_L [11]=0;                       biraY_I_L [15]=1;
+
+                matBerria = mult(kameraI->aldaketaPila->matrix,biraY_I_L);
+            }
+            pilanGehituK(matBerria);
+            break;
+
+        case 'Z':
+            if (kamera_tnorabidea == '+') {
+                printf("Kamera goruntz begira\n");
+
+                GLdouble  * biraX_I_U = malloc ( sizeof ( GLdouble )*16);
+                biraX_I_U [0]=1;  biraX_I_U [4]=0;                   biraX_I_U [8] =0;                    biraX_I_U [12]=0;
+                biraX_I_U [1]=0;  biraX_I_U [5]=cos(KG_KAM_ABIAD_BIRAK); biraX_I_U [9] =-sin(KG_KAM_ABIAD_BIRAK); biraX_I_U [13]=0;
+                biraX_I_U [2]=0;  biraX_I_U [6]=sin(KG_KAM_ABIAD_BIRAK); biraX_I_U [10]=cos(KG_KAM_ABIAD_BIRAK);  biraX_I_U [14]=0;
+                biraX_I_U [3]=0;  biraX_I_U [7]=0;                   biraX_I_U [11]=0;                    biraX_I_U [15]=1;
+
+                if(kameraI->angeluaY <= 8){
+                    kameraI->angeluaY += 1;
+                    matBerria = mult(kameraI->aldaketaPila->matrix,biraX_I_U);
+                    pilanGehituK(matBerria);
+                }
+
+            } else {
+                printf("Kamera beheruntz begira\n");
+
+                GLdouble  * biraX_I_D = malloc ( sizeof ( GLdouble )*16);
+                biraX_I_D [0]=1;  biraX_I_D [4]=0;                   biraX_I_D [8] =0;                        biraX_I_D [12]=0;
+                biraX_I_D [1]=0;  biraX_I_D [5]=cos(KG_KAM_ABIAD_BIRAK); biraX_I_D [9] =sin(KG_KAM_ABIAD_BIRAK); biraX_I_D [13]=0;
+                biraX_I_D [2]=0;  biraX_I_D [6]=-sin(KG_KAM_ABIAD_BIRAK); biraX_I_D [10]=cos(KG_KAM_ABIAD_BIRAK);      biraX_I_D [14]=0;
+                biraX_I_D [3]=0;  biraX_I_D [7]=0;                   biraX_I_D [11]=0;                        biraX_I_D [15]=1;
+
+                if(kameraI->angeluaY >= -8){
+                    kameraI->angeluaY -= 1;
+                    matBerria = mult(kameraI->aldaketaPila->matrix,biraX_I_D);
+                    pilanGehituK(matBerria);
+                }
+            }
+            break;
+    }
+    for(int i = 0; i < 16; i++){
+        printf("%f ",kameraI->aldaketaPila->matrix[i]);
+        if(i==3 || i==7 || i==11) printf("\n");
+    }
+    printf("\n");
+}
+

@@ -42,7 +42,7 @@ void camera_init(){
     GLdouble* lag = malloc ( sizeof ( GLdouble )*16);
     lag [0]=1; lag [4]=0; lag [8] =0; lag [12]=0;
     lag [1]=0; lag [5]=1; lag [9] =0; lag [13]=0;
-    lag [2]=0; lag [6]=0; lag [10]=1; lag [14]=22;
+    lag [2]=0; lag [6]=0; lag [10]=1; lag [14]=10;
     lag [3]=0; lag [7]=0; lag [11]=0; lag [15]=1;
     
     /*Objektu kamera hasiarazten da*/
@@ -57,7 +57,7 @@ void camera_init(){
     kameraO->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
     kameraO->center[0]=0;
     kameraO->center[1]=0;
-    kameraO->center[2]=-10;
+    kameraO->center[2]=-5;
     kameraO->center[3]=1;
 
     kameraO->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
@@ -86,7 +86,7 @@ void camera_init(){
     kameraI->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
     kameraI->center[0]=0;
     kameraI->center[1]=0;
-    kameraI->center[2]=-10;
+    kameraI->center[2]=-5;
     kameraI->center[3]=1;
 
     kameraI->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
@@ -95,10 +95,10 @@ void camera_init(){
     kameraI->up[2]=0;
     kameraI->up[3]=0;
 
-    kameraI->angeluaY = 90;
+    kameraI->angeluaY = 8;
     kameraI->n = 0;
-    kameraI->f = 1000;
-    kameraI->angeluaXZ = 8;
+    kameraI->f = 100;
+    kameraI->angeluaXZ = 90;
 
     kameraI->aldaketaPila = (pila*)malloc(sizeof(pila));
     kameraI->aldaketaPila->matrix = mult(ident,lag);
@@ -206,10 +206,19 @@ void display(void) {
 
     glLoadIdentity();
     /*Kamera kokatzen da*/
-    if(kamera_mota!='o'){
-        gluLookAt(eye[0],    eye[1],    eye[2],
-                  center[0], center[1], center[2],
-                  up[0],     up[1],     up[2]);
+    switch (kamera_mota){
+        case 'o':
+            break;
+        case 'k':
+            gluLookAt(eye[0],    eye[1],    eye[2],
+                      center[0], center[1], center[2],
+                      up[0],     up[1],     up[2]);
+            break;
+        case 'i':
+            gluLookAt(eye[0],    1,    eye[2],
+                      center[0], 1, center[2],
+                      0,     1,     0);
+            break;
     }
 
     /*First, we draw the axes*/

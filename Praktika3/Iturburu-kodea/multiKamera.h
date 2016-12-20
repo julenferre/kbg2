@@ -9,6 +9,8 @@ void kamAldaketaDesegin();
 
 void kamera_mota_aldatu();
 
-void kam_mugitu();
-void kam_biratu();
+void objektuKameraMugitu();
+void objektuKameraBiratu();
+void kamIbiltariaMugitu();
+void kamIbiltariaBiratu();
 #endif // multiKamera_H
