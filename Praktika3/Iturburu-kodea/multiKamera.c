@@ -181,37 +181,37 @@ void kam_mugitu(){
 void kam_biratu(){
     GLdouble  * biraX = malloc ( sizeof ( GLdouble )*16);
     biraX [0]=1;  biraX [4]=0;                   biraX [8] =0;                    biraX [12]=0;
-    biraX [1]=0;  biraX [5]=cos(KG_ABIAD_BIRAK); biraX [9] =-sin(KG_ABIAD_BIRAK); biraX [13]=0;
-    biraX [2]=0;  biraX [6]=sin(KG_ABIAD_BIRAK); biraX [10]=cos(KG_ABIAD_BIRAK);  biraX [14]=0;
+    biraX [1]=0;  biraX [5]=cos(KG_KAM_ABIAD_BIRAK); biraX [9] =-sin(KG_KAM_ABIAD_BIRAK); biraX [13]=0;
+    biraX [2]=0;  biraX [6]=sin(KG_KAM_ABIAD_BIRAK); biraX [10]=cos(KG_KAM_ABIAD_BIRAK);  biraX [14]=0;
     biraX [3]=0;  biraX [7]=0;                   biraX [11]=0;                    biraX [15]=1;
 
     GLdouble  * biraY = malloc ( sizeof ( GLdouble )*16);
-    biraY [0]=cos(KG_ABIAD_BIRAK);  biraY [4]=0;  biraY [8] =sin(KG_ABIAD_BIRAK); biraY [12]=0;
+    biraY [0]=cos(KG_KAM_ABIAD_BIRAK);  biraY [4]=0;  biraY [8] =sin(KG_KAM_ABIAD_BIRAK); biraY [12]=0;
     biraY [1]=0;                    biraY [5]=1;  biraY [9]=0;                    biraY [13]=0;
-    biraY [2]=-sin(KG_ABIAD_BIRAK); biraY [6]=0;  biraY [10]=cos(KG_ABIAD_BIRAK); biraY [14]=0;
+    biraY [2]=-sin(KG_KAM_ABIAD_BIRAK); biraY [6]=0;  biraY [10]=cos(KG_KAM_ABIAD_BIRAK); biraY [14]=0;
     biraY [3]=0;                    biraY [7]=0;  biraY [11]=0;                   biraY [15]=1;
 
     GLdouble  * biraZ = malloc ( sizeof ( GLdouble )*16);
-    biraZ [0]=cos(KG_ABIAD_BIRAK); biraZ [4]=-sin(KG_ABIAD_BIRAK); biraZ [8] =0;  biraZ [12]=0;
-    biraZ [1]=sin(KG_ABIAD_BIRAK); biraZ [5]=cos(KG_ABIAD_BIRAK);  biraZ [9] =0;  biraZ [13]=0;
+    biraZ [0]=cos(KG_KAM_ABIAD_BIRAK); biraZ [4]=-sin(KG_KAM_ABIAD_BIRAK); biraZ [8] =0;  biraZ [12]=0;
+    biraZ [1]=sin(KG_KAM_ABIAD_BIRAK); biraZ [5]=cos(KG_KAM_ABIAD_BIRAK);  biraZ [9] =0;  biraZ [13]=0;
     biraZ [2]=0;                   biraZ [6]=0;                    biraZ [10]=1;  biraZ [14]=0;
     biraZ [3]=0;                   biraZ [7]=0;                        biraZ [11]=0;  biraZ [15]=1;
 
     GLdouble  * biraXn = malloc ( sizeof ( GLdouble )*16);
     biraXn [0]=1;  biraXn [4]=0;                   biraXn [8] =0;                        biraXn [12]=0;
-    biraXn [1]=0;  biraXn [5]=cos(KG_ABIAD_BIRAK); biraXn [9] =sin(KG_ABIAD_BIRAK); biraXn [13]=0;
-    biraXn [2]=0;  biraXn [6]=-sin(KG_ABIAD_BIRAK); biraXn [10]=cos(KG_ABIAD_BIRAK);      biraXn [14]=0;
+    biraXn [1]=0;  biraXn [5]=cos(KG_KAM_ABIAD_BIRAK); biraXn [9] =sin(KG_KAM_ABIAD_BIRAK); biraXn [13]=0;
+    biraXn [2]=0;  biraXn [6]=-sin(KG_KAM_ABIAD_BIRAK); biraXn [10]=cos(KG_KAM_ABIAD_BIRAK);      biraXn [14]=0;
     biraXn [3]=0;  biraXn [7]=0;                   biraXn [11]=0;                        biraXn [15]=1;
 
     GLdouble  * biraYn = malloc ( sizeof ( GLdouble )*16);
-    biraYn [0]=cos(KG_ABIAD_BIRAK);      biraYn [4]=0;  biraYn [8] =-sin(KG_ABIAD_BIRAK); biraYn [12]=0;
+    biraYn [0]=cos(KG_KAM_ABIAD_BIRAK);      biraYn [4]=0;  biraYn [8] =-sin(KG_KAM_ABIAD_BIRAK); biraYn [12]=0;
     biraYn [1]=0;                        biraYn [5]=1;  biraYn [9]=0;                    biraYn [13]=0;
-    biraYn [2]=sin(KG_ABIAD_BIRAK); biraYn [6]=0;  biraYn [10]=cos(KG_ABIAD_BIRAK); biraYn [14]=0;
+    biraYn [2]=sin(KG_KAM_ABIAD_BIRAK); biraYn [6]=0;  biraYn [10]=cos(KG_KAM_ABIAD_BIRAK); biraYn [14]=0;
     biraYn [3]=0;                        biraYn [7]=0;  biraYn [11]=0;                   biraYn [15]=1;
 
     GLdouble  * biraZn = malloc ( sizeof ( GLdouble )*16);
-    biraZn [0]=cos(KG_ABIAD_BIRAK); biraZn [4]=sin(KG_ABIAD_BIRAK); biraZn [8] =0;  biraZn [12]=0;
-    biraZn [1]=-sin(KG_ABIAD_BIRAK); biraZn [5]=cos(KG_ABIAD_BIRAK);      biraZn [9] =0;  biraZn [13]=0;
+    biraZn [0]=cos(KG_KAM_ABIAD_BIRAK); biraZn [4]=sin(KG_KAM_ABIAD_BIRAK); biraZn [8] =0;  biraZn [12]=0;
+    biraZn [1]=-sin(KG_KAM_ABIAD_BIRAK); biraZn [5]=cos(KG_KAM_ABIAD_BIRAK);      biraZn [9] =0;  biraZn [13]=0;
     biraZn [2]=0;                   biraZn [6]=0;                        biraZn [10]=1;  biraZn [14]=0;
     biraZn [3]=0;                   biraZn [7]=0;                        biraZn [11]=0;  biraZn [15]=1;
 
@@ -226,14 +226,14 @@ void kam_biratu(){
     switch (kamera_tardatza){
         case 'X':
             if(kamera_tnorabidea=='+'){
-                printf("Kamera biralazioa: +X\n");
+                printf("Kamera biraketa: +X\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraX);
                 else if(transf_helburua=='g')
                     matBerria = mult(biraX, kamera1->aldaketaPila->matrix);
             }
             else{
-                printf("Kamera biralazioa: -X\n");
+                printf("Kamera biraketa: -X\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraXn);
                 else if(transf_helburua=='g')
@@ -244,14 +244,14 @@ void kam_biratu(){
 
         case 'Y':
             if(kamera_tnorabidea=='+'){
-                printf("Kamera biralazioa: +Y\n");
+                printf("Kamera biraketa: +Y\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraY);
                 else if(transf_helburua=='g')
                     matBerria = mult(biraY,kamera1->aldaketaPila->matrix);
             }
             else{
-                printf("Kamera biralazioa: -Y\n");
+                printf("Kamera biraketa: -Y\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraYn);
                 else if(transf_helburua=='g')
@@ -262,14 +262,14 @@ void kam_biratu(){
 
         case 'Z':
             if(kamera_tnorabidea=='+'){
-                printf("Kamera biralazioa: +Z\n");
+                printf("Kamera biraketa: +Z\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraZ);
                 else if(transf_helburua=='g')
                     matBerria = mult(biraZ,kamera1->aldaketaPila->matrix);
             }
             else{
-                printf("Kamera biralazioa: -Z\n");
+                printf("Kamera biraketa: -Z\n");
                 if(transf_helburua=='l')
                     matBerria = mult(kamera1->aldaketaPila->matrix,biraZn);
                 else if(transf_helburua=='g')

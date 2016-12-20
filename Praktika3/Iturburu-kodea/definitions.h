@@ -65,8 +65,8 @@
 #define KG_ABIAD_BIRAK                      3.14159265359f/8
 #define KG_ABIAD_TRASL                      0.1f
 
-#define KG_KAM_ABIAD_BIRAK                  3.14159265359f/512
-#define KG_KAM_ABIAD_TRASL                  0.0001f;
+#define KG_KAM_ABIAD_BIRAK                  3.14159265359f/128
+#define KG_KAM_ABIAD_TRASL                  0.1f;
 
 /** STRUCTURES **/
 

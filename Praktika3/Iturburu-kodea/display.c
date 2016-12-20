@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h> /** cos eta sin **/
+#include "multiMatrix.h"
 #include "multiKamera.h"
 
 /** EXTERNAL VARIABLES **/
@@ -57,16 +58,22 @@ void camera_init(){
     kamera1->f = 1000;
     kamera1->has_ang = 8;
 
+    GLdouble* ident = malloc ( sizeof ( GLdouble )*16);
+    ident [0]=1; ident [4]=0; ident [8] =0; ident [12]=0;
+    ident [1]=0; ident [5]=1; ident [9] =0; ident [13]=0;
+    ident [2]=0; ident [6]=0; ident [10]=1; ident [14]=0;
+    ident [3]=0; ident [7]=0; ident [11]=0; ident [15]=1;
+
+    GLdouble* lag = malloc ( sizeof ( GLdouble )*16);
+    lag [0]=1; lag [4]=0; lag [8] =0; lag [12]=0;
+    lag [1]=0; lag [5]=1; lag [9] =0; lag [13]=0;
+    lag [2]=0; lag [6]=0; lag [10]=1; lag [14]=22;
+    lag [3]=0; lag [7]=0; lag [11]=0; lag [15]=1;
+
     kamera1->aldaketaPila = (pila*)malloc(sizeof(pila));
-    kamera1->aldaketaPila->matrix = malloc ( sizeof ( GLdouble )*16);
-    kamera1->aldaketaPila->matrix [0]=1; kamera1->aldaketaPila->matrix [4]=0; kamera1->aldaketaPila->matrix [8] =0; kamera1->aldaketaPila->matrix [12]=0;
-    kamera1->aldaketaPila->matrix [1]=0; kamera1->aldaketaPila->matrix [5]=1; kamera1->aldaketaPila->matrix [9] =0; kamera1->aldaketaPila->matrix [13]=0;
-    kamera1->aldaketaPila->matrix [2]=0; kamera1->aldaketaPila->matrix [6]=0; kamera1->aldaketaPila->matrix [10]=1; kamera1->aldaketaPila->matrix [14]=0;
-    kamera1->aldaketaPila->matrix [3]=0; kamera1->aldaketaPila->matrix [7]=0; kamera1->aldaketaPila->matrix [11]=0; kamera1->aldaketaPila->matrix [15]=1;
-    
+    kamera1->aldaketaPila->matrix = mult(ident,lag);
     kamera1->aldaketaPila->next   = NULL;
 
-    printf("Kamera hasiarazi da\n");
 }
 
 /**
