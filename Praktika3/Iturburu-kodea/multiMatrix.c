@@ -28,12 +28,12 @@ extern object3d *_selected_object;
 
 /** GLOBAL VARIABLES **/
 
-object3d * trans_obj =0;                    /*Transformazioa jasango duen objektua*/
+object3d * trans_obj =0;                /*Transformazioa jasango duen objektua*/
 
 extern char transf_helburua;				
-char transf_mota = '\0';					//Biraketa, traslazio edo tamaina aldaketa
-char transf_ardatza = '\0';					//X,Y,Z
-char transf_norabidea = '\0';				//+,-
+char transf_mota = 'm';					//Biraketa, traslazio edo tamaina aldaketa
+char transf_ardatza = 'X';				//X,Y,Z
+char transf_norabidea = '+';			//+,-
 
 /**
  * @brief Matrizeak biderkatzeko metodoa

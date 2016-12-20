@@ -147,10 +147,10 @@ struct kamera{
     GLdouble * eye;
     GLdouble * center;
     GLdouble * up;
-    GLfloat ikus_ang;
     GLfloat n;
     GLfloat f;
-    GLfloat has_ang;
+    GLfloat angeluaXZ; /*Kamera ibiltariarako, eskuin-ezkerrerako angelua gordetzea beharrezkoa da*/
+    GLfloat angeluaY; /*Kamera ibiltariarako, gora-beherako angelua gordetzea beharrezkoa da*/
     pila * aldaketaPila;
     GLint num_aldaketak;
 };

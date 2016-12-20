@@ -26,8 +26,8 @@ GLdouble _ortho_z_min,_ortho_z_max;         /*Variables for the control of the o
 object3d * _first_object= 0;                /*List of objects*/
 object3d * _selected_object = 0;            /*Object currently selected*/
 
-char obj_kam_hautatu = '\0';                //Transformazioak objektuan edo kameran eragin
-char transf_helburua = '\0';				//Transformazio lokala edo globala
+char obj_kam_hautatu = 'o';                 //Transformazioak objektuan edo kameran eragin
+char transf_helburua = 'g';				    //Transformazio lokala edo globala
 
 /** GENERAL INITIALIZATION **/
 void initialization (){

@@ -28,36 +28,11 @@ extern GLdouble _ortho_z_min,_ortho_z_max;
 extern object3d *_first_object;
 extern object3d *_selected_object;
 
-kamera * kamera1;
+kamera * kameraO;
+kamera * kameraI;
 extern char kamera_mota;
 
 void camera_init(){
-    /*Kamera hasiarazten da*/
-    kamera1 = malloc(sizeof(kamera1));
-
-    kamera1->eye = (GLdouble*)malloc(sizeof(GLdouble)*4);
-    kamera1->eye[0]=0;
-    kamera1->eye[1]=0;
-    kamera1->eye[2]=0;
-    kamera1->eye[3]=1;
-
-    kamera1->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
-    kamera1->center[0]=0;
-    kamera1->center[1]=0;
-    kamera1->center[2]=-10;
-    kamera1->center[3]=1;
-
-    kamera1->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
-    kamera1->up[0]=0;
-    kamera1->up[1]=1;
-    kamera1->up[2]=0;
-    kamera1->up[3]=0;
-
-    kamera1->ikus_ang = 90;
-    kamera1->n = 0;
-    kamera1->f = 1000;
-    kamera1->has_ang = 8;
-
     GLdouble* ident = malloc ( sizeof ( GLdouble )*16);
     ident [0]=1; ident [4]=0; ident [8] =0; ident [12]=0;
     ident [1]=0; ident [5]=1; ident [9] =0; ident [13]=0;
@@ -69,11 +44,65 @@ void camera_init(){
     lag [1]=0; lag [5]=1; lag [9] =0; lag [13]=0;
     lag [2]=0; lag [6]=0; lag [10]=1; lag [14]=22;
     lag [3]=0; lag [7]=0; lag [11]=0; lag [15]=1;
+    
+    /*Objektu kamera hasiarazten da*/
+    kameraO = malloc(sizeof(kameraO));
 
-    kamera1->aldaketaPila = (pila*)malloc(sizeof(pila));
-    kamera1->aldaketaPila->matrix = mult(ident,lag);
-    kamera1->aldaketaPila->next   = NULL;
+    kameraO->eye = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraO->eye[0]=0;
+    kameraO->eye[1]=0;
+    kameraO->eye[2]=0;
+    kameraO->eye[3]=1;
 
+    kameraO->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraO->center[0]=0;
+    kameraO->center[1]=0;
+    kameraO->center[2]=-10;
+    kameraO->center[3]=1;
+
+    kameraO->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraO->up[0]=0;
+    kameraO->up[1]=1;
+    kameraO->up[2]=0;
+    kameraO->up[3]=0;
+
+    kameraO->angeluaY = 90;
+    kameraO->n = 0;
+    kameraO->f = 1000;
+
+    kameraO->aldaketaPila = (pila*)malloc(sizeof(pila));
+    kameraO->aldaketaPila->matrix = mult(ident,lag);
+    kameraO->aldaketaPila->next   = NULL;
+
+    /*Kamera ibiltaria hasiarazten da*/
+    kameraI = malloc(sizeof(kameraI));
+
+    kameraI->eye = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraI->eye[0]=0;
+    kameraI->eye[1]=0;
+    kameraI->eye[2]=0;
+    kameraI->eye[3]=1;
+
+    kameraI->center = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraI->center[0]=0;
+    kameraI->center[1]=0;
+    kameraI->center[2]=-10;
+    kameraI->center[3]=1;
+
+    kameraI->up = (GLdouble*)malloc(sizeof(GLdouble)*4);
+    kameraI->up[0]=0;
+    kameraI->up[1]=1;
+    kameraI->up[2]=0;
+    kameraI->up[3]=0;
+
+    kameraI->angeluaY = 90;
+    kameraI->n = 0;
+    kameraI->f = 1000;
+    kameraI->angeluaXZ = 8;
+
+    kameraI->aldaketaPila = (pila*)malloc(sizeof(pila));
+    kameraI->aldaketaPila->matrix = mult(ident,lag);
+    kameraI->aldaketaPila->next   = NULL;
 }
 
 /**
@@ -152,22 +181,22 @@ void display(void) {
             }
             break;
         case 'k':
-            eye = mult_vec(kamera1->aldaketaPila->matrix, kamera1->eye);
-            center = mult_vec(kamera1->aldaketaPila->matrix, kamera1->center);
-            up = mult_vec(kamera1->aldaketaPila->matrix, kamera1->up);
+            eye = mult_vec(kameraO->aldaketaPila->matrix, kameraO->eye);
+            center = mult_vec(kameraO->aldaketaPila->matrix, kameraO->center);
+            up = mult_vec(kameraO->aldaketaPila->matrix, kameraO->up);
 
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
-            gluPerspective((GLfloat)kamera1->ikus_ang, (GLfloat)(wd / he), kamera1->n, kamera1->f);
+            gluPerspective((GLfloat)kameraO->angeluaY, (GLfloat)(wd / he), kameraO->n, kameraO->f);
             break;
         case 'i':
-            eye = mult_vec(kamera1->aldaketaPila->matrix, kamera1->eye);
-            center = mult_vec(kamera1->aldaketaPila->matrix, kamera1->center);
-            up = mult_vec(kamera1->aldaketaPila->matrix, kamera1->up);
+            eye = mult_vec(kameraI->aldaketaPila->matrix, kameraI->eye);
+            center = mult_vec(kameraI->aldaketaPila->matrix, kameraI->center);
+            up = mult_vec(kameraI->aldaketaPila->matrix, kameraI->up);
 
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
-            gluPerspective((GLfloat)kamera1->ikus_ang, (GLfloat)(wd / he), (GLfloat)kamera1->n, (GLfloat)kamera1->f);
+            gluPerspective((GLfloat)kameraI->angeluaY, (GLfloat)(wd / he), (GLfloat)kameraI->n, (GLfloat)kameraI->f);
             break;
     }
 
