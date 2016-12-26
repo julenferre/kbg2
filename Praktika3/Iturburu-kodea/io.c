@@ -181,10 +181,6 @@ void keyboard(unsigned char key, int x, int y) {
                 printf("Kamerari aldaketak desegin\n");
                 kamAldaketaDesegin();
             }
-            else if(obj_kam_hautatu== 'i') {
-                printf("Kamerari aldaketak desegin\n");
-                kamAldaketaDesegin();
-            }
             break;
 
         case 9: /* <TAB> */

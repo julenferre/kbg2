@@ -48,7 +48,7 @@ GLdouble *mult_vec(GLdouble *m, GLdouble *v){
 void pilanGehituK(GLdouble *matrix_aux){
     pila *pila_aux = (pila *) malloc(sizeof(pila));
     pila_aux->matrix= matrix_aux;
-    if(kamera_mota=='o') {
+    if(kamera_mota=='k') {
         pila_aux->next = kameraO->aldaketaPila;
         kameraO->aldaketaPila = pila_aux;
         kameraO->num_aldaketak += 1;
@@ -61,19 +61,36 @@ void pilanGehituK(GLdouble *matrix_aux){
 }
 
 /**
- * @brief Objetu baten aldaketak desegiteko metodoa
+ * @brief Kamera baten aldaketak desegiteko metodoa
  */
 void kamAldaketaDesegin(){
-    if(kameraO->num_aldaketak>0){
-        pila *first_matrix;
-        first_matrix = kameraO->aldaketaPila->next;
-        kameraO->aldaketaPila = 0;
-        kameraO->aldaketaPila = first_matrix;
-        kameraO->aldaketaPila->matrix = first_matrix->matrix;
-        kameraO->num_aldaketak-=1;
-        printf("Kameraren aldaketak desegin dira\n");}
-    else{
-        printf("Ezin dira aldaketa gehiagorik desegin\n");}
+    if(kamera_mota == 'k') {
+        if(kameraO->num_aldaketak>0){
+            pila *first_matrix;
+            first_matrix = kameraO->aldaketaPila->next;
+            kameraO->aldaketaPila = 0;
+            kameraO->aldaketaPila = first_matrix;
+            kameraO->aldaketaPila->matrix = first_matrix->matrix;
+            kameraO->num_aldaketak-=1;
+            printf("Kameraren aldaketak desegin dira\n");}
+        else{
+            printf("Ezin dira aldaketa gehiagorik desegin\n");
+        }
+    }
+    else if(kamera_mota == 'i') {
+        if(kameraI->num_aldaketak>0){
+            pila *first_matrix;
+            first_matrix = kameraI->aldaketaPila->next;
+            kameraI->aldaketaPila = 0;
+            kameraI->aldaketaPila = first_matrix;
+            kameraI->aldaketaPila->matrix = first_matrix->matrix;
+            kameraI->num_aldaketak-=1;
+            printf("Kameraren aldaketak desegin dira\n");}
+        else{
+            printf("Ezin dira aldaketa gehiagorik desegin\n");
+        }
+    }
+
 }//aldaketaDesegin
 
 void kamera_mota_aldatu(){

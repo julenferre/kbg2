@@ -30,6 +30,7 @@ extern object3d *_selected_object;
 
 kamera * kameraO;
 kamera * kameraI;
+
 extern char kamera_mota;
 
 void camera_init(){
