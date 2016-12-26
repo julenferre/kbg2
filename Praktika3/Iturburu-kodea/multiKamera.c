@@ -204,18 +204,18 @@ void objektuKameraMugitu(){
 
 void kamIbiltariaMugitu(){
     double angelua, ardatzaX, ardatzaZ;
-    angelua = kameraI->angeluaXZ*3.14159265359f/8;
+    angelua = kameraI->angeluaXZ*PI;
 
     GLdouble *matBerria;
 
     if(kamera_tnorabidea=='+'){
         printf("Kamera aurrera ibiltzen\n");
-        ardatzaX = cos(angelua);
+        ardatzaX = -cos(angelua);
         ardatzaZ = -sin(angelua);
     }
     else{
         printf("Kamera atzera ibiltzen\n");
-        ardatzaX = -cos(angelua);
+        ardatzaX = cos(angelua);
         ardatzaZ = sin(angelua);
     }
     GLdouble  * trasY_I = malloc ( sizeof ( GLdouble )*16);
@@ -226,13 +226,13 @@ void kamIbiltariaMugitu(){
 
     matBerria = mult(trasY_I, kameraI->aldaketaPila->matrix);
 
+    pilanGehituK(matBerria);
+
     for(int i = 0; i < 16; i++){
         printf("%f ",kameraI->aldaketaPila->matrix[i]);
         if(i==3 || i==7 || i==11) printf("\n");
     }
     printf("\n");
-
-    pilanGehituK(matBerria);
 }
 
 void objektuKameraBiratu(){
@@ -340,7 +340,9 @@ void kamIbiltariaBiratu(){
         case 'Y':
             if (kamera_tnorabidea == '+') {
                 printf("Kamera eskuinera biratu\n");
-                kameraI->angeluaXZ += KG_KAM_ABIAD_BIRAK*8;
+                kameraI->angeluaXZ += 1.40625; /* 360º / 256 pausu/biraketa = 1.40625 */
+                if(kameraI->angeluaXZ>360)
+                    kameraI->angeluaXZ =  0;
 
                 GLdouble  * biraY_I_R = malloc ( sizeof ( GLdouble )*16);
                 biraY_I_R [0]=cos(KG_KAM_ABIAD_BIRAK); biraY_I_R [4]=0;  biraY_I_R [8]=-sin(KG_KAM_ABIAD_BIRAK); biraY_I_R [12]=0;
@@ -352,7 +354,9 @@ void kamIbiltariaBiratu(){
 
             } else {
                 printf("Kamera ezkerrera biratu\n");
-                kameraI->angeluaXZ -= KG_KAM_ABIAD_BIRAK*8;
+                kameraI->angeluaXZ -= 1.40625;
+                if(kameraI->angeluaXZ<0)
+                    kameraI->angeluaXZ = 360;
 
                 GLdouble  * biraY_I_L = malloc ( sizeof ( GLdouble )*16);
                 biraY_I_L [0]=cos(KG_KAM_ABIAD_BIRAK);  biraY_I_L [4]=0;  biraY_I_L [8] =sin(KG_KAM_ABIAD_BIRAK); biraY_I_L [12]=0;
@@ -404,4 +408,3 @@ void kamIbiltariaBiratu(){
     }
     printf("\n");
 }
-
